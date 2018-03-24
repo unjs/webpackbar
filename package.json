@@ -1,6 +1,6 @@
 {
   "name": "webpackbar",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Elegant Progressbar for Webpack",
   "main": "dist/cjs.js",
   "scripts": {

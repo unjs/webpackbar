@@ -8,8 +8,6 @@ init:
 environment:
   matrix:
     - nodejs_version: '8'
-      webpack_version: latest
-      job_part: test
 
 build: 'off'
 
@@ -21,9 +19,9 @@ install:
   - yarn install
 
 before_test:
-  - 'cmd: npm install webpack@%webpack_version%'
+  - 'cmd: yarn build'
 
 test_script:
   - node --version
   - npm --version
-  - 'cmd: npm run appveyor:%job_part%'
+  - 'cmd: yarn ci:test

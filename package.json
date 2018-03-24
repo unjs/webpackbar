@@ -17,7 +17,7 @@
     "release": "standard-version",
     "security": "nsp check",
     "ci:lint": "npm run lint && npm run security",
-    "ci:test": "npm run test -- --runInBand"
+    "ci:test": "npm run test -- --runInBand --ci"
   },
   "repository": {
     "type": "git",

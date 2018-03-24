@@ -2,12 +2,12 @@ import util from 'util';
 import webpack from 'webpack';
 import basicConfig from './fixtures/basic/webpack.config';
 
-const logUpdateMethods = ['render', 'clear', 'done'];
+const logUpdateMethods = ['clear'];
 
 const mockLogUpdate = () => {
   const m = jest.fn();
   logUpdateMethods.forEach((k) => {
-    m[k] = jest.fn;
+    m[k] = jest.fn();
   });
   return m;
 };
@@ -16,7 +16,7 @@ describe('webpackbar', () => {
   const logUpdate = mockLogUpdate();
 
   test('compile', async () => {
-    const compiler = webpack(basicConfig({
+    const compiler = webpack(basicConfig.from({
       name: 'test1',
       logUpdate,
     }));
@@ -29,12 +29,12 @@ describe('webpackbar', () => {
   });
 
   test('logUpdate', () => {
-    expect(logUpdate).toMatchSnapshot();
+    expect(logUpdate).toBeCalled();
   });
 
   for (const method of logUpdateMethods) {
     test(`logUpdate.${method}`, () => {
-      expect(logUpdate[method]).toMatchSnapshot();
+      expect(logUpdate[method]).toBeCalled();
     });
   }
 });

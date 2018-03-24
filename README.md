@@ -10,7 +10,7 @@
   <a href="https://webpack.js.org/">
     <img width="200" height="200" hspace="25" src="https://cdn.rawgit.com/webpack/media/e7485eb2/logo/icon-square-big.svg">
   </a>
-  <p>Elegant Progressbar for Webpack</p>
+  <p>Elegant ProgressBar and Profiler for Webpack</p>
 </div>
 
 ✔ Display elegant progress bar while building or watch

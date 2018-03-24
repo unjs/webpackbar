@@ -42,7 +42,9 @@
     "chalk": "^2.3.2",
     "figures": "^2.0.0",
     "lodash": "^4.17.5",
-    "log-update": "^2.3.0"
+    "log-update": "^2.3.0",
+    "pretty-time": "^1.0.0",
+    "table": "^4.0.3"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

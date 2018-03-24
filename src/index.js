@@ -2,44 +2,64 @@ import webpack from 'webpack';
 import chalk from 'chalk';
 import _ from 'lodash';
 import logUpdate from 'log-update';
-import figures from 'figures';
-import { formatModule, str, renderBar } from './utils';
+import Profile from './profile';
+import { BULLET, parseRequst, formatRequest, renderBar, printStats } from './utils';
 
 const sharedState = {};
 
-const B1 = figures('●');
+const defaults = { name: 'webpack', color: 'green', profile: false };
 
 export default class WebpackBarPlugin extends webpack.ProgressPlugin {
-  constructor(options = { name: 'webpack', color: 'green' }) {
-    super(options);
-    this.options = options;
+  constructor(options) {
+    super();
+
+    this.options = Object.assign({}, defaults, options);
 
     this.handler = (percent, msg, ...details) => this.updateProgress(percent, msg, details);
-    this.handler = _.throttle(this.handler, 25, { leading: true, trailing: true });
 
-    this.logUpdate = options.logUpdate || logUpdate;
+    // Don't throttle when profiling
+    if (!this.options.profile) {
+      this.handler = _.throttle(this.handler, 25, { leading: true, trailing: true });
+    }
+
+    this.logUpdate = this.options.logUpdate || logUpdate;
+
+    if (!sharedState[this.options.name]) {
+      sharedState[this.options.name] = {
+        color: this.options.color,
+        profile: this.options.profile ? new Profile(this.options.name) : null,
+      };
+    }
   }
 
   apply(compiler) {
     super.apply(compiler);
 
-    compiler.hooks.done.tap('progress', () => logUpdate.clear());
+    compiler.hooks.done.tap('webpackbar', () => {
+      logUpdate.clear();
+
+      if (this.options.profile) {
+        const stats = sharedState[this.options.name].profile.getStats();
+        printStats(stats);
+      }
+    });
   }
 
   updateProgress(percent, msg, details) {
     const progress = Math.floor(percent * 100);
 
-    if (!sharedState[this.options.name]) {
-      sharedState[this.options.name] = {
-        color: this.options.color,
-      };
-    }
+    Object.assign(sharedState[this.options.name], {
+      progress,
+      msg,
+      details: details || [],
+      request: parseRequst(details[2]),
+      isRunning: (progress && progress !== 100) && (msg && msg.length),
+    });
 
-    const thisState = sharedState[this.options.name];
-    thisState.progress = progress;
-    thisState.msg = msg;
-    thisState.details = details || [];
-    thisState.isRunning = (progress && progress !== 100) && (msg && msg.length);
+    if (this.options.profile) {
+      sharedState[this.options.name].profile
+        .onRequest(sharedState[this.options.name].request);
+    }
 
     // Process all states
     let isRunning = false;
@@ -56,16 +76,16 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
       }
 
       const lColor = chalk.keyword(state.color);
-      const lIcon = lColor(B1);
+      const lIcon = lColor(BULLET);
       const lName = lColor(_.startCase(name));
       const lBar = renderBar(state.progress, state.color);
       const lMsg = _.startCase(state.msg);
       const lProgress = `(${state.progress}%)`;
-      const lDetail1 = chalk.grey(str(state.details[0]));
-      const lDetail2 = chalk.grey(str(state.details[1]));
-      const lModule = state.details[2] ? chalk.grey(`  ${formatModule(state.details[2])}`) : '';
+      const lDetail1 = chalk.grey(state.details[0] || '');
+      const lDetail2 = chalk.grey(state.details[1] || '');
+      const lRequest = formatRequest(state.request);
 
-      lines.push(`${[lIcon, lName, lBar, lMsg, lProgress, lDetail1, lDetail2].join(' ')}\n${lModule}`);
+      lines.push(`${[lIcon, lName, lBar, lMsg, lProgress, lDetail1, lDetail2].join(' ')}\n ${lRequest}`);
     });
 
     if (!isRunning) {

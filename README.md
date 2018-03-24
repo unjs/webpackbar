@@ -13,18 +13,31 @@
   <p>Elegant Progressbar for Webpack</p>
 </div>
 
-✔ Display elegant progress bar while building or watch   
-✔ Support of multiply concurrent builds (useful for SSR)   
-✔ Pretty print filename and loaders   
-✔ Windows compatible   
-✔ Customizable   
+✔ Display elegant progress bar while building or watch
+
+✔ Support of multiply concurrent builds (useful for SSR)
+
+✔ Pretty print filename and loaders
+
+✔ Windows compatible
+
+✔ Customizable
+
+✔ Advanced build profiler
 
 <div align="center">
 <br>
 <img src="./assets/screen1.png" width="70%">
+<p>Multi progress bars</p>
 <br>
 </div>
 
+<div align="center">
+<br>
+<img src="./assets/screen2.png" width="50%">
+<p>Build Profiler</p>
+<br>
+</div>
 
 <h2 align="center">Getting Started</h2>
 
@@ -42,7 +55,7 @@ Using yarn:
 yarn add webpackbar
 ```
 
-Then add the reporter as a plugin to your webpack config.  
+Then add the reporter as a plugin to your webpack config.
 
 **webpack.config.js**
 
@@ -75,6 +88,11 @@ Display name
 - Default: `green`
 
 Display color
+
+### `profile`
+- Default: `false`
+
+Enable profiler
 
 <h2 align="center">Maintainers</h2>
 

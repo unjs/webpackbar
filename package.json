@@ -17,7 +17,7 @@
     "release": "standard-version",
     "security": "nsp check",
     "ci:lint": "npm run lint && npm run security",
-    "ci:test": "npm run test -- --runInBand --ci"
+    "ci:test": "npm run test -- --runInBand --ci --coverage"
   },
   "repository": {
     "type": "git",
@@ -50,6 +50,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
+    "codecov": "^3.0.0",
     "cross-env": "^5.1.4",
     "del-cli": "^1.1.0",
     "eslint": "^4.19.1",

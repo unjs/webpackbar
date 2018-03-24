@@ -37,3 +37,8 @@ jobs:
       - run:
           name: Test
           command: yarn ci:test
+
+      # Coverage
+      - run:
+          name: Coverage
+          command: yarn codecov

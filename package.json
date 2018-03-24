@@ -1,0 +1,83 @@
+{
+  "name": "webpackbar",
+  "version": "0.0.0",
+  "description": "Elegant Progressbar for Webpack",
+  "main": "dist/cjs.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:fixture": "webpack-cli --config test/fixtures/basic",
+    "build": "cross-env NODE_ENV=production babel src -d dist --ignore 'src/**/*.test.js'",
+    "build:watch": "npm run build -- -w",
+    "clean": "del-cli dist",
+    "lint": "eslint --cache src test",
+    "lint-staged": "lint-staged",
+    "prebuild": "npm run clean",
+    "prepublish": "npm run build",
+    "release": "standard-version",
+    "security": "nsp check",
+    "ci:lint": "npm run lint && npm run security",
+    "ci:test": "npm run test -- --runInBand"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nuxt/webpackbar.git"
+  },
+  "keywords": [
+    "webpack",
+    "webpack4",
+    "progress",
+    "progress-bar",
+    "profile",
+    "build",
+    "module"
+  ],
+  "author": "Pooya Parsa <pooya@nuxt.ir>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nuxt/webpackbar/issues"
+  },
+  "homepage": "https://github.com/nuxt/webpackbar#readme",
+  "dependencies": {
+    "chalk": "^2.3.2",
+    "figures": "^2.0.0",
+    "lodash": "^4.17.5",
+    "log-update": "^2.3.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-jest": "^22.4.3",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "cross-env": "^5.1.4",
+    "del-cli": "^1.1.0",
+    "eslint": "^4.19.1",
+    "eslint-config-webpack": "^1.2.5",
+    "eslint-plugin-import": "^2.9.0",
+    "jest": "^22.4.3",
+    "lint-staged": "^7.0.0",
+    "nsp": "^3.2.1",
+    "pre-commit": "^1.2.2",
+    "standard-version": "^4.3.0",
+    "webpack": "^4.2.0",
+    "webpack-cli": "^2.0.13",
+    "webpack-defaults": "^1.6.0"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">= 6.0"
+  },
+  "peerDependencies": {
+    "webpack": "^3.0.0 || ^4.0.0"
+  },
+  "pre-commit": "lint-staged",
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  }
+}

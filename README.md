@@ -27,14 +27,14 @@
 
 <div align="center">
 <br>
-<img src="./assets/screen1.png" width="70%">
+<img src="./assets/screen1.jpg" width="600px">
 <p>Multi progress bars</p>
 <br>
 </div>
 
 <div align="center">
 <br>
-<img src="./assets/screen2.png" width="50%">
+<img src="./assets/screen2.jpg" width="90%">
 <p>Build Profiler</p>
 <br>
 </div>

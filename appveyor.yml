@@ -24,4 +24,4 @@ before_test:
 test_script:
   - node --version
   - npm --version
-  - 'cmd: yarn ci:test
+  - 'cmd: yarn ci:test'

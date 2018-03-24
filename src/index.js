@@ -91,7 +91,7 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
     if (!isRunning) {
       this.logUpdate.clear();
     } else {
-      const title = chalk.bgBlue.black('BUILDING');
+      const title = ` ${chalk.bgBlue.black(' BUILDING ')}`;
       this.logUpdate(`\n${title}\n\n${lines.join('\n\n')}`);
     }
   }

@@ -15,13 +15,13 @@ matrix:
   fast_finish: true
 
 install:
-  - 'ps: Install-Product node $env:nodejs_version x64'
+  - ps: Install-Product node $env:nodejs_version
   - yarn install
 
 before_test:
-  - 'cmd: yarn build'
+  - yarn build
 
 test_script:
   - node --version
-  - npm --version
-  - 'cmd: yarn ci:test'
+  - yarn --version
+  - yarn ci:test

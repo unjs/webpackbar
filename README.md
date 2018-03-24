@@ -1,6 +1,7 @@
 [![npm][npm]][npm-url]
 [![deps][deps]][deps-url]
 [![test][test]][test-url]
+[![test-windows][test-win]][test-win-url]
 [![coverage][cover]][cover-url]
 
 <div align="center">
@@ -100,5 +101,8 @@ Display color
 [test]: https://img.shields.io/circleci/project/github/nuxt/webpackbar/master.svg?style=flat-square
 [test-url]: https://circleci.com/gh/nuxt/webpackbar
 
-[cover]: https://codecov.io/gh/nuxt/webpackbar/branch/master/graph/badge.svg
+[test-win]: https://img.shields.io/appveyor/ci/nuxt/webpackbar.svg?logo=appveyor&style=flat-square
+[test-win-url]: https://ci.appveyor.com/project/nuxt/webpackbar
+
+[cover]: https://codecov.io/gh/nuxt/webpackbar/branch/master/graph/badge.svg?style=flat-square
 [cover-url]: https://codecov.io/gh/nuxt/webpackbar

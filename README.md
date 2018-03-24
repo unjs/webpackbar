@@ -5,23 +5,22 @@
 
 <div align="center">
   <!-- replace with accurate logo e.g from https://worldvectorlogo.com/ -->
-  <img width="200" height="200" src="https://cdn.worldvectorlogo.com/logos/javascript.svg">
+  <img width="200" height="200" src="./assets/logo.svg">
   <a href="https://webpack.js.org/">
     <img width="200" height="200" vspace="" hspace="25" src="https://cdn.rawgit.com/webpack/media/e7485eb2/logo/icon-square-big.svg">
   </a>
-  <h1>WebpackBar</h1>
   <p>Elegant Progressbar for Webpack</p>
 </div>
 
-<h2 align="center">Features</h2>
+<div align="center">
+<img src="./assets/screen1.png" width="70%">
+</div>
 
-<img align="center" src="./assets/screen1.png" width="70%">
-
-✔ Display elegant progress bar while building or watch
-✔ Support of multiply concurrent builds (useful for SSR)
-✔ Pretty print filename and loaders
-✔ Windows compatible
-✔ Customizable
+✔ Display elegant progress bar while building or watch   
+✔ Support of multiply concurrent builds (useful for SSR)   
+✔ Pretty print filename and loaders   
+✔ Windows compatible   
+✔ Customizable   
 
 <h2 align="center">Getting Started</h2>
 
@@ -39,7 +38,7 @@ Using yarn:
 yarn add webpackbar
 ```
 
-Then add the reporter as a plugin to your webpack config. For example:
+Then add the reporter as a plugin to your webpack config.  
 
 **webpack.config.js**
 
@@ -56,15 +55,22 @@ module.exports = {
     path: path.resolve(__dirname)
   },
   plugins: [
-    new WebpackBar(/* options */)
+    new WebpackBar()
   ]
 };
 ```
 
 <h2 align="center">Options</h2>
 
-- `name`: Display name
-- `color`: Display color
+### `name`
+  - Default: `webpack`
+
+Display name
+
+### `color`
+- Default: `green`
+
+Display color
 
 <h2 align="center">Maintainers</h2>
 

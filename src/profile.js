@@ -7,9 +7,18 @@ export default class Profile {
   }
 
   onRequest(request) {
+    // Measure time for last request
     if (this.requests.length) {
-      this.requests[this.requests.length - 1].time = process.hrtime(this.requests[this.requests.length - 1].start);
-      delete this.requests[this.requests.length - 1].start;
+      const lastReq = this.requests[this.requests.length - 1];
+      if (lastReq.start) {
+        lastReq.time = process.hrtime(lastReq.start);
+        delete lastReq.start;
+      }
+    }
+
+    // Ignore requests without any file or loaders
+    if (!request.file || !request.loaders.length) {
+      return;
     }
 
     this.requests.push({
@@ -46,6 +55,9 @@ export default class Profile {
       });
 
       const ext = request.file && path.extname(request.file).substr(1);
+      if (!ext || !ext.length) {
+        console.log(request);
+      }
       addToStat(extStats, ext && ext.length ? ext : 'unknown', 1, time);
     });
 

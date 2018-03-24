@@ -55,9 +55,6 @@ export default class Profile {
       });
 
       const ext = request.file && path.extname(request.file).substr(1);
-      if (!ext || !ext.length) {
-        console.log(request);
-      }
       addToStat(extStats, ext && ext.length ? ext : 'unknown', 1, time);
     });
 

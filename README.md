@@ -12,15 +12,18 @@
   <p>Elegant Progressbar for Webpack</p>
 </div>
 
-<div align="center">
-<img src="./assets/screen1.png" width="70%">
-</div>
-
 ✔ Display elegant progress bar while building or watch   
 ✔ Support of multiply concurrent builds (useful for SSR)   
 ✔ Pretty print filename and loaders   
 ✔ Windows compatible   
 ✔ Customizable   
+
+<div align="center">
+<br>
+<img src="./assets/screen1.png" width="70%">
+<br>
+</div>
+
 
 <h2 align="center">Getting Started</h2>
 
@@ -88,14 +91,14 @@ Display color
   <tbody>
 </table>
 
-[npm]: https://img.shields.io/npm/v/webpackbar.svg
+[npm]: https://img.shields.io/npm/v/webpackbar.svg?style=flat-square
 [npm-url]: https://npmjs.com/package/webpackbar
 
-[deps]: https://david-dm.org/nuxt/webpackbar.svg
+[deps]: https://david-dm.org/nuxt/webpackbar.svg?style=flat-square
 [deps-url]: https://david-dm.org/nuxt/webpackbar
 
-[test]: http://img.shields.io/travis/nuxt/webpackbar.svg
-[test-url]: https://travis-ci.org/nuxt/webpackbar
+[test]: https://img.shields.io/circleci/project/github/nuxt/webpackbar/master.svg?style=flat-square
+[test-url]: https://circleci.com/gh/nuxt/webpackbar
 
 [cover]: https://codecov.io/gh/nuxt/webpackbar/branch/master/graph/badge.svg
 [cover-url]: https://codecov.io/gh/nuxt/webpackbar

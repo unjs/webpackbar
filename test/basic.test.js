@@ -18,6 +18,7 @@ describe('webpackbar', () => {
   test('compile', async () => {
     const compiler = webpack(basicConfig.from({
       name: 'test1',
+      profile: true,
       logUpdate,
     }));
 

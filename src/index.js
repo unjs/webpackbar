@@ -35,14 +35,22 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
   apply(compiler) {
     super.apply(compiler);
 
-    compiler.hooks.done.tap('webpackbar', () => {
-      logUpdate.clear();
+    if (compiler.hooks) {
+      // Webpack >= 4
+      compiler.hooks.done.tap('webpackbar', () => this.done());
+    } else {
+      // Webpack < 4
+      compiler.plugin('done', () => this.done());
+    }
+  }
 
-      if (this.options.profile) {
-        const stats = sharedState[this.options.name].profile.getStats();
-        printStats(stats);
-      }
-    });
+  done() {
+    logUpdate.clear();
+
+    if (this.options.profile) {
+      const stats = sharedState[this.options.name].profile.getStats();
+      printStats(stats);
+    }
   }
 
   updateProgress(percent, msg, details) {

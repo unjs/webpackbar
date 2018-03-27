@@ -12,7 +12,7 @@ const defaults = {
   color: 'green',
   stream: process.stdout,
   profile: false,
-  clear: false,
+  clear: true,
   showCursor: false,
 };
 

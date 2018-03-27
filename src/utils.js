@@ -21,7 +21,7 @@ export const colorize = (color) => {
     return chalk.hex(color);
   }
 
-  return chalk.color(color);
+  return chalk.keyword(color);
 };
 
 export const renderBar = (progress, color) => {

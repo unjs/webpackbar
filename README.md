@@ -87,12 +87,27 @@ Display name
 ### `color`
 - Default: `green`
 
-Display color
+Display color (can be hex (`#xxyyzz`) or a web color like `green`)
 
 ### `profile`
 - Default: `false`
 
 Enable profiler
+
+### `stream`
+Default: `process.stdout`
+
+Output stream.
+
+### `showCursor`
+Default: `false`
+
+Show the cursor. This can be useful when a CLI accepts input from a user.
+
+### `clear`
+- Default: `true`
+
+Auto clear console when compile is finished.
 
 <h2 align="center">Maintainers</h2>
 

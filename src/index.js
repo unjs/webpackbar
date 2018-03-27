@@ -7,7 +7,14 @@ import { BULLET, parseRequst, formatRequest, renderBar, printStats, colorize } f
 
 const sharedState = {};
 
-const defaults = { name: 'webpack', color: 'green', profile: false };
+const defaults = {
+  name: 'webpack',
+  color: 'green',
+  stream: process.stdout,
+  profile: false,
+  clear: false,
+  showCursor: false,
+};
 
 export default class WebpackBarPlugin extends webpack.ProgressPlugin {
   constructor(options) {
@@ -22,7 +29,9 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
       this.handler = _.throttle(this.handler, 25, { leading: true, trailing: true });
     }
 
-    this.logUpdate = this.options.logUpdate || logUpdate;
+    this.logUpdate = this.options.logUpdate || logUpdate.create(this.options.stream, {
+      showCursor: this.options.showCursor,
+    });
 
     if (!sharedState[this.options.name]) {
       sharedState[this.options.name] = {
@@ -45,7 +54,9 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
   }
 
   done() {
-    logUpdate.clear();
+    if (this.options.clear) {
+      logUpdate.clear();
+    }
 
     if (this.options.profile) {
       const stats = sharedState[this.options.name].profile.getStats();
@@ -79,7 +90,8 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
 
       if (state.isRunning) {
         isRunning = true;
-      } else {
+      } else if (this.options.clear) {
+        // Hide finished jobs
         return;
       }
 
@@ -88,16 +100,18 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
       const lName = lColor(_.startCase(name));
       const lBar = renderBar(state.progress, state.color);
       const lMsg = _.startCase(state.msg);
-      const lProgress = `(${state.progress}%)`;
-      const lDetail1 = chalk.grey(state.details[0] || '');
-      const lDetail2 = chalk.grey(state.details[1] || '');
-      const lRequest = formatRequest(state.request);
+      const lProgress = `(${state.progress || 0}%)`;
+      const lDetail1 = chalk.grey((state.details && state.details[0]) || '');
+      const lDetail2 = chalk.grey((state.details && state.details[1]) || '');
+      const lRequest = state.request ? formatRequest(state.request) : '';
 
       lines.push(`${[lIcon, lName, lBar, lMsg, lProgress, lDetail1, lDetail2].join(' ')}\n ${lRequest}`);
     });
 
     if (!isRunning) {
-      this.logUpdate.clear();
+      if (this.options.clear) {
+        this.logUpdate.clear();
+      }
     } else {
       const title = ` ${chalk.bgBlue.black(' BUILDING ')}`;
       this.logUpdate(`\n${title}\n\n${lines.join('\n\n')}`);

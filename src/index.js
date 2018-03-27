@@ -3,7 +3,7 @@ import chalk from 'chalk';
 import _ from 'lodash';
 import logUpdate from 'log-update';
 import Profile from './profile';
-import { BULLET, parseRequst, formatRequest, renderBar, printStats } from './utils';
+import { BULLET, parseRequst, formatRequest, renderBar, printStats, colorize } from './utils';
 
 const sharedState = {};
 
@@ -83,7 +83,7 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
         return;
       }
 
-      const lColor = chalk.keyword(state.color);
+      const lColor = colorize(state.color);
       const lIcon = lColor(BULLET);
       const lName = lColor(_.startCase(name));
       const lBar = renderBar(state.progress, state.color);

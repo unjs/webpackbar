@@ -16,10 +16,18 @@ const NEXT = chalk.blue(figures(' › '));
 
 export const BULLET = figures('●');
 
+export const colorize = (color) => {
+  if (color[0] === '#') {
+    return chalk.hex(color);
+  }
+
+  return chalk.color(color);
+};
+
 export const renderBar = (progress, color) => {
   const w = progress * (BAR_LENGTH / 100);
   const bg = chalk.white(BLOCK_CHAR);
-  const fg = chalk.keyword(color)(BLOCK_CHAR2);
+  const fg = colorize(color)(BLOCK_CHAR2);
 
   return BAR_BEFORE +
     _.range(BAR_LENGTH).map(i => (i < w ? fg : bg)).join('') +

@@ -19,6 +19,7 @@ describe('webpackbar', () => {
     const compiler = webpack(basicConfig.from({
       name: 'test1',
       profile: true,
+      color: '#202020',
       logUpdate,
     }));
 

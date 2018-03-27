@@ -2,6 +2,7 @@ import webpack from 'webpack';
 import chalk from 'chalk';
 import _ from 'lodash';
 import logUpdate from 'log-update';
+import isCI from 'is-ci';
 import Profile from './profile';
 import { BULLET, parseRequst, formatRequest, renderBar, printStats, colorize } from './utils';
 
@@ -14,6 +15,7 @@ const defaults = {
   profile: false,
   clear: true,
   showCursor: false,
+  enabled: process.stdout.isTTY && !isCI,
 };
 
 export default class WebpackBarPlugin extends webpack.ProgressPlugin {
@@ -29,6 +31,10 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
       this.handler = _.throttle(this.handler, 25, { leading: true, trailing: true });
     }
 
+    if (!this.options.enabled) {
+      return;
+    }
+
     this.logUpdate = this.options.logUpdate || logUpdate.create(this.options.stream, {
       showCursor: this.options.showCursor,
     });
@@ -42,6 +48,10 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
   }
 
   apply(compiler) {
+    if (!this.options.enabled) {
+      return;
+    }
+
     super.apply(compiler);
 
     if (compiler.hooks) {
@@ -54,6 +64,10 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
   }
 
   done() {
+    if (!this.options.enabled) {
+      return;
+    }
+
     if (this.options.clear) {
       logUpdate.clear();
     }
@@ -65,6 +79,10 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
   }
 
   updateProgress(percent, msg, details) {
+    if (!this.options.enabled) {
+      return;
+    }
+
     const progress = Math.floor(percent * 100);
 
     Object.assign(sharedState[this.options.name], {

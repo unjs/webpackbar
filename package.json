@@ -41,6 +41,7 @@
   "dependencies": {
     "chalk": "^2.3.2",
     "figures": "^2.0.0",
+    "is-ci": "^1.1.0",
     "lodash": "^4.17.5",
     "log-update": "^2.3.0",
     "pretty-time": "^1.0.0",

@@ -79,33 +79,40 @@ module.exports = {
 
 <h2 align="center">Options</h2>
 
+### `enabled`
+
+By default only enabled when TTY is available and
+not running in a [CI](https://github.com/watson/is-ci) environment.
+
+You can force override this option by setting it to `true` or `false`.
+
 ### `name`
   - Default: `webpack`
 
 Display name
 
 ### `color`
-- Default: `green`
+  - Default: `green`
 
 Display color (can be hex (`#xxyyzz`) or a web color like `green`)
 
 ### `profile`
-- Default: `false`
+  - Default: `false`
 
 Enable profiler
 
 ### `stream`
-Default: `process.stdout`
+  - Default: `process.stdout`
 
 Output stream.
 
 ### `showCursor`
-Default: `false`
+  - Default: `false`
 
 Show the cursor. This can be useful when a CLI accepts input from a user.
 
 ### `clear`
-- Default: `true`
+  - Default: `true`
 
 Auto clear console when compile is finished.
 

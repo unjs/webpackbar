@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/nuxt/webpackbar/compare/v1.1.4...v1.2.0) (2018-03-27)
+
+
+### Features
+
+* new options: stream, profile, clear and showCursor. ([#3](https://github.com/nuxt/webpackbar/issues/3)) ([80f5f17](https://github.com/nuxt/webpackbar/commit/80f5f17))
+* support hex colors. ([#2](https://github.com/nuxt/webpackbar/issues/2)) ([1c7cc0b](https://github.com/nuxt/webpackbar/commit/1c7cc0b))
+
+
+
 <a name="1.1.4"></a>
 ## [1.1.4](https://github.com/nuxt/webpackbar/compare/v1.1.3...v1.1.4) (2018-03-26)
 

@@ -17,7 +17,8 @@
     "release": "standard-version",
     "security": "nsp check",
     "ci:lint": "npm run lint && npm run security",
-    "ci:test": "npm run test -- --runInBand --ci --coverage"
+    "ci:test": "npm run test -- --runInBand --ci --coverage",
+    "defaults": "webpack-defaults"
   },
   "repository": {
     "type": "git",
@@ -64,9 +65,9 @@
     "nsp": "^3.2.1",
     "pre-commit": "^1.2.2",
     "standard-version": "^4.3.0",
-    "webpack": "^4.2.0",
+    "webpack": "^4.3.0",
     "webpack-cli": "^2.0.13",
-    "webpack-defaults": "^1.6.0"
+    "webpack-defaults": "^2.0.0"
   },
   "files": [
     "dist"

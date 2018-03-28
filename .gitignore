@@ -13,4 +13,4 @@ Thumbs.db
 .vscode
 *.sublime-project
 *.sublime-workspace
-test/**/dist
+dist

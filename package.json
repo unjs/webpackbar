@@ -29,7 +29,8 @@
     "ci:lint": "npm run lint && npm run security",
     "ci:test": "npm run test -- --runInBand",
     "ci:coverage": "npm run test:coverage -- --runInBand",
-    "defaults": "webpack-defaults"
+    "defaults": "webpack-defaults",
+    "kitchen-sync": "webpack-cli --config kitchen-sync/webpack.config.js"
   },
   "dependencies": {
     "chalk": "^2.3.2",
@@ -60,6 +61,7 @@
     "eslint-config-webpack": "^1.2.5",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-prettier": "^2.6.0",
+    "esm": "^3.0.11",
     "husky": "^0.14.3",
     "jest": "^22.4.3",
     "lint-staged": "^7.0.0",

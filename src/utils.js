@@ -29,12 +29,16 @@ export const renderBar = (progress, color) => {
   const bg = chalk.white(BLOCK_CHAR);
   const fg = colorize(color)(BLOCK_CHAR2);
 
-  return BAR_BEFORE +
-    _.range(BAR_LENGTH).map(i => (i < w ? fg : bg)).join('') +
-    BAR_AFTER;
+  return (
+    BAR_BEFORE +
+    _.range(BAR_LENGTH)
+      .map((i) => (i < w ? fg : bg))
+      .join('') +
+    BAR_AFTER
+  );
 };
 
-const hasValue = s => s && s.length;
+const hasValue = (s) => s && s.length;
 
 const nodeModules = `${path.delimiter}node_modules${path.delimiter}`;
 const removeAfter = (delimiter, str) => _.first(str.split(delimiter));
@@ -48,9 +52,14 @@ const firstMatch = (regex, str) => {
 export const parseRequst = (requestStr) => {
   const parts = (requestStr || '').split('!');
 
-  const file = path.relative(process.cwd(), removeAfter('?', removeBefore(nodeModules, (parts.pop()))));
+  const file = path.relative(
+    process.cwd(),
+    removeAfter('?', removeBefore(nodeModules, parts.pop()))
+  );
 
-  const loaders = _.uniq(parts.map(part => firstMatch(/[a-z]+-loader/, part)).filter(hasValue));
+  const loaders = _.uniq(
+    parts.map((part) => firstMatch(/[a-z]+-loader/, part)).filter(hasValue)
+  );
 
   return {
     file: hasValue(file) ? file : null,
@@ -79,7 +88,13 @@ export const printStats = (allStats) => {
     const totalTime = [0, 0];
 
     const data = [
-      [_.startCase(category), 'Requests', 'Time', 'Time/Request', 'Description'],
+      [
+        _.startCase(category),
+        'Requests',
+        'Time',
+        'Time/Request',
+        'Description',
+      ],
     ];
 
     Object.keys(stats).forEach((item) => {
@@ -94,7 +109,13 @@ export const printStats = (allStats) => {
 
       const avgTime = [stat.time[0] / stat.count, stat.time[1] / stat.count];
 
-      data.push([item, stat.count || '-', prettyTime(stat.time), prettyTime(avgTime), description]);
+      data.push([
+        item,
+        stat.count || '-',
+        prettyTime(stat.time),
+        prettyTime(avgTime),
+        description,
+      ]);
     });
 
     data.push(['Total', totalRequests, prettyTime(totalTime), '', '']);

@@ -16,13 +16,15 @@ describe('webpackbar', () => {
   const logUpdate = mockLogUpdate();
 
   test('compile', async () => {
-    const compiler = webpack(basicConfig.from({
-      name: 'test1',
-      enabled: true,
-      profile: true,
-      color: '#202020',
-      logUpdate,
-    }));
+    const compiler = webpack(
+      basicConfig.from({
+        name: 'test1',
+        enabled: true,
+        profile: true,
+        color: '#202020',
+        logUpdate,
+      })
+    );
 
     const run = util.promisify(compiler.run);
     const stats = await run.call(compiler);

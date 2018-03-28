@@ -24,6 +24,7 @@ const defaults = {
   showCursor: false,
   enabled: process.stdout.isTTY && !isCI,
   done: null,
+  buildTitle: 'BUILDING',
 };
 
 export default class WebpackBarPlugin extends webpack.ProgressPlugin {
@@ -157,13 +158,21 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
         );
       });
 
-    if (someRunning) {
-      const title = ` ${chalk.bgBlue.black(' BUILDING ')}`;
-      this.logUpdate(`\n${title}\n\n${lines.join('\n\n')}`);
-    } else if (shouldClear) {
+    if (shouldClear && !someRunning) {
       this.logUpdate.clear();
+      return;
+    }
+
+    const lLines = lines.join('\n\n');
+
+    if (this.options.buildTitle) {
+      const title = someRunning
+        ? ` ${chalk.bgBlue.black(` ${this.options.buildTitle} `)}`
+        : '';
+
+      this.logUpdate(`\n${title}\n\n${lLines}`);
     } else {
-      this.logUpdate(`\n\n${lines.join('\n\n')}`);
+      this.logUpdate(`\n${lLines}`);
     }
   }
 }

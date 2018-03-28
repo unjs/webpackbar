@@ -22,8 +22,9 @@ module.exports = {
       color: 'yellow',
       showCursor: true,
       profile: true,
-      clear: true,
+      clear: !true,
       name: 'webpack-bar',
+      buildTitle: 'Wait',
     }),
   ],
 };

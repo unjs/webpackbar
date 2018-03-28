@@ -2,10 +2,10 @@ import _ from 'lodash';
 
 const DB = {
   loader: {
-    get: loader => _.startCase(loader),
+    get: (loader) => _.startCase(loader),
   },
   ext: {
-    get: ext => `${ext} files`,
+    get: (ext) => `${ext} files`,
     vue: 'Vue Signle File components',
     js: 'JavaScript files',
     sass: 'SASS files',

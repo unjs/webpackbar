@@ -4,7 +4,14 @@ import _ from 'lodash';
 import logUpdate from 'log-update';
 import isCI from 'is-ci';
 import Profile from './profile';
-import { BULLET, parseRequst, formatRequest, renderBar, printStats, colorize } from './utils';
+import {
+  BULLET,
+  parseRequst,
+  formatRequest,
+  renderBar,
+  printStats,
+  colorize,
+} from './utils';
 
 const sharedState = {};
 
@@ -24,20 +31,26 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
 
     this.options = Object.assign({}, defaults, options);
 
-    this.handler = (percent, msg, ...details) => this.updateProgress(percent, msg, details);
+    this.handler = (percent, msg, ...details) =>
+      this.updateProgress(percent, msg, details);
 
     // Don't throttle when profiling
     if (!this.options.profile) {
-      this.handler = _.throttle(this.handler, 25, { leading: true, trailing: true });
+      this.handler = _.throttle(this.handler, 25, {
+        leading: true,
+        trailing: true,
+      });
     }
 
     if (!this.options.enabled) {
       return;
     }
 
-    this.logUpdate = this.options.logUpdate || logUpdate.create(this.options.stream, {
-      showCursor: this.options.showCursor,
-    });
+    this.logUpdate =
+      this.options.logUpdate ||
+      logUpdate.create(this.options.stream, {
+        showCursor: this.options.showCursor,
+      });
 
     if (!sharedState[this.options.name]) {
       sharedState[this.options.name] = {
@@ -90,12 +103,13 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
       msg,
       details: details || [],
       request: parseRequst(details[2]),
-      isRunning: (progress && progress !== 100) && (msg && msg.length),
+      isRunning: progress && progress !== 100 && (msg && msg.length),
     });
 
     if (this.options.profile) {
-      sharedState[this.options.name].profile
-        .onRequest(sharedState[this.options.name].request);
+      sharedState[this.options.name].profile.onRequest(
+        sharedState[this.options.name].request
+      );
     }
 
     // Process all states
@@ -103,28 +117,34 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
 
     const lines = [];
 
-    _.sortBy(Object.keys(sharedState), s => s.name).reverse().forEach((name) => {
-      const state = sharedState[name];
+    _.sortBy(Object.keys(sharedState), (s) => s.name)
+      .reverse()
+      .forEach((name) => {
+        const state = sharedState[name];
 
-      if (state.isRunning) {
-        isRunning = true;
-      } else if (this.options.clear) {
-        // Hide finished jobs
-        return;
-      }
+        if (state.isRunning) {
+          isRunning = true;
+        } else if (this.options.clear) {
+          // Hide finished jobs
+          return;
+        }
 
-      const lColor = colorize(state.color);
-      const lIcon = lColor(BULLET);
-      const lName = lColor(_.startCase(name));
-      const lBar = renderBar(state.progress, state.color);
-      const lMsg = _.startCase(state.msg);
-      const lProgress = `(${state.progress || 0}%)`;
-      const lDetail1 = chalk.grey((state.details && state.details[0]) || '');
-      const lDetail2 = chalk.grey((state.details && state.details[1]) || '');
-      const lRequest = state.request ? formatRequest(state.request) : '';
+        const lColor = colorize(state.color);
+        const lIcon = lColor(BULLET);
+        const lName = lColor(_.startCase(name));
+        const lBar = renderBar(state.progress, state.color);
+        const lMsg = _.startCase(state.msg);
+        const lProgress = `(${state.progress || 0}%)`;
+        const lDetail1 = chalk.grey((state.details && state.details[0]) || '');
+        const lDetail2 = chalk.grey((state.details && state.details[1]) || '');
+        const lRequest = state.request ? formatRequest(state.request) : '';
 
-      lines.push(`${[lIcon, lName, lBar, lMsg, lProgress, lDetail1, lDetail2].join(' ')}\n ${lRequest}`);
-    });
+        lines.push(
+          `${[lIcon, lName, lBar, lMsg, lProgress, lDetail1, lDetail2].join(
+            ' '
+          )}\n ${lRequest}`
+        );
+      });
 
     if (!isRunning) {
       if (this.options.clear) {

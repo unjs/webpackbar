@@ -12,10 +12,7 @@ const makeConfig = (options) => {
       filename: './output.js',
       path: path.join(__dirname, '/dist'),
     },
-    plugins: [
-      new webpack.NamedModulesPlugin(),
-      new Self(options),
-    ],
+    plugins: [new webpack.NamedModulesPlugin(), new Self(options)],
   };
 };
 

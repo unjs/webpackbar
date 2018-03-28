@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.4.0"></a>
+# [1.4.0](https://github.com/nuxt/webpackbar/compare/v1.3.0...v1.4.0) (2018-03-28)
+
+
+### Features
+
+* accept done callback as an option ([30bfd1e](https://github.com/nuxt/webpackbar/commit/30bfd1e))
+* better handling for 100% state and clear: false ([a2c823f](https://github.com/nuxt/webpackbar/commit/a2c823f))
+
+
+
 <a name="1.3.0"></a>
 # [1.3.0](https://github.com/nuxt/webpackbar/compare/v1.2.1...v1.3.0) (2018-03-27)
 

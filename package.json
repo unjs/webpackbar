@@ -1,6 +1,6 @@
 {
   "name": "webpackbar",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "author": "Pooya Parsa <pooya@pi0.ir>",
   "description": "Elegant ProgressBar and Profiler for Webpack",
   "license": "MIT",

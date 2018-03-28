@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.5.0"></a>
+# [1.5.0](https://github.com/nuxt/webpackbar/compare/v1.4.0...v1.5.0) (2018-03-28)
+
+
+### Features
+
+* options.buildTitle & consistent number of output lines ([1263fc1](https://github.com/nuxt/webpackbar/commit/1263fc1))
+
+
+
 <a name="1.4.0"></a>
 # [1.4.0](https://github.com/nuxt/webpackbar/compare/v1.3.0...v1.4.0) (2018-03-28)
 

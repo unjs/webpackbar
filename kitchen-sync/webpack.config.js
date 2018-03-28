@@ -22,7 +22,7 @@ module.exports = {
       color: 'yellow',
       showCursor: true,
       profile: true,
-      clear: false,
+      clear: true,
       name: 'webpack-bar',
     }),
   ],

@@ -31,20 +31,15 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
 
     this.options = Object.assign({}, defaults, options);
 
-    this.handler = (percent, msg, ...details) =>
-      this.updateProgress(percent, msg, details);
-
-    // Don't throttle when profiling
-    if (!this.options.profile) {
-      this.handler = _.throttle(this.handler, 25, {
-        leading: true,
-        trailing: true,
-      });
-    }
-
     if (!this.options.enabled) {
       return;
     }
+
+    // this.handler will be called by webpack.ProgressPlugin
+    this.handler = (percent, msg, ...details) =>
+      this.updateProgress(percent, msg, details);
+
+    this._render = _.throttle(this.render, 25);
 
     this.logUpdate =
       this.options.logUpdate ||
@@ -81,9 +76,7 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
       return;
     }
 
-    if (this.options.clear) {
-      logUpdate.clear();
-    }
+    this.render();
 
     if (this.options.profile) {
       const stats = sharedState[this.options.name].profile.getStats();
@@ -97,13 +90,14 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
     }
 
     const progress = Math.floor(percent * 100);
+    const isRunning = progress && progress !== 100;
 
     Object.assign(sharedState[this.options.name], {
       progress,
-      msg,
+      msg: isRunning ? msg || '' : 'done',
       details: details || [],
       request: parseRequst(details[2]),
-      isRunning: progress && progress !== 100 && (msg && msg.length),
+      isRunning,
     });
 
     if (this.options.profile) {
@@ -112,8 +106,12 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
       );
     }
 
-    // Process all states
-    let isRunning = false;
+    this._render();
+  }
+
+  render() {
+    const shouldClear = this.options.clear;
+    let someRunning = false;
 
     const lines = [];
 
@@ -123,9 +121,9 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
         const state = sharedState[name];
 
         if (state.isRunning) {
-          isRunning = true;
-        } else if (this.options.clear) {
-          // Hide finished jobs
+          someRunning = true;
+        } else if (shouldClear) {
+          // Skip done jobs
           return;
         }
 
@@ -146,13 +144,13 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
         );
       });
 
-    if (!isRunning) {
-      if (this.options.clear) {
-        this.logUpdate.clear();
-      }
-    } else {
+    if (someRunning) {
       const title = ` ${chalk.bgBlue.black(' BUILDING ')}`;
       this.logUpdate(`\n${title}\n\n${lines.join('\n\n')}`);
+    } else if (shouldClear) {
+      this.logUpdate.clear();
+    } else {
+      this.logUpdate(`\n\n${lines.join('\n\n')}`);
     }
   }
 }

@@ -121,8 +121,6 @@ Auto clear console when compile is finished.
 
 A function that will be called when **all** builds are finished.
 
-This function can optionally return `false` as a signal to stop rendering and printing profile stats.
-
 ### `buildTitle`
   - Default: `BUILDING`
 

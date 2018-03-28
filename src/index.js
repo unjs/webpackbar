@@ -82,19 +82,15 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
       return;
     }
 
-    if (typeof this.options.done === 'function') {
-      const result = this.options.done(sharedState, this);
-      if (result === false) {
-        // Special signal to do nothing
-        return;
-      }
-    }
-
     this.render();
 
     if (this.options.profile) {
       const stats = sharedState[this.options.name].profile.getStats();
       printStats(stats);
+    }
+
+    if (typeof this.options.done === 'function') {
+      this.options.done(sharedState, this);
     }
   }
 

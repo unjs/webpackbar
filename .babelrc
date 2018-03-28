@@ -27,9 +27,9 @@
       "presets": [
         "env"
       ],
-      "plugins": [
-        "transform-object-rest-spread"
-      ]
+      "targets": {
+        "node": "6.9.0"
+      }
     }
   }
 }

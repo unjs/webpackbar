@@ -23,6 +23,7 @@ const defaults = {
   clear: true,
   showCursor: false,
   enabled: process.stdout.isTTY && !isCI,
+  done: null,
 };
 
 export default class WebpackBarPlugin extends webpack.ProgressPlugin {
@@ -74,6 +75,18 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
   done() {
     if (!this.options.enabled) {
       return;
+    }
+
+    if (Object.values(sharedState).find((s) => s.isRunning)) {
+      return;
+    }
+
+    if (typeof this.options.done === 'function') {
+      const result = this.options.done(sharedState, this);
+      if (result === false) {
+        // Special signal to do nothing
+        return;
+      }
     }
 
     this.render();

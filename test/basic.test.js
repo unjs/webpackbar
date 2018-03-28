@@ -16,6 +16,8 @@ describe('webpackbar', () => {
   const logUpdate = mockLogUpdate();
 
   test('compile', async () => {
+    const done = jest.fn();
+
     const compiler = webpack(
       basicConfig.from({
         name: 'test1',
@@ -23,6 +25,7 @@ describe('webpackbar', () => {
         profile: true,
         color: '#202020',
         logUpdate,
+        done,
       })
     );
 
@@ -31,6 +34,7 @@ describe('webpackbar', () => {
 
     expect(stats.hasErrors()).toBe(false);
     expect(stats.hasWarnings()).toBe(false);
+    expect(done).toHaveBeenCalledTimes(1);
   });
 
   test('logUpdate', () => {

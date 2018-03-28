@@ -116,6 +116,13 @@ Show the cursor. This can be useful when a CLI accepts input from a user.
 
 Auto clear console when compile is finished.
 
+### `done`
+  - Type: `Function(sharedState, ctx)`
+
+A function that will be called when **all** builds are finished.
+
+This function can optionally return `false` as a signal to stop rendering and printing profile stats.
+
 <h2 align="center">Maintainers</h2>
 
 <table>

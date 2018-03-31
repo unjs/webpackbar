@@ -90,7 +90,6 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
       if (this.options.minimal) {
         this.options.stream.write(`Compiling ${this.options.name}\n`);
       }
-      delete this.state.time;
     } else if (wasRunning && !isRunning) {
       // Finished
       const time = process.hrtime(this.state.start);
@@ -131,14 +130,14 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
       return;
     }
 
-    const stateLines = _.sortBy(Object.keys(sharedState), (n) => n)
-      .filter((s) => sharedState[s].isRunning || sharedState[s].start)
-      .map((name) => {
+    const stateLines = _.sortBy(Object.keys(sharedState), (n) => n).map(
+      (name) => {
         const state = sharedState[name];
         const color = colorize(state.color);
 
         if (!state.isRunning) {
-          return `${[chalk.grey(BULLET), name].join(' ')}`;
+          const color2 = state.progress === 100 ? color : chalk.grey;
+          return color2(`${BULLET} ${name}\n`);
         }
 
         return `${[
@@ -150,10 +149,10 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
           chalk.grey((state.details && state.details[0]) || ''),
           chalk.grey((state.details && state.details[1]) || ''),
         ].join(' ')}\n ${state.request ? formatRequest(state.request) : ''}\n`;
-      })
-      .filter(Boolean);
+      }
+    );
 
-    if (stateLines.length) {
+    if (hasRunning()) {
       const title = chalk.underline.blue('Compiling');
       const log = `\n${title}\n\n${stateLines.join('\n')}`;
       this.logUpdate(log);

@@ -1,13 +1,16 @@
 {
   "name": "webpackbar",
   "version": "2.0.0",
-  "author": "Pooya Parsa <pooya@pi0.ir>",
   "description": "Elegant ProgressBar and Profiler for Webpack",
   "license": "MIT",
+  "repository": "nuxt/webpackbar",
+  "author": "Pooya Parsa <pooya@pi0.ir>",
+  "homepage": "https://github.com/nuxt/webpackbar",
+  "bugs": "https://github.com/nuxt/webpackbar/issues",
   "main": "dist/cjs.js",
-  "files": [
-    "dist"
-  ],
+  "engines": {
+    "node": ">= 6.9.0"
+  },
   "scripts": {
     "start": "npm run build -- -w",
     "build": "cross-env NODE_ENV=production babel src -d dist --ignore 'src/**/*.test.js' --copy-files",
@@ -29,8 +32,13 @@
     "ci:lint": "npm run lint && npm run security",
     "ci:test": "npm run test -- --runInBand",
     "ci:coverage": "npm run test:coverage -- --runInBand",
-    "defaults": "webpack-defaults",
-    "kitchen-sync": "webpack-cli --config kitchen-sync/webpack.config.js"
+    "defaults": "webpack-defaults"
+  },
+  "files": [
+    "dist"
+  ],
+  "peerDependencies": {
+    "webpack": "^3.0.0 || ^4.0.0"
   },
   "dependencies": {
     "chalk": "^2.3.2",
@@ -74,15 +82,6 @@
     "webpack-cli": "^2.0.13",
     "webpack-defaults": "^2.1.1"
   },
-  "engines": {
-    "node": ">= 6.9.0 || >= 8.9.0"
-  },
-  "peerDependencies": {
-    "webpack": "^3.0.0 || ^4.0.0"
-  },
-  "homepage": "https://github.com/nuxt/webpackbar",
-  "repository": "https://github.com/nuxt/webpackbar",
-  "bugs": "https://github.com/nuxt/webpackbar/issues",
   "pre-commit": "lint-staged",
   "lint-staged": {
     "*.js": [

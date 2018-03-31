@@ -22,7 +22,7 @@ export const colorize = (color) => {
     return chalk.hex(color);
   }
 
-  return chalk.keyword(color);
+  return chalk[color] || chalk.keyword(color);
 };
 
 export const renderBar = (progress, color) => {

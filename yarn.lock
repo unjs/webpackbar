@@ -1793,9 +1793,9 @@ configstore@^3.0.0:
     write-file-atomic "^2.0.0"
     xdg-basedir "^3.0.0"
 
-consola@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/consola/-/consola-1.1.0.tgz#ae45e6c95376834e40895ac1767a199d71d039db"
+consola@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/consola/-/consola-1.1.1.tgz#282566e34573d33f01e3c0aca0cd6d383f82925c"
   dependencies:
     figures "^2.0.0"
     lodash "^4.17.5"

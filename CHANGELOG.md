@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/nuxt/webpackbar/compare/v2.0.0...v2.0.1) (2018-03-31)
+
+
+### Bug Fixes
+
+* fix cannot read property 'write' of undefined ([ccb1d65](https://github.com/nuxt/webpackbar/commit/ccb1d65))
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/nuxt/webpackbar/compare/v1.5.1...v2.0.0) (2018-03-31)
 

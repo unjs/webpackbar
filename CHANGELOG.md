@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/nuxt/webpackbar/compare/v1.5.1...v2.0.0) (2018-03-31)
+
+
+### Features
+
+* v2 rewrite ([5151960](https://github.com/nuxt/webpackbar/commit/5151960))
+
+
+### BREAKING CHANGES
+
+* behaviour and options changed. Refer to the new docs
+
+
+
 <a name="1.5.1"></a>
 ## [1.5.1](https://github.com/nuxt/webpackbar/compare/v1.5.0...v1.5.1) (2018-03-28)
 

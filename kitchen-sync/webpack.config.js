@@ -19,12 +19,10 @@ module.exports = {
   },
   plugins: [
     new Self({
-      color: 'yellow',
-      showCursor: true,
+      color: 'orange',
       profile: true,
-      clear: !true,
       name: 'webpack-bar',
-      buildTitle: 'Wait',
+      logStateChanges: true,
     }),
   ],
 };

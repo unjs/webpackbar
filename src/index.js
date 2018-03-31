@@ -2,10 +2,12 @@ import webpack from 'webpack';
 import chalk from 'chalk';
 import _ from 'lodash';
 import logUpdate from 'log-update';
-import isCI from 'is-ci';
+import env from 'std-env';
+import prettyTime from 'pretty-time';
 import Profile from './profile';
 import {
   BULLET,
+  TICK,
   parseRequst,
   formatRequest,
   renderBar,
@@ -18,14 +20,14 @@ const sharedState = {};
 const defaults = {
   name: 'webpack',
   color: 'green',
-  stream: process.stdout,
   profile: false,
-  clear: true,
-  showCursor: false,
-  enabled: process.stdout.isTTY && !isCI,
+  compiledIn: true,
   done: null,
-  buildTitle: 'BUILDING',
+  minimal: env.minimalCLI,
+  stream: process.stderr,
 };
+
+const hasRunning = () => Object.values(sharedState).find((s) => s.isRunning);
 
 export default class WebpackBarPlugin extends webpack.ProgressPlugin {
   constructor(options) {
@@ -33,59 +35,30 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
 
     this.options = Object.assign({}, defaults, options);
 
-    if (!this.options.enabled) {
-      return;
-    }
-
     // this.handler will be called by webpack.ProgressPlugin
     this.handler = (percent, msg, ...details) =>
       this.updateProgress(percent, msg, details);
 
     this._render = _.throttle(this.render, 25);
 
-    this.logUpdate =
-      this.options.logUpdate ||
-      logUpdate.create(this.options.stream, {
-        showCursor: this.options.showCursor,
-      });
+    this.logUpdate = this.options.logUpdate || logUpdate;
 
-    if (!sharedState[this.options.name]) {
+    if (!this.state) {
       sharedState[this.options.name] = {
+        isRunning: false,
         color: this.options.color,
         profile: this.options.profile ? new Profile(this.options.name) : null,
       };
     }
   }
 
-  apply(compiler) {
-    if (!this.options.enabled) {
-      return;
-    }
-
-    super.apply(compiler);
-
-    if (compiler.hooks) {
-      // Webpack >= 4
-      compiler.hooks.done.tap('webpackbar', () => this.done());
-    } else {
-      // Webpack < 4
-      compiler.plugin('done', () => this.done());
-    }
+  get state() {
+    return sharedState[this.options.name];
   }
 
   done() {
-    if (!this.options.enabled) {
-      return;
-    }
-
-    if (Object.values(sharedState).find((s) => s.isRunning)) {
-      return;
-    }
-
-    this.render();
-
     if (this.options.profile) {
-      const stats = sharedState[this.options.name].profile.getStats();
+      const stats = this.state.profile.getStats();
       printStats(stats);
     }
 
@@ -95,80 +68,92 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
   }
 
   updateProgress(percent, msg, details) {
-    if (!this.options.enabled) {
-      return;
-    }
-
     const progress = Math.floor(percent * 100);
-    const isRunning = progress && progress !== 100;
+    const isRunning = progress < 100;
 
-    Object.assign(sharedState[this.options.name], {
+    const wasRunning = this.state.isRunning;
+
+    Object.assign(this.state, {
       progress,
-      msg: isRunning ? msg || '' : 'done',
+      msg: isRunning && msg ? msg : '',
       details: details || [],
       request: parseRequst(details[2]),
       isRunning,
     });
 
-    if (this.options.profile) {
-      sharedState[this.options.name].profile.onRequest(
-        sharedState[this.options.name].request
-      );
+    if (!wasRunning && isRunning) {
+      // Started
+      this.state.start = process.hrtime();
+      if (this.options.minimal) {
+        this.stream.write(`Compiling ${this.options.name}\n`);
+      }
+      delete this.state.time;
+    } else if (wasRunning && !isRunning) {
+      // Finished
+      const time = process.hrtime(this.state.start);
+      if (this.options.minimal) {
+        this.stream.write(
+          `Compiled ${this.options.name} in ${prettyTime(this.state.time)}\n`
+        );
+      } else {
+        this.logUpdate.clear();
+        if (this.options.compiledIn) {
+          process.stdout.write(
+            `${[
+              TICK,
+              this.options.name,
+              'compiled in',
+              prettyTime(time, 'ms'),
+            ].join(' ')}\n`
+          );
+        }
+      }
+      delete this.state.start;
     }
 
-    this._render();
+    if (this.options.profile) {
+      this.state.profile.onRequest(this.state.request);
+    }
+
+    if (hasRunning()) {
+      this._render();
+    } else {
+      this.logUpdate.clear();
+      this.done();
+    }
   }
 
   render() {
-    const shouldClear = this.options.clear;
-    let someRunning = false;
-
-    const lines = [];
-
-    _.sortBy(Object.keys(sharedState), (s) => s.name)
-      .reverse()
-      .forEach((name) => {
-        const state = sharedState[name];
-
-        if (state.isRunning) {
-          someRunning = true;
-        } else if (shouldClear) {
-          // Skip done jobs
-          return;
-        }
-
-        const lColor = colorize(state.color);
-        const lIcon = lColor(BULLET);
-        const lName = lColor(_.startCase(name));
-        const lBar = renderBar(state.progress, state.color);
-        const lMsg = _.startCase(state.msg);
-        const lProgress = `(${state.progress || 0}%)`;
-        const lDetail1 = chalk.grey((state.details && state.details[0]) || '');
-        const lDetail2 = chalk.grey((state.details && state.details[1]) || '');
-        const lRequest = state.request ? formatRequest(state.request) : '';
-
-        lines.push(
-          `${[lIcon, lName, lBar, lMsg, lProgress, lDetail1, lDetail2].join(
-            ' '
-          )}\n ${lRequest}`
-        );
-      });
-
-    if (shouldClear && !someRunning) {
-      this.logUpdate.clear();
+    if (this.options.minimal) {
       return;
     }
 
-    const lLines = lines.join('\n\n');
+    const stateLines = _.sortBy(Object.keys(sharedState), (n) => n)
+      .filter((s) => sharedState[s].isRunning || sharedState[s].start)
+      .map((name) => {
+        const state = sharedState[name];
+        const color = colorize(state.color);
 
-    if (this.options.buildTitle) {
-      const title = someRunning
-        ? ` ${chalk.bgBlue.black(` ${this.options.buildTitle} `)}`
-        : '';
+        if (!state.isRunning) {
+          return `${[chalk.grey(BULLET), name].join(' ')}`;
+        }
 
-      this.logUpdate(`\n${title}\n\n${lLines}`);
-    } else {
-      this.logUpdate(`\n${lLines}`);
+        return `${[
+          color(BULLET),
+          color(name),
+          renderBar(state.progress, state.color),
+          state.msg,
+          `(${state.progress || 0}%)`,
+          chalk.grey((state.details && state.details[0]) || ''),
+          chalk.grey((state.details && state.details[1]) || ''),
+        ].join(' ')}\n ${state.request ? formatRequest(state.request) : ''}\n`;
+      })
+      .filter(Boolean);
+
+    if (stateLines.length) {
+      const title = chalk.underline.blue('Compiling');
+      const log = `\n${title}\n\n${stateLines.join('\n')}`;
+      this.logUpdate(log);
     }
   }
 }

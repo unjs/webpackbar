@@ -15,6 +15,7 @@ const BAR_AFTER = IS_WINDOWS ? ']' : '';
 const NEXT = chalk.blue(figures(' › '));
 
 export const BULLET = figures('●');
+export const TICK = chalk.green(figures('✔'));
 
 export const colorize = (color) => {
   if (color[0] === '#') {
@@ -57,9 +58,9 @@ export const parseRequst = (requestStr) => {
     removeAfter('?', removeBefore(nodeModules, parts.pop()))
   );
 
-  const loaders = _.uniq(
-    parts.map((part) => firstMatch(/[a-z]+-loader/, part)).filter(hasValue)
-  );
+  const loaders = parts
+    .map((part) => firstMatch(/[a-z0-9-@]+-loader/, part))
+    .filter(hasValue);
 
   return {
     file: hasValue(file) ? file : null,

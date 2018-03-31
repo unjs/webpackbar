@@ -35,12 +35,12 @@
   "dependencies": {
     "chalk": "^2.3.2",
     "figures": "^2.0.0",
-    "is-ci": "^1.1.0",
     "loader-utils": "^1.1.0",
     "lodash": "^4.17.5",
     "log-update": "^2.3.0",
     "pretty-time": "^1.0.0",
     "schema-utils": "^0.4.5",
+    "std-env": "^1.0.0",
     "table": "^4.0.3"
   },
   "devDependencies": {
@@ -59,20 +59,20 @@
     "del-cli": "^1.1.0",
     "eslint": "^4.19.1",
     "eslint-config-webpack": "^1.2.5",
-    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-import": "^2.10.0",
     "eslint-plugin-prettier": "^2.6.0",
-    "esm": "^3.0.11",
+    "esm": "^3.0.14",
     "husky": "^0.14.3",
     "jest": "^22.4.3",
-    "lint-staged": "^7.0.0",
+    "lint-staged": "^7.0.1",
     "memory-fs": "^0.4.1",
     "nsp": "^3.2.1",
     "pre-commit": "^1.2.2",
     "prettier": "^1.11.1",
     "standard-version": "^4.3.0",
-    "webpack": "^4.3.0",
+    "webpack": "^4.4.1",
     "webpack-cli": "^2.0.13",
-    "webpack-defaults": "^2.0.0"
+    "webpack-defaults": "^2.1.1"
   },
   "engines": {
     "node": ">= 6.9.0 || >= 8.9.0"

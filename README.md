@@ -27,14 +27,14 @@
 
 <div align="center">
 <br>
-<img src="./assets/screen1.jpg" width="600px">
+<img src="./assets/screen1.png" width="600px">
 <p>Multi progress bars</p>
 <br>
 </div>
 
 <div align="center">
 <br>
-<img src="./assets/screen2.jpg" width="90%">
+<img src="./assets/screen2.png" width="600px">
 <p>Build Profiler</p>
 <br>
 </div>
@@ -79,13 +79,6 @@ module.exports = {
 
 <h2 align="center">Options</h2>
 
-### `enabled`
-
-By default only enabled when TTY is available and
-not running in a [CI](https://github.com/watson/is-ci) environment.
-
-You can force override this option by setting it to `true` or `false`.
-
 ### `name`
   - Default: `webpack`
 
@@ -94,35 +87,33 @@ Display name
 ### `color`
   - Default: `green`
 
-Display color (can be hex (`#xxyyzz`) or a web color like `green`)
+Display color (can be HEX like `#xxyyzz` or a web color like `green`).
 
 ### `profile`
   - Default: `false`
 
-Enable profiler
+Enable profiler.
 
 ### `stream`
-  - Default: `process.stdout`
+  - Default: `process.stderr`
 
 Output stream.
 
-### `showCursor`
-  - Default: `false`
 
-Show the cursor. This can be useful when a CLI accepts input from a user.
+### `minimal`
+  - Default: Auto enabled on CI, non-TTY and test environments
 
-### `clear`
+Hide progress bar and only show Compiling/Compiled messages.
+
+### `compiledIn`
   - Default: `true`
 
-Auto clear console when compile is finished.
+Show `Compiled in ` message after build.
 
 ### `done`
   - Type: `Function(sharedState, ctx)`
 
 A function that will be called when **all** builds are finished.
-
-### `buildTitle`
-  - Default: `BUILDING`
 
 <h2 align="center">Maintainers</h2>
 

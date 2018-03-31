@@ -3,11 +3,11 @@ import chalk from 'chalk';
 import _ from 'lodash';
 import logUpdate from 'log-update';
 import env from 'std-env';
+import consola from 'consola';
 import prettyTime from 'pretty-time';
 import Profile from './profile';
 import {
   BULLET,
-  TICK,
   parseRequst,
   formatRequest,
   renderBar,
@@ -88,25 +88,18 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
       // Started
       this.state.start = process.hrtime();
       if (this.options.minimal) {
-        this.options.stream.write(`Compiling ${this.options.name}\n`);
+        consola.info(`Compiling ${this.options.name}`);
       }
     } else if (wasRunning && !isRunning) {
       // Finished
       const time = process.hrtime(this.state.start);
       if (this.options.minimal) {
-        this.options.stream.write(
-          `Compiled ${this.options.name} in ${prettyTime(time)}\n`
-        );
+        consola.success(`Compiled ${this.options.name} in ${prettyTime(time)}`);
       } else {
         this.logUpdate.clear();
         if (this.options.compiledIn) {
-          this.options.stream.write(
-            `${[
-              TICK,
-              this.options.name,
-              'compiled in',
-              prettyTime(time, 'ms'),
-            ].join(' ')}\n`
+          consola.success(
+            `${this.options.name} compiled in ${prettyTime(time, 'ms')}`
           );
         }
       }

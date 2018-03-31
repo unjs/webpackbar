@@ -93,7 +93,7 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
       const time = process.hrtime(this.state.start);
       if (this.options.minimal) {
         this.options.stream.write(
-          `Compiled ${this.options.name} in ${prettyTime(this.state.time)}\n`
+          `Compiled ${this.options.name} in ${prettyTime(time)}\n`
         );
       } else {
         this.logUpdate.clear();

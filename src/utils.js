@@ -79,11 +79,13 @@ export const formatRequest = (request) => {
   return format(`${loaders}${NEXT}${request.file}`);
 };
 
-export const printStats = (allStats) => {
+export const formatStats = (allStats) => {
+  const lines = [];
+
   Object.keys(allStats).forEach((category) => {
     const stats = allStats[category];
 
-    process.stderr.write(`\nStats by ${chalk.bold(_.startCase(category))}\n`);
+    lines.push(`Stats by ${chalk.bold(_.startCase(category))}`);
 
     let totalRequests = 0;
     const totalTime = [0, 0];
@@ -121,6 +123,8 @@ export const printStats = (allStats) => {
 
     data.push(['Total', totalRequests, prettyTime(totalTime), '', '']);
 
-    process.stderr.write(`\n${table(data)}\n`);
+    lines.push(table(data));
   });
+
+  return lines.join('\n\n');
 };

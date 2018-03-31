@@ -11,7 +11,7 @@ import {
   parseRequst,
   formatRequest,
   renderBar,
-  printStats,
+  formatStats,
   colorize,
 } from './utils';
 
@@ -41,7 +41,9 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
 
     this._render = _.throttle(this.render, 25);
 
-    this.logUpdate = this.options.logUpdate || logUpdate;
+    this.logUpdate =
+      this.options.logUpdate ||
+      (this.options.stream === process.stderr ? logUpdate.stderr : logUpdate);
 
     if (!this.state) {
       sharedState[this.options.name] = {
@@ -59,7 +61,8 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
   done() {
     if (this.options.profile) {
       const stats = this.state.profile.getStats();
-      printStats(stats);
+      const statsStr = formatStats(stats);
+      this.options.stream.write(`\n${statsStr}\n`);
     }
 
     if (typeof this.options.done === 'function') {

@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.3.2"></a>
+## [2.3.2](https://github.com/nuxt/webpackbar/compare/v2.3.1...v2.3.2) (2018-03-31)
+
+
+### Bug Fixes
+
+* hot update for consola ([1d13980](https://github.com/nuxt/webpackbar/commit/1d13980))
+
+
+
 <a name="2.3.1"></a>
 ## [2.3.1](https://github.com/nuxt/webpackbar/compare/v2.3.0...v2.3.1) (2018-03-31)
 

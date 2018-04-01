@@ -58,6 +58,24 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
     return sharedState[this.options.name];
   }
 
+  apply(compiler) {
+    super.apply(compiler);
+
+    const hook = (stats) => {
+      this.state.stats = stats;
+      if (!hasRunning()) {
+        this.logUpdate.clear();
+        this.done();
+      }
+    };
+
+    if (compiler.hooks) {
+      compiler.hooks.done.tap('WebpackBar', hook);
+    } else {
+      compiler.plugin('done', hook);
+    }
+  }
+
   done() {
     if (this.options.profile) {
       const stats = this.state.profile.getStats();
@@ -86,6 +104,7 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
 
     if (!wasRunning && isRunning) {
       // Started
+      delete this.state.stats;
       this.state.start = process.hrtime();
       if (this.options.minimal) {
         consola.info(`Compiling ${this.options.name}`);
@@ -110,12 +129,7 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
       this.state.profile.onRequest(this.state.request);
     }
 
-    if (hasRunning()) {
-      this._render();
-    } else {
-      this.logUpdate.clear();
-      this.done();
-    }
+    this._render();
   }
 
   render() {

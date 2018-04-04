@@ -166,9 +166,9 @@
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/@types/semver/-/semver-5.5.0.tgz#146c2a29ee7d3bae4bf2fcb274636e264c813c45"
 
-"@webpack-contrib/eslint-config-webpack@^2.0.2":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@webpack-contrib/eslint-config-webpack/-/eslint-config-webpack-2.0.2.tgz#6d530dbbe0cd84de3c2d64218f1d26cd92948dc5"
+"@webpack-contrib/eslint-config-webpack@^2.0.4":
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/@webpack-contrib/eslint-config-webpack/-/eslint-config-webpack-2.0.4.tgz#0e6e7a07a54b59a0fc76ef894eb2d7bf976c32f7"
 
 JSONStream@^1.0.4:
   version "1.3.2"
@@ -1589,6 +1589,10 @@ cli-boxes@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/cli-boxes/-/cli-boxes-1.0.0.tgz#4fa917c3e59c94a004cd61f8ee509da651687143"
 
+cli-command-parser@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/cli-command-parser/-/cli-command-parser-1.0.3.tgz#377af3ce60ad2d8a34a7e5eae4b395d491b0d652"
+
 cli-cursor@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/cli-cursor/-/cli-cursor-1.0.2.tgz#64da3f7d56a54412e59794bd62dc35295e8f2987"
@@ -1793,10 +1797,11 @@ configstore@^3.0.0:
     write-file-atomic "^2.0.0"
     xdg-basedir "^3.0.0"
 
-consola@^1.1.3:
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/consola/-/consola-1.1.3.tgz#27081a3f2e1cd7a8ebc4788a95d64af927d5f0ab"
+consola@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/consola/-/consola-1.2.0.tgz#90fd1fed8c8aa2b239e953db5847dec15bb44405"
   dependencies:
+    chalk "^2.3.2"
     figures "^2.0.0"
     lodash "^4.17.5"
     std-env "^1.1.0"
@@ -2588,9 +2593,9 @@ eslint@^4.19.1:
     table "4.0.2"
     text-table "~0.2.0"
 
-esm@^3.0.14:
-  version "3.0.14"
-  resolved "https://registry.yarnpkg.com/esm/-/esm-3.0.14.tgz#a9a79b7348c8708050ff42499b5ecbec019d08dc"
+esm@^3.0.15:
+  version "3.0.15"
+  resolved "https://registry.yarnpkg.com/esm/-/esm-3.0.15.tgz#d58be76de3ebdeff6f0b95e8bba3c78bd0942547"
 
 espree@^3.5.4:
   version "3.5.4"
@@ -4484,12 +4489,13 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-lint-staged@^7.0.1:
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-7.0.1.tgz#064321d79c2ab55808602f84f4ff94f52d872fd5"
+lint-staged@^7.0.3:
+  version "7.0.3"
+  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-7.0.3.tgz#c2c30bd2821ae9c6043141179b9a03793ad3da08"
   dependencies:
     app-root-path "^2.0.1"
     chalk "^2.3.1"
+    cli-command-parser "^1.0.3"
     commander "^2.14.1"
     cosmiconfig "^4.0.0"
     debug "^3.1.0"
@@ -6562,6 +6568,12 @@ std-env@^1.1.0:
   dependencies:
     is-ci "^1.1.0"
 
+std-env@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/std-env/-/std-env-1.3.0.tgz#8ce754a401a61f1ac49c8eb55f2a8c0c63d54954"
+  dependencies:
+    is-ci "^1.1.0"
+
 stealthy-require@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/stealthy-require/-/stealthy-require-1.1.1.tgz#35b09875b4ff49f26a777e509b3090a3226bf24b"
@@ -7240,9 +7252,9 @@ webpack-cli@^2.0.13:
     yeoman-environment "^2.0.0"
     yeoman-generator "^2.0.3"
 
-webpack-defaults@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/webpack-defaults/-/webpack-defaults-2.1.1.tgz#506ee30a58c5336b761c0a33f6fa0c638338f39a"
+webpack-defaults@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/webpack-defaults/-/webpack-defaults-2.3.0.tgz#de999e93ecb2471aef66a647a3b7d66b430e1477"
   dependencies:
     chalk "^2.3.0"
     git-username "^0.5.0"

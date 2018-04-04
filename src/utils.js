@@ -1,9 +1,11 @@
 import path from 'path';
+
 import chalk from 'chalk';
 import _ from 'lodash';
 import figures from 'figures';
 import { table } from 'table';
 import prettyTime from 'pretty-time';
+
 import getDescription from './description';
 
 const BAR_LENGTH = 25;
@@ -63,13 +65,12 @@ export const parseRequst = (requestStr) => {
 
 export const formatRequest = (request) => {
   const loaders = request.loaders.join(NEXT);
-  const format = chalk.grey;
 
   if (!loaders.length) {
-    return format(request.file || '');
+    return request.file || '';
   }
 
-  return format(`${loaders}${NEXT}${request.file}`);
+  return `${loaders}${NEXT}${request.file}`;
 };
 
 export const formatStats = (allStats) => {
@@ -121,3 +122,10 @@ export const formatStats = (allStats) => {
 
   return lines.join('\n\n');
 };
+
+export function elipses(str, n) {
+  if (str.length <= n - 4) {
+    return str;
+  }
+  return `${str.substr(0)} ...`;
+}

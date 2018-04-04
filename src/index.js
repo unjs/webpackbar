@@ -5,6 +5,7 @@ import logUpdate from 'log-update';
 import env from 'std-env';
 import consola from 'consola';
 import prettyTime from 'pretty-time';
+
 import Profile from './profile';
 import {
   BULLET,
@@ -13,6 +14,7 @@ import {
   renderBar,
   formatStats,
   colorize,
+  elipses,
 } from './utils';
 
 const sharedState = {};
@@ -29,6 +31,10 @@ const defaults = {
 
 const hasRunning = () => Object.values(sharedState).find((s) => s.isRunning);
 
+const $logUpdate = logUpdate.create(process.stderr, {
+  showCursor: true,
+});
+
 export default class WebpackBarPlugin extends webpack.ProgressPlugin {
   constructor(options) {
     super();
@@ -41,9 +47,7 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
 
     this._render = _.throttle(this.render, 100);
 
-    this.logUpdate =
-      this.options.logUpdate ||
-      (this.options.stream === process.stderr ? logUpdate.stderr : logUpdate);
+    this.logUpdate = this.options.logUpdate || $logUpdate;
 
     if (!this.state) {
       sharedState[this.options.name] = {
@@ -137,6 +141,8 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
       return;
     }
 
+    const columns = (this.options.stream.columns || 80) - 1;
+
     const stateLines = _.sortBy(Object.keys(sharedState), (n) => n).map(
       (name) => {
         const state = sharedState[name];
@@ -155,7 +161,11 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
           `(${state.progress || 0}%)`,
           chalk.grey((state.details && state.details[0]) || ''),
           chalk.grey((state.details && state.details[1]) || ''),
-        ].join(' ')}\n ${state.request ? formatRequest(state.request) : ''}\n`;
+        ].join(' ')}\n ${
+          state.request
+            ? chalk.grey(elipses(formatRequest(state.request), columns))
+            : ''
+        }\n`;
       }
     );
 

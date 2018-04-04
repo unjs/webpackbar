@@ -7,11 +7,8 @@ import prettyTime from 'pretty-time';
 import getDescription from './description';
 
 const BAR_LENGTH = 25;
-const IS_WINDOWS = /^win/.test(process.platform);
-const BLOCK_CHAR = IS_WINDOWS ? ' ' : '█';
-const BLOCK_CHAR2 = IS_WINDOWS ? '=' : '█';
-const BAR_BEFORE = IS_WINDOWS ? '[' : '';
-const BAR_AFTER = IS_WINDOWS ? ']' : '';
+const BLOCK_CHAR = '█';
+const BLOCK_CHAR2 = '█';
 const NEXT = chalk.blue(figures(' › '));
 
 export const BULLET = figures('●');
@@ -30,13 +27,9 @@ export const renderBar = (progress, color) => {
   const bg = chalk.white(BLOCK_CHAR);
   const fg = colorize(color)(BLOCK_CHAR2);
 
-  return (
-    BAR_BEFORE +
-    _.range(BAR_LENGTH)
-      .map((i) => (i < w ? fg : bg))
-      .join('') +
-    BAR_AFTER
-  );
+  return _.range(BAR_LENGTH)
+    .map((i) => (i < w ? fg : bg))
+    .join('');
 };
 
 const hasValue = (s) => s && s.length;

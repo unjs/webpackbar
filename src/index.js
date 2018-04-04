@@ -39,7 +39,7 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
     this.handler = (percent, msg, ...details) =>
       this.updateProgress(percent, msg, details);
 
-    this._render = _.throttle(this.render, 25);
+    this._render = _.throttle(this.render, 100);
 
     this.logUpdate =
       this.options.logUpdate ||

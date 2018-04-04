@@ -124,8 +124,15 @@ export const formatStats = (allStats) => {
 };
 
 export function elipses(str, n) {
-  if (str.length <= n - 4) {
+  if (str.length <= n - 3) {
     return str;
   }
-  return `${str.substr(0)} ...`;
+  return `${str.substr(0, n - 1)}...`;
+}
+
+export function elipsesLeft(str, n) {
+  if (str.length <= n - 3) {
+    return str;
+  }
+  return `...${str.substr(str.length - n - 1)}`;
 }

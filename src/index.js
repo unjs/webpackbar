@@ -14,7 +14,7 @@ import {
   renderBar,
   formatStats,
   colorize,
-  elipses,
+  elipsesLeft,
 } from './utils';
 
 const sharedState = {};
@@ -32,7 +32,7 @@ const defaults = {
 const hasRunning = () => Object.values(sharedState).find((s) => s.isRunning);
 
 const $logUpdate = logUpdate.create(process.stderr, {
-  showCursor: true,
+  showCursor: false,
 });
 
 export default class WebpackBarPlugin extends webpack.ProgressPlugin {
@@ -141,7 +141,7 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
       return;
     }
 
-    const columns = (this.options.stream.columns || 80) - 1;
+    const columns = this.options.stream.columns || 80;
 
     const stateLines = _.sortBy(Object.keys(sharedState), (n) => n).map(
       (name) => {
@@ -163,7 +163,7 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
           chalk.grey((state.details && state.details[1]) || ''),
         ].join(' ')}\n ${
           state.request
-            ? chalk.grey(elipses(formatRequest(state.request), columns))
+            ? chalk.grey(elipsesLeft(formatRequest(state.request), columns - 2))
             : ''
         }\n`;
       }

@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.5.0"></a>
+# [2.5.0](https://github.com/nuxt/webpackbar/compare/v2.4.0...v2.5.0) (2018-04-04)
+
+
+### Features
+
+* windows visual improvements ([2ae8339](https://github.com/nuxt/webpackbar/commit/2ae8339))
+
+
+
 <a name="2.4.0"></a>
 # [2.4.0](https://github.com/nuxt/webpackbar/compare/v2.3.2...v2.4.0) (2018-04-01)
 

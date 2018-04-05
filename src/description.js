@@ -6,7 +6,7 @@ const DB = {
   },
   ext: {
     get: (ext) => `${ext} files`,
-    vue: 'Vue Signle File components',
+    vue: 'Vue Single File components',
     js: 'JavaScript files',
     sass: 'SASS files',
     scss: 'SASS files',

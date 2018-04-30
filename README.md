@@ -46,13 +46,13 @@ To begin, you'll need to install `webpackbar`:
 Using npm:
 
 ```bash
-npm install webpackbar
+npm install webpackbar -D
 ```
 
 Using yarn:
 
 ```bash
-yarn add webpackbar
+yarn add webpackbar -D
 ```
 
 Then add the reporter as a plugin to your webpack config.

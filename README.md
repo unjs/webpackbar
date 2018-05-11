@@ -15,7 +15,7 @@
 
 ✔ Display elegant progress bar while building or watch
 
-✔ Support of multiply concurrent builds (useful for SSR)
+✔ Support of multiple concurrent builds (useful for SSR)
 
 ✔ Pretty print filename and loaders
 

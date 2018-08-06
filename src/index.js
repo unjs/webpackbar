@@ -26,7 +26,7 @@ const defaults = {
   compiledIn: true,
   done: null,
   minimal: env.minimalCLI,
-  stream: process.stderr,
+  stream: null,
 };
 
 const hasRunning = () => Object.values(sharedState).find((s) => s.isRunning);
@@ -62,6 +62,10 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
     return sharedState[this.options.name];
   }
 
+  get stream() {
+    return this.options.stream || process.stderr;
+  }
+
   apply(compiler) {
     super.apply(compiler);
 
@@ -84,7 +88,7 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
     if (this.options.profile) {
       const stats = this.state.profile.getStats();
       const statsStr = formatStats(stats);
-      this.options.stream.write(`\n${statsStr}\n`);
+      this.stream.write(`\n${statsStr}\n`);
     }
 
     if (typeof this.options.done === 'function') {
@@ -141,7 +145,7 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
       return;
     }
 
-    const columns = this.options.stream.columns || 80;
+    const columns = this.stream.columns || 80;
 
     const stateLines = _.sortBy(Object.keys(sharedState), (n) => n).map(
       (name) => {

@@ -1,5 +1,7 @@
 import util from 'util';
+
 import webpack from 'webpack';
+
 import basicConfig from './fixtures/basic/webpack.config';
 
 const logUpdateMethods = ['clear'];

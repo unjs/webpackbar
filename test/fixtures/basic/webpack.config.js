@@ -1,5 +1,7 @@
 import path from 'path';
+
 import webpack from 'webpack';
+
 import Self from '../../../src';
 
 const makeConfig = (options) => {

@@ -29,7 +29,10 @@ const defaults = {
   stream: null,
 };
 
-const hasRunning = () => Object.values(sharedState).find((s) => s.isRunning);
+const hasRunning = () =>
+  Object.keys(sharedState)
+    .map((e) => sharedState[e])
+    .find((s) => s.isRunning);
 
 const $logUpdate = logUpdate.create(process.stderr, {
   showCursor: false,
@@ -147,8 +150,9 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
 
     const columns = this.stream.columns || 80;
 
-    const stateLines = _.sortBy(Object.keys(sharedState), (n) => n).map(
-      (name) => {
+    const stateLines = _
+      .sortBy(Object.keys(sharedState), (n) => n)
+      .map((name) => {
         const state = sharedState[name];
         const color = colorize(state.color);
 
@@ -170,8 +174,7 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
             ? chalk.grey(elipsesLeft(formatRequest(state.request), columns - 2))
             : ''
         }\n`;
-      }
-    );
+      });
 
     if (hasRunning()) {
       const title = chalk.underline.blue('Compiling');

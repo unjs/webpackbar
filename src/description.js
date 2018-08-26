@@ -1,8 +1,8 @@
-import _ from 'lodash';
+import startCase from 'lodash.startcase';
 
 const DB = {
   loader: {
-    get: (loader) => _.startCase(loader),
+    get: (loader) => startCase(loader),
   },
   ext: {
     get: (ext) => `${ext} files`,
@@ -16,7 +16,7 @@ const DB = {
 
 export default function getDescription(category, keyword) {
   if (!DB[category]) {
-    return _.startCase(keyword);
+    return startCase(keyword);
   }
 
   if (DB[category][keyword]) {

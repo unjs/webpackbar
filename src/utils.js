@@ -1,7 +1,10 @@
 import path from 'path';
 
 import chalk from 'chalk';
-import _ from 'lodash';
+import startCase from 'lodash.startcase';
+import range from 'lodash.range';
+import first from 'lodash.first';
+import last from 'lodash.last';
 import figures from 'figures';
 import { table } from 'table';
 import prettyTime from 'pretty-time';
@@ -29,7 +32,7 @@ export const renderBar = (progress, color) => {
   const bg = chalk.white(BLOCK_CHAR);
   const fg = colorize(color)(BLOCK_CHAR2);
 
-  return _.range(BAR_LENGTH)
+  return range(BAR_LENGTH)
     .map((i) => (i < w ? fg : bg))
     .join('');
 };
@@ -37,8 +40,8 @@ export const renderBar = (progress, color) => {
 const hasValue = (s) => s && s.length;
 
 const nodeModules = `${path.delimiter}node_modules${path.delimiter}`;
-const removeAfter = (delimiter, str) => _.first(str.split(delimiter));
-const removeBefore = (delimiter, str) => _.last(str.split(delimiter));
+const removeAfter = (delimiter, str) => first(str.split(delimiter));
+const removeBefore = (delimiter, str) => last(str.split(delimiter));
 
 const firstMatch = (regex, str) => {
   const m = regex.exec(str);
@@ -79,19 +82,13 @@ export const formatStats = (allStats) => {
   Object.keys(allStats).forEach((category) => {
     const stats = allStats[category];
 
-    lines.push(`Stats by ${chalk.bold(_.startCase(category))}`);
+    lines.push(`Stats by ${chalk.bold(startCase(category))}`);
 
     let totalRequests = 0;
     const totalTime = [0, 0];
 
     const data = [
-      [
-        _.startCase(category),
-        'Requests',
-        'Time',
-        'Time/Request',
-        'Description',
-      ],
+      [startCase(category), 'Requests', 'Time', 'Time/Request', 'Description'],
     ];
 
     Object.keys(stats).forEach((item) => {

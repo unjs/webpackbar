@@ -1,6 +1,7 @@
 import webpack from 'webpack';
 import chalk from 'chalk';
-import _ from 'lodash';
+import sortBy from 'lodash.sortby';
+import throttle from 'lodash.throttle';
 import logUpdate from 'log-update';
 import env from 'std-env';
 import consola from 'consola';
@@ -48,7 +49,7 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
     this.handler = (percent, msg, ...details) =>
       this.updateProgress(percent, msg, details);
 
-    this._render = _.throttle(this.render, 100);
+    this._render = throttle(this.render, 100);
 
     this.logUpdate = this.options.logUpdate || $logUpdate;
 
@@ -150,9 +151,8 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
 
     const columns = this.stream.columns || 80;
 
-    const stateLines = _
-      .sortBy(Object.keys(sharedState), (n) => n)
-      .map((name) => {
+    const stateLines = sortBy(Object.keys(sharedState), (n) => n).map(
+      (name) => {
         const state = sharedState[name];
         const color = colorize(state.color);
 
@@ -174,7 +174,8 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
             ? chalk.grey(elipsesLeft(formatRequest(state.request), columns - 2))
             : ''
         }\n`;
-      });
+      }
+    );
 
     if (hasRunning()) {
       const title = chalk.underline.blue('Compiling');

@@ -10,7 +10,7 @@ import prettyTime from 'pretty-time';
 import Profile from './profile';
 import {
   BULLET,
-  parseRequst,
+  parseRequest,
   formatRequest,
   renderBar,
   formatStats,
@@ -110,7 +110,7 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
       progress,
       msg: isRunning && msg ? msg : '',
       details: details || [],
-      request: parseRequst(details[2]),
+      request: parseRequest(details[2]),
       isRunning,
     });
 

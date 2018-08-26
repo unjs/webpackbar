@@ -6,7 +6,7 @@ import range from 'lodash.range';
 import first from 'lodash.first';
 import last from 'lodash.last';
 import figures from 'figures';
-import { table } from 'table';
+import table from 'text-table';
 import prettyTime from 'pretty-time';
 
 import getDescription from './description';
@@ -18,6 +18,17 @@ const NEXT = chalk.blue(figures(' › '));
 
 export const BULLET = figures('●');
 export const TICK = chalk.green(figures('✔'));
+
+// eslint-disable-next-line no-control-regex
+const ansiStringLength = (str) => str.replace(/\u001b[^m]*m/g, '').length;
+
+function createTable(data) {
+  return table(data, {
+    align: data[0].map(() => 'l'),
+    hsep: ' '.repeat(8),
+    stringLength: ansiStringLength,
+  }).replace(/^(.*)/gm, `  $1`);
+}
 
 export const colorize = (color) => {
   if (color[0] === '#') {
@@ -48,7 +59,7 @@ const firstMatch = (regex, str) => {
   return m ? m[0] : null;
 };
 
-export const parseRequst = (requestStr) => {
+export const parseRequest = (requestStr) => {
   const parts = (requestStr || '').split('!');
 
   const file = path.relative(
@@ -88,7 +99,13 @@ export const formatStats = (allStats) => {
     const totalTime = [0, 0];
 
     const data = [
-      [startCase(category), 'Requests', 'Time', 'Time/Request', 'Description'],
+      [
+        startCase(category),
+        'Requests',
+        'Time',
+        'Time/Request',
+        'Description',
+      ].map((str) => chalk.grey(str)),
     ];
 
     Object.keys(stats).forEach((item) => {
@@ -114,7 +131,7 @@ export const formatStats = (allStats) => {
 
     data.push(['Total', totalRequests, prettyTime(totalTime), '', '']);
 
-    lines.push(table(data));
+    lines.push(createTable(data));
   });
 
   return lines.join('\n\n');

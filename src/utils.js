@@ -45,7 +45,7 @@ const firstMatch = (regex, str) => {
   return m ? m[0] : null;
 };
 
-export const parseRequst = (requestStr) => {
+export const parseRequest = (requestStr) => {
   const parts = (requestStr || '').split('!');
 
   const file = path.relative(
@@ -123,14 +123,14 @@ export const formatStats = (allStats) => {
   return lines.join('\n\n');
 };
 
-export function elipses(str, n) {
+export function ellipsis(str, n) {
   if (str.length <= n - 3) {
     return str;
   }
   return `${str.substr(0, n - 1)}...`;
 }
 
-export function elipsesLeft(str, n) {
+export function ellipsisLeft(str, n) {
   if (str.length <= n - 3) {
     return str;
   }

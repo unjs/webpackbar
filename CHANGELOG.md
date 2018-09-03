@@ -23,7 +23,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Bug Fixes
 
-* fix elipses logic ([0fdb30f](https://github.com/nuxt/webpackbar/commit/0fdb30f))
+* fix ellipsis logic ([0fdb30f](https://github.com/nuxt/webpackbar/commit/0fdb30f))
 
 
 

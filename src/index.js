@@ -9,12 +9,12 @@ import prettyTime from 'pretty-time';
 import Profile from './profile';
 import {
   BULLET,
-  parseRequst,
+  parseRequest,
   formatRequest,
   renderBar,
   formatStats,
   colorize,
-  elipsesLeft,
+  ellipsisLeft,
 } from './utils';
 
 const sharedState = {};
@@ -99,17 +99,17 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
     }
   }
 
-  updateProgress(percent, msg, details) {
+  updateProgress(percent, msg, details = []) {
     const progress = Math.floor(percent * 100);
     const isRunning = progress < 100;
 
     const wasRunning = this.state.isRunning;
 
     Object.assign(this.state, {
+      details,
       progress,
       msg: isRunning && msg ? msg : '',
-      details: details || [],
-      request: parseRequst(details[2]),
+      request: parseRequest(details[2]),
       isRunning,
     });
 
@@ -150,31 +150,29 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
 
     const columns = this.stream.columns || 80;
 
-    const stateLines = _
-      .sortBy(Object.keys(sharedState), (n) => n)
-      .map((name) => {
-        const state = sharedState[name];
-        const color = colorize(state.color);
+    const stateLines = _.sortBy(Object.keys(sharedState)).map((name) => {
+      const state = sharedState[name];
+      const color = colorize(state.color);
 
-        if (!state.isRunning) {
-          const color2 = state.progress === 100 ? color : chalk.grey;
-          return color2(`${BULLET} ${name}\n`);
-        }
+      if (!state.isRunning) {
+        const color2 = state.progress === 100 ? color : chalk.grey;
+        return color2(`${BULLET} ${name}\n`);
+      }
 
-        return `${[
-          color(BULLET),
-          color(name),
-          renderBar(state.progress, state.color),
-          state.msg,
-          `(${state.progress || 0}%)`,
-          chalk.grey((state.details && state.details[0]) || ''),
-          chalk.grey((state.details && state.details[1]) || ''),
-        ].join(' ')}\n ${
-          state.request
-            ? chalk.grey(elipsesLeft(formatRequest(state.request), columns - 2))
-            : ''
-        }\n`;
-      });
+      return `${[
+        color(BULLET),
+        color(name),
+        renderBar(state.progress, state.color),
+        state.msg,
+        `(${state.progress || 0}%)`,
+        chalk.grey((state.details && state.details[0]) || ''),
+        chalk.grey((state.details && state.details[1]) || ''),
+      ].join(' ')}\n ${
+        state.request
+          ? chalk.grey(ellipsisLeft(formatRequest(state.request), columns - 2))
+          : ''
+      }\n`;
+    });
 
     if (hasRunning()) {
       const title = chalk.underline.blue('Compiling');

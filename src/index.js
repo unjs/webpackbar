@@ -3,7 +3,7 @@ import chalk from 'chalk';
 import _ from 'lodash';
 import logUpdate from 'log-update';
 import env from 'std-env';
-import consola from 'consola';
+import Consola from 'consola';
 import prettyTime from 'pretty-time';
 
 import Profile from './profile';
@@ -16,6 +16,8 @@ import {
   colorize,
   ellipsisLeft,
 } from './utils';
+
+const consola = Consola.withTag('webpackbar');
 
 const sharedState = {};
 

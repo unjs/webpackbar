@@ -1,4 +1,5 @@
 const path = require('path');
+
 const requireESM = require('esm')(module);
 
 const Self = requireESM('../src/index').default;
@@ -21,7 +22,7 @@ module.exports = {
     new Self({
       color: 'orange',
       profile: true,
-      name: 'webpack-bar',
+      name: 'kitchen-sync',
       logStateChanges: true,
     }),
   ],

@@ -2,7 +2,7 @@ import path from 'path';
 
 import chalk from 'chalk';
 import figures from 'figures';
-import { table } from 'table';
+import textTable from 'text-table';
 import prettyTime from 'pretty-time';
 
 import getDescription from './description';
@@ -101,13 +101,19 @@ export const formatRequest = (request) => {
   return `${loaders}${NEXT}${request.file}`;
 };
 
+function createTable(data) {
+  return textTable(data, {
+    align: data[0].map(() => 'l'),
+  }).replace(/\n/g, '\n\n');
+}
+
 export const formatStats = (allStats) => {
   const lines = [];
 
   Object.keys(allStats).forEach((category) => {
     const stats = allStats[category];
 
-    lines.push(`Stats by ${chalk.bold(startCase(category))}`);
+    lines.push(`> Stats by ${chalk.bold(startCase(category))}`);
 
     let totalRequests = 0;
     const totalTime = [0, 0];
@@ -139,10 +145,10 @@ export const formatStats = (allStats) => {
 
     data.push(['Total', totalRequests, prettyTime(totalTime), '', '']);
 
-    lines.push(table(data));
+    lines.push(createTable(data));
   });
 
-  return lines.join('\n\n');
+  return `${lines.join('\n\n')}\n`;
 };
 
 export function ellipsis(str, n) {

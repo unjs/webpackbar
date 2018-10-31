@@ -48,7 +48,7 @@
     "log-update": "^2.3.0",
     "pretty-time": "^1.1.0",
     "std-env": "^2.0.2",
-    "table": "^5.1.0"
+    "text-table": "^5.1.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^7.2.1",

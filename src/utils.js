@@ -1,7 +1,6 @@
 import path from 'path';
 
 import chalk from 'chalk';
-import _ from 'lodash';
 import figures from 'figures';
 import { table } from 'table';
 import prettyTime from 'pretty-time';
@@ -12,6 +11,35 @@ const BAR_LENGTH = 25;
 const BLOCK_CHAR = '█';
 const BLOCK_CHAR2 = '█';
 const NEXT = chalk.blue(figures(' › '));
+
+export const first = (arr) => arr[0];
+export const last = (arr) => (arr.length ? arr[arr.length - 1] : null);
+export const startCase = (str) => str[0].toUpperCase() + str.substr(1);
+export const range = (len) => {
+  const arr = [];
+  for (let i = 0; i < len; i++) {
+    arr.push(i);
+  }
+  return arr;
+};
+export function throttle(callback, limit, time) {
+  let calledCount = 0;
+  let timeout = null;
+
+  return function throttledFn() {
+    if (limit > calledCount) {
+      calledCount += 1;
+      callback();
+    }
+
+    if (!timeout) {
+      timeout = setTimeout(() => {
+        calledCount = 0;
+        timeout = null;
+      }, time);
+    }
+  };
+}
 
 export const BULLET = figures('●');
 export const TICK = chalk.green(figures('✔'));
@@ -29,7 +57,7 @@ export const renderBar = (progress, color) => {
   const bg = chalk.white(BLOCK_CHAR);
   const fg = colorize(color)(BLOCK_CHAR2);
 
-  return _.range(BAR_LENGTH)
+  return range(BAR_LENGTH)
     .map((i) => (i < w ? fg : bg))
     .join('');
 };
@@ -37,8 +65,8 @@ export const renderBar = (progress, color) => {
 const hasValue = (s) => s && s.length;
 
 const nodeModules = `${path.delimiter}node_modules${path.delimiter}`;
-const removeAfter = (delimiter, str) => _.first(str.split(delimiter));
-const removeBefore = (delimiter, str) => _.last(str.split(delimiter));
+const removeAfter = (delimiter, str) => first(str.split(delimiter));
+const removeBefore = (delimiter, str) => last(str.split(delimiter));
 
 const firstMatch = (regex, str) => {
   const m = regex.exec(str);
@@ -79,19 +107,13 @@ export const formatStats = (allStats) => {
   Object.keys(allStats).forEach((category) => {
     const stats = allStats[category];
 
-    lines.push(`Stats by ${chalk.bold(_.startCase(category))}`);
+    lines.push(`Stats by ${chalk.bold(startCase(category))}`);
 
     let totalRequests = 0;
     const totalTime = [0, 0];
 
     const data = [
-      [
-        _.startCase(category),
-        'Requests',
-        'Time',
-        'Time/Request',
-        'Description',
-      ],
+      [startCase(category), 'Requests', 'Time', 'Time/Request', 'Description'],
     ];
 
     Object.keys(stats).forEach((item) => {

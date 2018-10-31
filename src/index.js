@@ -1,6 +1,5 @@
 import webpack from 'webpack';
 import chalk from 'chalk';
-import _ from 'lodash';
 import logUpdate from 'log-update';
 import env from 'std-env';
 import Consola from 'consola';
@@ -15,6 +14,7 @@ import {
   formatStats,
   colorize,
   ellipsisLeft,
+  throttle,
 } from './utils';
 
 const consola = Consola.withTag('webpackbar');
@@ -50,7 +50,7 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
     this.handler = (percent, msg, ...details) =>
       this.updateProgress(percent, msg, details);
 
-    this._render = _.throttle(this.render, 100);
+    this._render = throttle(this.render.bind(this), 1, 100);
 
     this.logUpdate = this.options.logUpdate || $logUpdate;
 
@@ -152,29 +152,33 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
 
     const columns = this.stream.columns || 80;
 
-    const stateLines = _.sortBy(Object.keys(sharedState)).map((name) => {
-      const state = sharedState[name];
-      const color = colorize(state.color);
+    const stateLines = Object.keys(sharedState)
+      .sort()
+      .map((name) => {
+        const state = sharedState[name];
+        const color = colorize(state.color);
 
-      if (!state.isRunning) {
-        const color2 = state.progress === 100 ? color : chalk.grey;
-        return color2(`${BULLET} ${name}\n`);
-      }
+        if (!state.isRunning) {
+          const color2 = state.progress === 100 ? color : chalk.grey;
+          return color2(`${BULLET} ${name}\n`);
+        }
 
-      return `${[
-        color(BULLET),
-        color(name),
-        renderBar(state.progress, state.color),
-        state.msg,
-        `(${state.progress || 0}%)`,
-        chalk.grey((state.details && state.details[0]) || ''),
-        chalk.grey((state.details && state.details[1]) || ''),
-      ].join(' ')}\n ${
-        state.request
-          ? chalk.grey(ellipsisLeft(formatRequest(state.request), columns - 2))
-          : ''
-      }\n`;
-    });
+        return `${[
+          color(BULLET),
+          color(name),
+          renderBar(state.progress, state.color),
+          state.msg,
+          `(${state.progress || 0}%)`,
+          chalk.grey((state.details && state.details[0]) || ''),
+          chalk.grey((state.details && state.details[1]) || ''),
+        ].join(' ')}\n ${
+          state.request
+            ? chalk.grey(
+                ellipsisLeft(formatRequest(state.request), columns - 2)
+              )
+            : ''
+        }\n`;
+      });
 
     if (hasRunning()) {
       const title = chalk.underline.blue('Compiling');

@@ -1,8 +1,8 @@
 export default class ProfileReporter {
-  done(plugin) {
-    if (plugin.options.profile) {
-      const formattedStats = plugin.state.profile.getFormattedStats();
-      plugin.options.stream.write(`\n${formattedStats}\n`);
+  done(context) {
+    if (context.options.profile) {
+      const formattedStats = context.state.profile.getFormattedStats();
+      context.options.stream.write(`\n${formattedStats}\n`);
     }
   }
 }

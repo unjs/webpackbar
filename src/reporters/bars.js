@@ -15,7 +15,7 @@ export default class BarsReporter {
     this.drafts = null;
   }
 
-  compiling(plugin) {
+  compiling() {
     // eslint-disable-next-line no-console
     if (!globalConsole.draft) {
       draftLog.into(globalConsole);
@@ -26,21 +26,21 @@ export default class BarsReporter {
     globalConsole.log();
   }
 
-  compiled(plugin) {
-    this.render(plugin);
+  compiled(context) {
+    this.render(context);
   }
 
-  update(plugin) {
-    this.renderT(plugin);
+  update(context) {
+    this.renderT(context);
   }
 
-  render(plugin) {
-    const { stream } = plugin.options;
+  render(context) {
+    const { stream } = context.options;
     const columns = stream.columns || 80;
 
     const [line1, line2] = this.renderState({
-      name: plugin.options.name,
-      state: plugin.state,
+      name: context.options.name,
+      state: context.state,
       columns,
     });
 

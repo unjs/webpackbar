@@ -20,11 +20,11 @@ export function hasValue(s) {
 }
 
 export function removeAfter(delimiter, str) {
-  return first(str.split(delimiter));
+  return first(str.split(delimiter)) || '';
 }
 
-export function removeBefore() {
-  return (delimiter, str) => last(str.split(delimiter));
+export function removeBefore(delimiter, str) {
+  return last(str.split(delimiter)) || '';
 }
 
 export const range = (len) => {

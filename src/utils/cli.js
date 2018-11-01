@@ -1,10 +1,13 @@
 import chalk from 'chalk';
+import Consola from 'consola';
 
 import textTable from 'text-table';
 
 import { BLOCK_CHAR, BLOCK_CHAR2, BAR_LENGTH } from './consts';
 
 import { range } from '.';
+
+export const consola = Consola.withTag('webpackbar');
 
 export const colorize = (color) => {
   if (color[0] === '#') {

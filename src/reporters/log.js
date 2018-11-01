@@ -1,7 +1,6 @@
 import prettyTime from 'pretty-time';
-import Consola from 'consola';
 
-const consola = Consola.withTag('webpackbar');
+import { consola } from '../utils/cli';
 
 export default class LogReporter {
   compiling(context) {

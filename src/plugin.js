@@ -1,6 +1,8 @@
 import webpack from 'webpack';
 import env from 'std-env';
 
+import { consola } from './utils/cli';
+
 import { LogReporter, BarsReporter, ProfileReporter } from './reporters';
 import Profile from './profile';
 import { parseRequest } from './utils/request';
@@ -60,7 +62,11 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
   callReporters(fn, payload = {}) {
     for (const reporter of this.reporters) {
       if (typeof reporter[fn] === 'function') {
-        reporter[fn](this, payload);
+        try {
+          reporter[fn](this, payload);
+        } catch (e) {
+          consola.error(e);
+        }
       }
     }
   }

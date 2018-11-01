@@ -111,12 +111,10 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
 
     if (!wasRunning && isRunning) {
       // Started
-      delete this.state.stats;
       this.state.start = process.hrtime();
       this.callReporters('compiling');
     } else if (wasRunning && !isRunning) {
       // Finished
-      delete this.state.start;
       this.callReporters('compiled');
     }
 

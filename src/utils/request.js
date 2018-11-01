@@ -1,7 +1,8 @@
 import path from 'path';
 
+import { nodeModules, NEXT } from './consts';
+
 import { removeAfter, removeBefore, hasValue, firstMatch } from '.';
-import { nodeModules } from './consts';
 
 export const parseRequest = (requestStr) => {
   const parts = (requestStr || '').split('!');

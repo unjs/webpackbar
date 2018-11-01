@@ -5,18 +5,11 @@ import env from 'std-env';
 import Consola from 'consola';
 import prettyTime from 'pretty-time';
 
-import Profile from './profile/format';
-import { BULLET } from './utils/consts';
-
+import Profile from './profile';
+import { throttle } from './utils';
 import { parseRequest, formatRequest } from './utils/request';
-
-import {
-  renderBar,
-  formatStats,
-  colorize,
-  ellipsisLeft,
-  throttle,
-} from './utils/cli';
+import { BULLET } from './utils/consts';
+import { renderBar, colorize, ellipsisLeft } from './utils/cli';
 
 const consola = Consola.withTag('webpackbar');
 

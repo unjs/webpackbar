@@ -9,4 +9,4 @@ export const BLOCK_CHAR = '█';
 export const BLOCK_CHAR2 = '█';
 export const NEXT = chalk.blue(figures(' › '));
 export const BULLET = figures('●');
-export const TICK = chalk.green(figures('✔'));
+export const TICK = figures('✔');

@@ -21,9 +21,8 @@ module.exports = {
   plugins: [
     new Self({
       color: 'orange',
-      profile: true,
+      // profile: true,
       name: 'kitchen-sync',
-      logStateChanges: true,
     }),
   ],
 };

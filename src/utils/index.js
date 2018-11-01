@@ -39,10 +39,10 @@ export function throttle(callback, limit, time) {
   let calledCount = 0;
   let timeout = null;
 
-  return function throttledFn() {
+  return function throttledFn(...args) {
     if (limit > calledCount) {
       calledCount += 1;
-      callback();
+      callback(...args);
     }
 
     if (!timeout) {

@@ -46,16 +46,16 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
     // Reporters
     this.reporters = Array.from(this.options.reporters || []);
 
-    if (this.options.log) {
-      this.reporters.push(new LogReporter());
-    }
-
     if (this.options.bars) {
-      this.reporters.push(new BarsReporter());
+      this.reporters.unshift(new BarsReporter());
     }
 
     if (this.options.profile) {
-      this.reporters.push(new ProfileReporter());
+      this.reporters.unshift(new ProfileReporter());
+    }
+
+    if (this.options.log) {
+      this.reporters.unshift(new LogReporter());
     }
   }
 

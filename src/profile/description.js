@@ -1,4 +1,4 @@
-import { startCase } from './utils';
+import { startCase } from '../utils';
 
 const DB = {
   loader: {

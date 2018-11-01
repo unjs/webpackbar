@@ -1,0 +1,32 @@
+import path from 'path';
+
+import { removeAfter, removeBefore, hasValue, firstMatch } from '.';
+import { nodeModules } from './consts';
+
+export const parseRequest = (requestStr) => {
+  const parts = (requestStr || '').split('!');
+
+  const file = path.relative(
+    process.cwd(),
+    removeAfter('?', removeBefore(nodeModules, parts.pop()))
+  );
+
+  const loaders = parts
+    .map((part) => firstMatch(/[a-z0-9-@]+-loader/, part))
+    .filter(hasValue);
+
+  return {
+    file: hasValue(file) ? file : null,
+    loaders,
+  };
+};
+
+export const formatRequest = (request) => {
+  const loaders = request.loaders.join(NEXT);
+
+  if (!loaders.length) {
+    return request.file || '';
+  }
+
+  return `${loaders}${NEXT}${request.file}`;
+};

@@ -5,17 +5,18 @@ import env from 'std-env';
 import Consola from 'consola';
 import prettyTime from 'pretty-time';
 
-import Profile from './profile';
+import Profile from './profile/format';
+import { BULLET } from './utils/consts';
+
+import { parseRequest, formatRequest } from './utils/request';
+
 import {
-  BULLET,
-  parseRequest,
-  formatRequest,
   renderBar,
   formatStats,
   colorize,
   ellipsisLeft,
   throttle,
-} from './utils';
+} from './utils/cli';
 
 const consola = Consola.withTag('webpackbar');
 
@@ -91,9 +92,8 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
 
   done() {
     if (this.options.profile) {
-      const stats = this.state.profile.getStats();
-      const statsStr = formatStats(stats);
-      this.stream.write(`\n${statsStr}\n`);
+      const formattedStats = this.state.profile.getFormattedStats();
+      this.stream.write(`\n${formattedStats}\n`);
     }
 
     if (typeof this.options.done === 'function') {

@@ -1,5 +1,7 @@
 import path from 'path';
 
+import formatStats from './format';
+
 export default class Profile {
   constructor(name) {
     this.name = name;
@@ -62,5 +64,9 @@ export default class Profile {
       ext: extStats,
       loader: loaderStats,
     };
+  }
+
+  getFormattedStats() {
+    return formatStats(this.getStats());
   }
 }

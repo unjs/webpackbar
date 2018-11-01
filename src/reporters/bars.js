@@ -23,7 +23,6 @@ export default class BarsReporter {
 
     globalConsole.log();
     this.drafts = [globalConsole.draft(), globalConsole.draft()];
-    globalConsole.log();
   }
 
   compiled(context) {

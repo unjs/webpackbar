@@ -35,45 +35,41 @@ export default class BarsReporter {
   }
 
   render(context) {
-    const { stream } = context.options;
+    const {
+      state,
+      options: { stream, name },
+    } = context;
+
     const columns = stream.columns || 80;
-
-    const [line1, line2] = this.renderState({
-      name: context.options.name,
-      state: context.state,
-      columns,
-    });
-
-    this.drafts[0](line1);
-    this.drafts[1](line2);
-  }
-
-  renderState({ name, state, columns }) {
     const color = colorize(state.color);
 
     if (!state.isRunning) {
       const color2 = state.progress === 100 ? color : chalk.grey;
-      return [
-        color2(`${TICK} ${name}`),
-        chalk.grey(`  Compiled in ${prettyTime(state.elapsed, 2)}`),
-      ];
+
+      const line1 = color2(`${TICK} ${name}`);
+      const time = prettyTime(state.elapsed, 2);
+      const line2 = chalk.grey(`  Compiled succesfuly in ${time}`);
+
+      this.drafts[0](line1);
+      this.drafts[1](line2);
+    } else {
+      const line1 = [
+        color(BULLET),
+        color(name),
+        renderBar(state.progress, state.color),
+        state.msg,
+        `(${state.progress || 0}%)`,
+        chalk.grey((state.details && state.details[0]) || ''),
+        chalk.grey((state.details && state.details[1]) || ''),
+      ].join(' ');
+
+      const line2 = state.request
+        ? '  ' +
+          chalk.grey(ellipsisLeft(formatRequest(state.request), columns - 2))
+        : '';
+
+      this.drafts[0](line1);
+      this.drafts[1](line2);
     }
-
-    const line1 = [
-      color(BULLET),
-      color(name),
-      renderBar(state.progress, state.color),
-      state.msg,
-      `(${state.progress || 0}%)`,
-      chalk.grey((state.details && state.details[0]) || ''),
-      chalk.grey((state.details && state.details[1]) || ''),
-    ].join(' ');
-
-    const line2 = state.request
-      ? '  ' +
-        chalk.grey(ellipsisLeft(formatRequest(state.request), columns - 2))
-      : '';
-
-    return [line1, line2];
   }
 }

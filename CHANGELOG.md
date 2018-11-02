@@ -2,6 +2,41 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.0.0-0"></a>
+# [3.0.0-0](https://github.com/nuxt/webpackbar/compare/v2.6.3...v3.0.0-0) (2018-11-02)
+
+
+### Bug Fixes
+
+* avoid using null details ([c72c7c1](https://github.com/nuxt/webpackbar/commit/c72c7c1))
+* fix hasRunning and and hasErrors ([2241cd7](https://github.com/nuxt/webpackbar/commit/2241cd7))
+* fix imports ([226dbe2](https://github.com/nuxt/webpackbar/commit/226dbe2))
+* fix utils ([9d60a17](https://github.com/nuxt/webpackbar/commit/9d60a17))
+* handle hook errors ([c24b341](https://github.com/nuxt/webpackbar/commit/c24b341))
+* handle reporter errors ([20e78c1](https://github.com/nuxt/webpackbar/commit/20e78c1))
+* preserve start time and stats until next compile ([c93de65](https://github.com/nuxt/webpackbar/commit/c93de65))
+* remove extra state field ([ab32217](https://github.com/nuxt/webpackbar/commit/ab32217))
+* Remove unused dependencies ([#23](https://github.com/nuxt/webpackbar/issues/23)) ([2ab0dd2](https://github.com/nuxt/webpackbar/commit/2ab0dd2))
+* **bars:** remove extra ending new line ([695fc56](https://github.com/nuxt/webpackbar/commit/695fc56))
+* replace Object.values for node 6.x compability ([#17](https://github.com/nuxt/webpackbar/issues/17)) ([d004bb6](https://github.com/nuxt/webpackbar/commit/d004bb6))
+* typos ([3b5c9cf](https://github.com/nuxt/webpackbar/commit/3b5c9cf))
+* unshift built-in reporters ([007c9c5](https://github.com/nuxt/webpackbar/commit/007c9c5))
+* update std-env to 2.1.0 ([e720ad8](https://github.com/nuxt/webpackbar/commit/e720ad8))
+
+
+### Features
+
+* reporters and draftlog ([6541a1c](https://github.com/nuxt/webpackbar/commit/6541a1c))
+* support single reporter option ([0a10a08](https://github.com/nuxt/webpackbar/commit/0a10a08))
+
+
+### Performance Improvements
+
+* remove lodash dependency ([#22](https://github.com/nuxt/webpackbar/issues/22)) ([883a0dc](https://github.com/nuxt/webpackbar/commit/883a0dc))
+* use text-table for less package size ([#22](https://github.com/nuxt/webpackbar/issues/22)) ([ea22b7b](https://github.com/nuxt/webpackbar/commit/ea22b7b))
+
+
+
 <a name="2.6.3"></a>
 ## [2.6.3](https://github.com/nuxt/webpackbar/compare/v2.6.2...v2.6.3) (2018-08-18)
 

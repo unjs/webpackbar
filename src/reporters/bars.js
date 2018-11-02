@@ -1,3 +1,4 @@
+import Consola from 'consola';
 import draftLog from 'draftlog';
 import chalk from 'chalk';
 import prettyTime from 'pretty-time';
@@ -19,11 +20,16 @@ export default class BarsReporter {
 
   compiling() {
     if (!globalConsole.draft) {
-      draftLog.into(globalConsole);
+      draftLog(globalConsole);
     }
 
+    Consola.pause();
     globalConsole.log();
     this.drafts = [globalConsole.draft(), globalConsole.draft()];
+  }
+
+  done() {
+    Consola.resume();
   }
 
   compiled(context) {

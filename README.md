@@ -25,6 +25,8 @@
 
 ✔ Advanced build profiler
 
+**!!! These docs are for upcoming Webpackbar 3. Please use [v2 branch](https://github.com/nuxt/webpackbar/tree/v2) for now. !!!**
+
 <div align="center">
 <br>
 <img src="./assets/screen1.png" width="600px">
@@ -99,21 +101,74 @@ Enable profiler.
 
 Output stream.
 
+### `bars`
 
-### `minimal`
-  - Default: Auto enabled on CI, non-TTY and test environments
+  -  Default: `true` when not in CI or testing mode.
 
-Hide progress bar and only show Compiling/Compiled messages.
+Enable bars reporter.
 
-### `compiledIn`
-  - Default: `true`
+### `log`
 
-Show `Compiled in ` message after build.
+  -  Default: `true` when running in minimal environments.
 
-### `done`
-  - Type: `Function(sharedState, ctx)`
+Enable a simple log reporter (only start and end).
 
-A function that will be called when **all** builds are finished.
+### `reporter`
+
+Register a custom reporter.
+
+### `reporters`
+  - Default: `[]`
+
+Register an Array of your custom reporters. (Same as `reporter` but array)
+
+<h2 align="center">Custom Reporters</h2>
+
+Webpackbar comes with a fancy progress-bar out of the box.
+But you may want to show progress somewhere else or provide your own.
+
+For this purpose, you can provide one or reporters using `reporter` and `reporters` options.
+
+**NOTE:** If you plan to provide your own reporter, don't forget to setting `bars` and `log` options to false to prevent conflicts.
+
+A reporter should be instance of a class or plain object and functions for special hooks. It is not necessary to implement all functions, webpackbar only calls those that exists.
+
+**Simple logger:**
+
+```js
+{
+ compiling(context) {
+   // Called when (re)compile is started
+ },
+ compiled(context) {
+   // Called when (re)compile is finished
+ },
+ update(context) {
+   // Called after each progress update
+ },
+ done(context) {
+   // Called when _all_ compiles finished
+ }
+}
+```
+
+`context` is the reference to the plugin. You can use `context.state` to access status.
+
+
+**Schema of `context.state`:**
+
+```js
+{
+details,
+progress,
+msg,
+request,
+start,
+elapsed,
+isRunning,
+stats
+}
+```
 
 <h2 align="center">Maintainers</h2>
 

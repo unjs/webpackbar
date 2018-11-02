@@ -14,6 +14,7 @@ const DEFAULTS = {
   profile: false,
   stream: process.stdout,
   reporters: [],
+  reporter: null,
   log: !!env.minimalCLI,
   bars: !env.minimalCLI,
 };
@@ -44,6 +45,10 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
 
     // Reporters
     this.reporters = Array.from(this.options.reporters || []);
+
+    if (this.options.reporter) {
+      this.reporters.unshift(this.options.reporter);
+    }
 
     if (this.options.bars) {
       this.reporters.unshift(new BarsReporter());

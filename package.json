@@ -43,7 +43,7 @@
   },
   "dependencies": {
     "chalk": "^2.4.1",
-    "consola": "^2.0.2",
+    "consola": "^2.0.7",
     "draftlog": "^1.0.12",
     "figures": "^2.0.0",
     "pretty-time": "^1.1.0",

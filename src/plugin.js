@@ -38,7 +38,6 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
         isRunning: false,
         color: this.options.color,
         profile: this.options.profile ? new Profile(this.options.name) : null,
-        status: 'idle',
       };
     }
     this.state = this.states[this.options.name];

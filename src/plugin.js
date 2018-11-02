@@ -76,11 +76,11 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
   }
 
   hasRunning() {
-    return this.states.some((state) => state.isRunning);
+    return Object.values(this.states).some((state) => state.isRunning);
   }
 
   hasErrors() {
-    return Object.values(context.states).some(
+    return Object.values(this.states).some(
       (state) => state.stats && state.stats.hasErrors()
     );
   }
@@ -90,8 +90,12 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
 
     const hook = (stats) => {
       this.state.stats = stats;
-      if (!this.hasRunning()) {
-        this.callReporters('done');
+      try {
+        if (!this.hasRunning()) {
+          this.callReporters('done');
+        }
+      } catch (e) {
+        consola.error(e);
       }
     };
 

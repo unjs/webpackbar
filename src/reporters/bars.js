@@ -9,14 +9,15 @@ import { BULLET, TICK } from '../utils/consts';
 
 const globalConsole = console; // eslint-disable-line no-console
 
+const renderT = throttle((fn, ...args) => fn(...args), 1, 50);
+
 export default class BarsReporter {
   constructor() {
-    this.renderT = throttle(this.render.bind(this), 1, 100);
+    this._render = this._render.bind(this);
     this.drafts = null;
   }
 
   compiling() {
-    // eslint-disable-next-line no-console
     if (!globalConsole.draft) {
       draftLog.into(globalConsole);
     }
@@ -26,14 +27,14 @@ export default class BarsReporter {
   }
 
   compiled(context) {
-    this.render(context);
+    this._render(context);
   }
 
   update(context) {
-    this.renderT(context);
+    renderT(this._render, context);
   }
 
-  render(context) {
+  _render(context) {
     const {
       state,
       options: { stream, name },

@@ -47,7 +47,7 @@
     "draftlog": "^1.0.12",
     "figures": "^2.0.0",
     "pretty-time": "^1.1.0",
-    "std-env": "^2.0.2",
+    "std-env": "^2.1.0",
     "text-table": "^0.2.0"
   },
   "devDependencies": {

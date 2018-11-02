@@ -8,7 +8,12 @@ import { throttle } from '../utils';
 import { formatRequest } from '../utils/request';
 import { BULLET, TICK } from '../utils/consts';
 
-const globalConsole = console;
+// Convention: Original values are kept with two underscores
+
+const globalConsole = {
+  log: console.__log || console.log, // eslint-disable-line no-console
+  _stdout: console._stdout, // eslint-disable-line no-console
+};
 
 const renderT = throttle((fn, ...args) => fn(...args), 1, 50);
 
@@ -21,6 +26,8 @@ export default class BarsReporter {
   compiling() {
     if (!globalConsole.draft) {
       draftLog(globalConsole);
+      console.__stdout = console._stdout; // eslint-disable-line no-console
+      console._stdout = globalConsole._stdout; // eslint-disable-line no-console
     }
 
     Consola.pause();
@@ -29,6 +36,11 @@ export default class BarsReporter {
   }
 
   done() {
+    // eslint-disable-next-line no-console
+    // if (console.__stdout) {
+    //   console._stdout = console.__stdout; // eslint-disable-line no-console
+    //   delete console.__stdout; // eslint-disable-line no-console
+    // }
     Consola.resume();
   }
 

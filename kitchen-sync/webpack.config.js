@@ -1,8 +1,14 @@
 const path = require('path');
 
+const consola = require('consola');
+
 const requireESM = require('esm')(module);
 
 const Self = requireESM('../src/index').default;
+
+consola.wrapConsole();
+
+let lastProgress;
 
 module.exports = {
   mode: 'production',
@@ -21,8 +27,15 @@ module.exports = {
   plugins: [
     new Self({
       color: 'orange',
-      // profile: true,
       name: 'kitchen-sync',
+      reporter: {
+        update({ state }) {
+          if (lastProgress !== state.progress && state.progress % 25 === 0) {
+            consola.log(state.progress + '%');
+            lastProgress = state.progress;
+          }
+        },
+      },
     }),
   ],
 };

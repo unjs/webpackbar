@@ -7,7 +7,7 @@ import { throttle } from '../utils';
 import { formatRequest } from '../utils/request';
 import { BULLET, TICK } from '../utils/consts';
 
-const globalConsole = console; // eslint-disable-line no-console
+const globalConsole = console;
 
 const renderT = throttle((fn, ...args) => fn(...args), 1, 50);
 

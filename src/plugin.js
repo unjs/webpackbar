@@ -70,10 +70,14 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
     }
   }
 
-  get hasRunning() {
-    return Object.keys(this.states)
-      .map((e) => this.states[e])
-      .find((s) => s.isRunning);
+  hasRunning() {
+    return this.states.some((state) => state.isRunning);
+  }
+
+  hasErrors() {
+    return Object.values(context.states).some(
+      (state) => state.stats && state.stats.hasErrors()
+    );
   }
 
   apply(compiler) {
@@ -81,7 +85,7 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
 
     const hook = (stats) => {
       this.state.stats = stats;
-      if (!this.hasRunning) {
+      if (!this.hasRunning()) {
         this.callReporters('done');
       }
     };

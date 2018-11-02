@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.0.0-1"></a>
+# [3.0.0-1](https://github.com/nuxt/webpackbar/compare/v3.0.0-0...v3.0.0-1) (2018-11-02)
+
+
+### Features
+
+* **bars:** consola integration ([8db1118](https://github.com/nuxt/webpackbar/commit/8db1118))
+* consola integration with bars ([1c22321](https://github.com/nuxt/webpackbar/commit/1c22321))
+* use a shared throttle for bars ([91512c1](https://github.com/nuxt/webpackbar/commit/91512c1))
+
+
+
 <a name="3.0.0-0"></a>
 # [3.0.0-0](https://github.com/nuxt/webpackbar/compare/v2.6.3...v3.0.0-0) (2018-11-02)
 

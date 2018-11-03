@@ -19,22 +19,21 @@ export default class BarsReporter {
   }
 
   done() {
-    lastRender = Date.now();
     logUpdate.done();
     Consola.resume();
   }
 
   compiled(context) {
-    this._render(context);
+    this._renderStates(context);
   }
 
   update(context) {
     if (Date.now() - lastRender > 200) {
-      this._render(context);
+      this._renderStates(context);
     }
   }
 
-  _render(context) {
+  _renderStates(context) {
     lastRender = Date.now();
 
     const renderedStates = Object.keys(context.states)
@@ -50,12 +49,17 @@ export default class BarsReporter {
     const color = colorize(state.color);
 
     if (!state.isRunning) {
-      const color2 = state.progress === 100 ? color : chalk.grey;
+      // Not started yet
+      if (!state.time) {
+        const line1 = chalk.grey(`${BULLET} ${name}`);
+        const line2 = chalk.grey(`  Waiting to start...`);
+        return line1 + '\n' + line2;
+      }
 
-      const line1 = color2(`${TICK} ${name}`);
-      const time = prettyTime(state.elapsed || 0, 2);
+      // Finished
+      const line1 = color(`${TICK} ${name}`);
+      const time = prettyTime(state.time, 2);
       const line2 = chalk.grey(`  Compiled succesfuly in ${time}`);
-
       return line1 + '\n' + line2;
     }
 
@@ -70,7 +74,7 @@ export default class BarsReporter {
     ].join(' ');
 
     const line2 = state.request
-      ? '  ' +
+      ? ' ' +
         chalk.grey(
           ellipsisLeft(formatRequest(state.request), logUpdate.columns)
         )

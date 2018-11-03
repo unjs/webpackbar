@@ -2,13 +2,13 @@ import webpack from 'webpack';
 import env from 'std-env';
 import prettyTime from 'pretty-time';
 
-import { LogReporter, BarsReporter, ProfileReporter } from './reporters';
+import { SimpleReporter, FancyReporter, ProfileReporter } from './reporters';
 import Profile from './profile';
 import { startCase } from './utils';
 import { parseRequest } from './utils/request';
 
 // Use bars when possible as default
-const useBars = !(env.ci || env.test || !env.tty);
+const isMinimal = !(env.ci || env.test || !env.tty);
 
 // Default plugin options
 const DEFAULTS = {
@@ -18,8 +18,8 @@ const DEFAULTS = {
   stream: process.stdout,
   reporters: [],
   reporter: null,
-  log: !useBars,
-  bars: useBars,
+  simple: isMinimal,
+  fancy: !isMinimal,
 };
 
 // Default state object
@@ -65,16 +65,16 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
       this.reporters.unshift(this.options.reporter);
     }
 
-    if (this.options.bars) {
-      this.reporters.unshift(new BarsReporter());
+    if (this.options.fancy) {
+      this.reporters.unshift(new FancyReporter());
+    }
+
+    if (this.options.simple) {
+      this.reporters.unshift(new SimpleReporter());
     }
 
     if (this.options.profile) {
       this.reporters.unshift(new ProfileReporter());
-    }
-
-    if (this.options.log) {
-      this.reporters.unshift(new LogReporter());
     }
   }
 
@@ -141,6 +141,7 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
       if (!this.hasRunning) {
         this.callReporters('beforeAllDone');
         this.callReporters('allDone');
+        this.callReporters('afterAllDone');
       }
     });
   }

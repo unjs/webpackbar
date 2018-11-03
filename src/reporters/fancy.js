@@ -11,21 +11,18 @@ let lastRender = Date.now();
 
 const logUpdate = new LogUpdate();
 
-export default class BarsReporter {
+export default class FancyReporter {
   beforeRun() {
     consola.pause();
   }
 
+  allDone() {
+    logUpdate.done();
+    consola.resume();
+  }
+
   done(context) {
     this._renderStates(context.states);
-  }
-
-  beforeAllDone() {
-    logUpdate.done();
-  }
-
-  allDone() {
-    consola.resume();
   }
 
   progress(context) {

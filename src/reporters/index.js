@@ -1,3 +1,3 @@
-export { default as BarsReporter } from './bars';
-export { default as LogReporter } from './log';
+export { default as FancyReporter } from './fancy';
+export { default as SimpleReporter } from './simple';
 export { default as ProfileReporter } from './profile';

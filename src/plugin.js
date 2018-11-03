@@ -1,10 +1,10 @@
 import webpack from 'webpack';
 import env from 'std-env';
 
-import { consola } from './utils/cli';
-
 import { LogReporter, BarsReporter, ProfileReporter } from './reporters';
 import Profile from './profile';
+import { startCase } from './utils';
+import { consola } from './utils/cli';
 import { parseRequest } from './utils/request';
 
 // Default plugin options
@@ -27,7 +27,7 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
     super();
 
     this.options = Object.assign({}, DEFAULTS, options);
-    this.name = options.name;
+    this.name = startCase(options.name);
 
     // this.handler will be called by webpack.ProgressPlugin
     this.handler = (percent, msg, ...details) =>

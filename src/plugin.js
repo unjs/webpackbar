@@ -1,11 +1,14 @@
 import webpack from 'webpack';
 import env from 'std-env';
+import prettyTime from 'pretty-time';
 
 import { LogReporter, BarsReporter, ProfileReporter } from './reporters';
 import Profile from './profile';
 import { startCase } from './utils';
-import { consola } from './utils/cli';
 import { parseRequest } from './utils/request';
+
+// Use bars when possible as default
+const useBars = !(env.ci || env.test || !env.tty);
 
 // Default plugin options
 const DEFAULTS = {
@@ -15,11 +18,22 @@ const DEFAULTS = {
   stream: process.stdout,
   reporters: [],
   reporter: null,
-  log: !!env.minimalCLI,
-  bars: !env.minimalCLI,
+  log: !useBars,
+  bars: useBars,
 };
 
-// Mapping from name => { isRunning, details, progress, msg, request }
+// Default state object
+const DEFAULT_STATE = {
+  start: null,
+  progress: -1,
+  message: '',
+  details: [],
+  request: null,
+  stats: null,
+  hasErrors: false,
+};
+
+// Mapping from name => State
 const globalStates = {};
 
 export default class WebpackBarPlugin extends webpack.ProgressPlugin {
@@ -30,14 +44,14 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
     this.name = startCase(options.name);
 
     // this.handler will be called by webpack.ProgressPlugin
-    this.handler = (percent, msg, ...details) =>
-      this.updateProgress(percent, msg, details);
+    this.handler = (percent, message, ...details) =>
+      this.updateProgress(percent, message, details);
 
     // Keep our state in shared ojbect
     this.states = globalStates;
     if (!this.states[this.name]) {
       this.states[this.name] = {
-        isRunning: false,
+        ...DEFAULT_STATE,
         color: this.options.color,
         profile: this.options.profile ? new Profile(this.name) : null,
       };
@@ -70,71 +84,81 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
         try {
           reporter[fn](this, payload);
         } catch (e) {
-          consola.error(e);
+          process.stdout.write(e.stack + '\n');
         }
       }
     }
   }
 
-  hasRunning() {
-    return Object.values(this.states).some((state) => state.isRunning);
+  get hasRunning() {
+    return Object.values(this.states).some((state) => state.progress !== 100);
   }
 
-  hasErrors() {
-    return Object.values(this.states).some(
-      (state) => state.stats && state.stats.hasErrors()
-    );
+  get hasErrors() {
+    return Object.values(this.states).some((state) => state.hasErrors);
   }
 
   apply(compiler) {
     super.apply(compiler);
 
-    const hook = (stats) => {
-      this.state.stats = stats;
-      try {
-        if (!this.hasRunning()) {
-          this.callReporters('done');
-        }
-      } catch (e) {
-        consola.error(e);
+    // Hook helper for webpack 3 + 4 support
+    function hook(hookName, fn) {
+      if (compiler.hooks) {
+        compiler.hooks[hookName].tap('WebpackBar:' + hookName, fn);
+      } else {
+        compiler.plugin(hookName, fn);
       }
-    };
-
-    if (compiler.hooks) {
-      compiler.hooks.done.tap('WebpackBar', hook);
-    } else {
-      compiler.plugin('done', hook);
     }
-  }
 
-  updateProgress(percent, msg, details = []) {
-    const progress = Math.floor(percent * 100);
-    const isRunning = progress < 100;
+    // Adds a hook right before compiler.run() is executed
+    hook('beforeCompile', () => {
+      Object.assign(this.state, {
+        ...DEFAULT_STATE,
+        start: process.hrtime(),
+        _allDoneCalled: false,
+      });
 
-    const wasRunning = this.state.isRunning;
-
-    Object.assign(this.state, {
-      details,
-      progress,
-      msg: isRunning && msg ? msg : '',
-      request: parseRequest(details[2]),
-      elapsed: process.hrtime(this.state.start),
-      isRunning,
+      this.callReporters('beforeRun');
     });
 
-    if (!wasRunning && isRunning) {
-      // Started
-      this.state.start = process.hrtime();
-      this.callReporters('compiling');
-    } else if (wasRunning && !isRunning) {
-      // Finished
-      this.callReporters('compiled');
-    }
+    // Compilation has completed
+    hook('done', (stats) => {
+      const time = prettyTime(process.hrtime(this.state.start), 2);
+      const hasErrors = stats.hasErrors();
+      const status = hasErrors ? 'with some errors' : 'succesfuly';
+
+      Object.assign(this.state, {
+        ...DEFAULT_STATE,
+        stats,
+        progress: 100,
+        message: `Compiled ${status} in ${time}`,
+        hasErrors,
+      });
+
+      this.callReporters('progress');
+      this.callReporters('done');
+
+      if (!this.hasRunning) {
+        this.callReporters('beforeAllDone');
+        this.callReporters('allDone');
+      }
+    });
+  }
+
+  updateProgress(percent = 0, message = '', details = []) {
+    const progress = Math.floor(percent * 100);
+
+    Object.assign(this.state, {
+      progress,
+      message: message || '',
+      details,
+      request: parseRequest(details[2]),
+    });
 
     if (this.options.profile) {
       this.state.profile.onRequest(this.state.request);
     }
 
-    this.callReporters('update');
+    this.callReporters('progress');
   }
 }

@@ -1,44 +1,43 @@
 /* eslint-disable no-console */
-import Consola from 'consola';
 import chalk from 'chalk';
-import prettyTime from 'pretty-time';
+import consola from 'consola';
 
 import { renderBar, colorize, ellipsisLeft } from '../utils/cli';
 import { formatRequest } from '../utils/request';
-import { BULLET, TICK } from '../utils/consts';
+import { BULLET, TICK, CROSS } from '../utils/consts';
 import LogUpdate from '../utils/log-update';
 
 let lastRender = Date.now();
 
-let logUpdate = null;
+const logUpdate = new LogUpdate();
 
 export default class BarsReporter {
-  compiling() {
-    logUpdate = logUpdate || new LogUpdate();
-    Consola.pause();
+  beforeRun() {
+    consola.pause();
   }
 
-  done() {
+  done(context) {
+    this._renderStates(context.states);
+  }
+
+  beforeAllDone() {
     logUpdate.done();
-    Consola.resume();
+    consola.resume();
   }
 
-  compiled(context) {
-    this._renderStates(context);
-  }
-
-  update(context) {
-    if (Date.now() - lastRender > 200) {
-      this._renderStates(context);
+  progress(context) {
+    if (Date.now() - lastRender > 50) {
+      this._renderStates(context.states);
     }
   }
 
-  _renderStates(context) {
+  _renderStates(states) {
     lastRender = Date.now();
 
-    const renderedStates = Object.keys(context.states)
+    const renderedStates = Object.keys(states)
       .sort((n1, n2) => n1.localeCompare(n2))
-      .map((name) => ({ name, state: context.states[name] }))
+      .map((name) => ({ name, state: states[name] }))
+      .filter((c) => c.state.progress !== -1)
       .map((c) => this._renderState(c))
       .join('\n\n');
 
@@ -48,37 +47,35 @@ export default class BarsReporter {
   _renderState({ name, state }) {
     const color = colorize(state.color);
 
-    if (!state.isRunning) {
-      // Not started yet
-      if (!state.time) {
-        const line1 = chalk.grey(`${BULLET} ${name}`);
-        const line2 = chalk.grey(`  Waiting to start...`);
-        return line1 + '\n' + line2;
-      }
+    let line1;
+    let line2;
 
+    if (state.progress >= 0 && state.progress < 100) {
+      // Running
+      line1 = [
+        color(BULLET),
+        color(name),
+        renderBar(state.progress, state.color),
+        state.message,
+        `(${state.progress || 0}%)`,
+        chalk.grey(state.details[0] || ''),
+        chalk.grey(state.details[1] || ''),
+      ].join(' ');
+
+      line2 = state.request
+        ? ' ' +
+          chalk.grey(
+            ellipsisLeft(formatRequest(state.request), logUpdate.columns)
+          )
+        : '';
+    } else if (state.progress === 100) {
       // Finished
-      const line1 = color(`${TICK} ${name}`);
-      const time = prettyTime(state.time, 2);
-      const line2 = chalk.grey(`  Compiled succesfuly in ${time}`);
-      return line1 + '\n' + line2;
+      line1 = color(`${state.hasErrors ? CROSS : TICK} ${name}`);
+      line2 = chalk.grey('  ' + state.message);
+    } else {
+      // Invalid state
+      return '';
     }
-
-    const line1 = [
-      color(BULLET),
-      color(name),
-      renderBar(state.progress, state.color),
-      state.msg,
-      `(${state.progress || 0}%)`,
-      chalk.grey((state.details && state.details[0]) || ''),
-      chalk.grey((state.details && state.details[1]) || ''),
-    ].join(' ');
-
-    const line2 = state.request
-      ? ' ' +
-        chalk.grey(
-          ellipsisLeft(formatRequest(state.request), logUpdate.columns)
-        )
-      : '';
 
     return line1 + '\n' + line2;
   }

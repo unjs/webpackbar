@@ -28,14 +28,14 @@ export default class LogUpdate {
     return (process.stderr.columns || 80) - 2;
   }
 
-  clear() {
-    this.write(ansiEscapes.eraseLines(this.prevLineCount));
-    this.prevLineCount = 0;
-  }
-
   write(data) {
     fs.writeSync(2, data);
     fs.fsyncSync(2);
+  }
+
+  clear() {
+    this.write(ansiEscapes.eraseLines(this.prevLineCount));
+    this.prevLineCount = 0;
   }
 
   done() {

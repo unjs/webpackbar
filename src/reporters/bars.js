@@ -22,6 +22,9 @@ export default class BarsReporter {
 
   beforeAllDone() {
     logUpdate.done();
+  }
+
+  allDone() {
     consola.resume();
   }
 
@@ -37,7 +40,7 @@ export default class BarsReporter {
     const renderedStates = Object.keys(states)
       .sort((n1, n2) => n1.localeCompare(n2))
       .map((name) => ({ name, state: states[name] }))
-      .filter((c) => c.state.progress !== -1)
+      .filter((c) => c.state.progress >= 0)
       .map((c) => this._renderState(c))
       .join('\n\n');
 

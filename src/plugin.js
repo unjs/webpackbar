@@ -148,6 +148,10 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
   updateProgress(percent = 0, message = '', details = []) {
     const progress = Math.floor(percent * 100);
 
+    if (this.progress === 100) {
+      return;
+    }
+
     Object.assign(this.state, {
       progress,
       message: message || '',

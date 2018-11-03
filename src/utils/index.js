@@ -34,22 +34,3 @@ export const range = (len) => {
   }
   return arr;
 };
-
-export function throttle(callback, limit, time) {
-  let calledCount = 0;
-  let timeout = null;
-
-  return function throttledFn(...args) {
-    if (limit > calledCount) {
-      calledCount += 1;
-      callback(...args);
-    }
-
-    if (!timeout) {
-      timeout = setTimeout(() => {
-        calledCount = 0;
-        timeout = null;
-      }, time);
-    }
-  };
-}

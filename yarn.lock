@@ -445,7 +445,7 @@ ansi-align@^2.0.0:
   dependencies:
     string-width "^2.0.0"
 
-ansi-escapes@^3.0.0:
+ansi-escapes@^3.0.0, ansi-escapes@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/ansi-escapes/-/ansi-escapes-3.1.0.tgz#f73207bb81207d75fd6c83f125af26eea378ca30"
   integrity sha512-UgAb8H9D41AQnu/PbWlCofQVcnV4Gs2bBJi9eZPxfU/hgglFh3SMDMENRIqdr7H6XFnXdoknctFByVsCOotTVw==
@@ -1888,10 +1888,10 @@ configstore@^3.0.0:
     write-file-atomic "^2.0.0"
     xdg-basedir "^3.0.0"
 
-consola@^2.0.7:
-  version "2.0.7"
-  resolved "https://registry.yarnpkg.com/consola/-/consola-2.0.7.tgz#658707b6ddc96b8e60e012430c2bafaa9d8dd8d4"
-  integrity sha512-wugpvF6aWVQtC9aUH3q476rdTjW3+VmXQedYr7FX50jxkzNjCt2qRybvZXiP8d5FEAHxCDhqjzKzb9mdQPwfKQ==
+consola@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/consola/-/consola-2.1.0.tgz#cf2b762ce1c982e61c3f9da3b9e7f0bccb0c1fc0"
+  integrity sha512-x+VdZSXUCVdnYLNqZV7fAtPB88rPGNNbAtf00aCD/l75uvMcp7Qh0UaSkkCQ33n/+nkoLS+V2DPT4F+GssUKDw==
   dependencies:
     chalk "^2.4.1"
     dayjs "^1.7.7"
@@ -2669,11 +2669,6 @@ dotgitignore@^1.0.3:
   dependencies:
     find-up "^2.1.0"
     minimatch "^3.0.4"
-
-draftlog@^1.0.12:
-  version "1.0.12"
-  resolved "https://registry.yarnpkg.com/draftlog/-/draftlog-1.0.12.tgz#7db6a3c5b62106bb32dd4a35d67bcccb6c7d9da0"
-  integrity sha1-fbajxbYhBrsy3Uo11nvMy2x9naA=
 
 duplexer3@^0.1.4:
   version "0.1.4"
@@ -8150,6 +8145,15 @@ wrap-ansi@^3.0.1:
   resolved "https://registry.yarnpkg.com/wrap-ansi/-/wrap-ansi-3.0.1.tgz#288a04d87eda5c286e060dfe8f135ce8d007f8ba"
   integrity sha1-KIoE2H7aXChuBg3+jxNc6NAH+Lo=
   dependencies:
+    string-width "^2.1.1"
+    strip-ansi "^4.0.0"
+
+wrap-ansi@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/wrap-ansi/-/wrap-ansi-4.0.0.tgz#b3570d7c70156159a2d42be5cc942e957f7b1131"
+  integrity sha512-uMTsj9rDb0/7kk1PbcbCcwvHUxp60fGDB/NNXpVa0Q+ic/e7y5+BwTxKfQ33VYgDppSwi/FBzpetYzo8s6tfbg==
+  dependencies:
+    ansi-styles "^3.2.0"
     string-width "^2.1.1"
     strip-ansi "^4.0.0"
 

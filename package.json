@@ -42,13 +42,14 @@
     "webpack": "^3.0.0 || ^4.0.0"
   },
   "dependencies": {
+    "ansi-escapes": "^3.1.0",
     "chalk": "^2.4.1",
-    "consola": "^2.0.7",
-    "draftlog": "^1.0.12",
+    "consola": "^2.1.0",
     "figures": "^2.0.0",
     "pretty-time": "^1.1.0",
     "std-env": "^2.1.0",
-    "text-table": "^0.2.0"
+    "text-table": "^0.2.0",
+    "wrap-ansi": "^4.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^7.2.1",

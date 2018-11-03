@@ -10,7 +10,7 @@ consola.wrapConsole();
 
 let lastProgress;
 
-module.exports = {
+const config = (name, color) => ({
   mode: 'production',
   context: __dirname,
   devtool: false,
@@ -26,8 +26,8 @@ module.exports = {
   },
   plugins: [
     new Self({
-      color: 'orange',
-      name: 'kitchen-sync',
+      color,
+      name,
       reporter: {
         update({ state }) {
           if (lastProgress !== state.progress && state.progress % 25 === 0) {
@@ -38,4 +38,6 @@ module.exports = {
       },
     }),
   ],
-};
+});
+
+module.exports = [config('CyanBar', 'cyan'), config('BlueBar', 'blue')];

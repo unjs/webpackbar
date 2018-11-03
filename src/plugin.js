@@ -27,6 +27,7 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
     super();
 
     this.options = Object.assign({}, DEFAULTS, options);
+    this.name = options.name;
 
     // this.handler will be called by webpack.ProgressPlugin
     this.handler = (percent, msg, ...details) =>
@@ -34,14 +35,14 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
 
     // Keep our state in shared ojbect
     this.states = globalStates;
-    if (!this.states[this.options.name]) {
-      this.states[this.options.name] = {
+    if (!this.states[this.name]) {
+      this.states[this.name] = {
         isRunning: false,
         color: this.options.color,
-        profile: this.options.profile ? new Profile(this.options.name) : null,
+        profile: this.options.profile ? new Profile(this.name) : null,
       };
     }
-    this.state = this.states[this.options.name];
+    this.state = this.states[this.name];
 
     // Reporters
     this.reporters = Array.from(this.options.reporters || []);

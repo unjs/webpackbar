@@ -8,7 +8,7 @@ import { startCase } from './utils';
 import { parseRequest } from './utils/request';
 
 // Use bars when possible as default
-const isMinimal = !(env.ci || env.test || !env.tty);
+const isMinimal = env.ci || env.test || !env.tty;
 
 // Default plugin options
 const DEFAULTS = {

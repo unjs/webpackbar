@@ -3,7 +3,6 @@ import env from 'std-env';
 import prettyTime from 'pretty-time';
 
 import * as reporters from './reporters'; // eslint-disable-line import/no-namespace
-import { startCase } from './utils';
 import { parseRequest } from './utils/request';
 
 // Use bars when possible as default
@@ -35,7 +34,6 @@ export default class WebpackBarPlugin extends ProgressPlugin {
     super();
 
     this.options = Object.assign({}, DEFAULTS, options);
-    this.name = startCase(options.name);
 
     // Assign a better handler to base ProgressPlugin
     this.handler = (percent, message, ...details) => {
@@ -44,13 +42,13 @@ export default class WebpackBarPlugin extends ProgressPlugin {
 
     // Keep our state in shared ojbect
     this.states = globalStates;
-    if (!this.states[this.name]) {
-      this.states[this.name] = {
+    if (!this.states[this.options.name]) {
+      this.states[this.options.name] = {
         ...DEFAULT_STATE,
         color: this.options.color,
       };
     }
-    this.state = this.states[this.name];
+    this.state = this.states[this.options.name];
 
     // Reporters
     this.reporters = Array.from(this.options.reporters || []);
@@ -147,6 +145,7 @@ export default class WebpackBarPlugin extends ProgressPlugin {
       });
 
       this.callReporters('progress');
+
       this.callReporters('done', { stats });
 
       if (!this.hasRunning) {

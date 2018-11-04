@@ -2,11 +2,13 @@ import { consola } from '../utils/cli';
 
 export default class SimpleReporter {
   beforeRun(context) {
-    consola.info(`Compiling ${context.name}`);
+    consola.info(`Compiling ${context.options.name}`);
   }
 
   done(context) {
     const { hasError, message } = context.state;
-    consola[hasError ? 'error' : 'success'](`${context.name} ${message}`);
+    consola[hasError ? 'error' : 'success'](
+      `${context.options.name} ${message}`
+    );
   }
 }

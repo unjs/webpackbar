@@ -96,11 +96,6 @@ Display color (can be HEX like `#xxyyzz` or a web color like `green`).
 
 Enable profiler.
 
-### `stream`
-  - Default: `process.stderr`
-
-Output stream.
-
 ### `bars`
 
   -  Default: `true` when not in CI or testing mode.

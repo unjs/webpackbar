@@ -15,7 +15,6 @@ const DEFAULTS = {
   name: 'webpack',
   color: 'green',
   profile: false,
-  stream: process.stdout,
   reporters: [],
   reporter: null,
   simple: isMinimal,
@@ -29,7 +28,6 @@ const DEFAULT_STATE = {
   message: '',
   details: [],
   request: null,
-  stats: null,
   hasErrors: false,
 };
 
@@ -129,14 +127,13 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
 
       Object.assign(this.state, {
         ...DEFAULT_STATE,
-        stats,
         progress: 100,
         message: `Compiled ${status} in ${time}`,
         hasErrors,
       });
 
       this.callReporters('progress');
-      this.callReporters('done');
+      this.callReporters('done', { stats });
 
       if (!this.hasRunning) {
         this.callReporters('beforeAllDone');

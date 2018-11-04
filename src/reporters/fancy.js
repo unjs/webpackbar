@@ -7,9 +7,9 @@ import { formatRequest } from '../utils/request';
 import { BULLET, TICK, CROSS } from '../utils/consts';
 import LogUpdate from '../utils/log-update';
 
-let lastRender = Date.now();
-
 const logUpdate = new LogUpdate();
+
+let lastRender = Date.now();
 
 export default class FancyReporter {
   beforeRun() {
@@ -37,7 +37,6 @@ export default class FancyReporter {
     const renderedStates = Object.keys(states)
       .sort((n1, n2) => n1.localeCompare(n2))
       .map((name) => ({ name, state: states[name] }))
-      .filter((c) => c.state.progress >= 0)
       .map((c) => this._renderState(c))
       .join('\n\n');
 
@@ -68,13 +67,19 @@ export default class FancyReporter {
             ellipsisLeft(formatRequest(state.request), logUpdate.columns)
           )
         : '';
-    } else if (state.progress === 100) {
-      // Finished
-      line1 = color(`${state.hasErrors ? CROSS : TICK} ${name}`);
-      line2 = chalk.grey('  ' + state.message);
     } else {
-      // Invalid state
-      return '';
+      let icon = ' ';
+
+      if (state.hasErrors) {
+        icon = CROSS;
+      } else if (state.progress === 100) {
+        icon = TICK;
+      } else if (this.progress === -1) {
+        icon = BULLET;
+      }
+
+      line1 = color(`${icon} ${name}`);
+      line2 = chalk.grey('  ' + state.message);
     }
 
     return line1 + '\n' + line2;

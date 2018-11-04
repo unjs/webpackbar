@@ -38,6 +38,11 @@ export default class WebpackBarPlugin extends ProgressPlugin {
     this.options = Object.assign({}, DEFAULTS, options);
     this.name = startCase(options.name);
 
+    // Assign a better handler to base ProgressPlugin
+    this.handler = (percent, message, ...details) => {
+      this.updateProgress(percent, message, details);
+    };
+
     // Keep our state in shared ojbect
     this.states = globalStates;
     if (!this.states[this.name]) {
@@ -151,10 +156,6 @@ export default class WebpackBarPlugin extends ProgressPlugin {
         this.callReporters('afterAllDone');
       }
     });
-  }
-
-  handler(percent, message, ...details) {
-    this.updateProgress(percent, message, details);
   }
 
   updateProgress(percent = 0, message = '', details = []) {

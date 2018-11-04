@@ -43,7 +43,6 @@ export default class WebpackBarPlugin extends ProgressPlugin {
     };
 
     // Keep our state in shared ojbect
-    this.states = globalStates;
     if (!this.states[this.options.name]) {
       this.states[this.options.name] = {
         ...DEFAULT_STATE,
@@ -51,7 +50,6 @@ export default class WebpackBarPlugin extends ProgressPlugin {
         name: startCase(this.options.name),
       };
     }
-    this.state = this.states[this.options.name];
 
     // Reporters
     this.reporters = Array.from(this.options.reporters || []);
@@ -127,6 +125,14 @@ export default class WebpackBarPlugin extends ProgressPlugin {
     );
   }
 
+  get states() {
+    return globalStates;
+  }
+
+  get state() {
+    return globalStates[this.options.name];
+  }
+
   apply(compiler) {
     super.apply(compiler);
 
@@ -144,7 +150,6 @@ export default class WebpackBarPlugin extends ProgressPlugin {
       Object.assign(this.state, {
         ...DEFAULT_STATE,
         start: process.hrtime(),
-        _allDoneCalled: false,
       });
 
       this.callReporters('start');

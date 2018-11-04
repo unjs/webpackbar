@@ -1,11 +1,11 @@
-import webpack from 'webpack';
+import { ProgressPlugin } from 'webpack';
 import env from 'std-env';
 import prettyTime from 'pretty-time';
 
-import { SimpleReporter, FancyReporter, ProfileReporter } from './reporters';
-import Profile from './profile';
+import * as reporters from './reporters'; // eslint-disable-line import/no-namespace
 import { startCase } from './utils';
 import { parseRequest } from './utils/request';
+import { consola } from './utils/cli';
 
 // Use bars when possible as default
 const isMinimal = env.ci || env.test || !env.tty;
@@ -14,11 +14,8 @@ const isMinimal = env.ci || env.test || !env.tty;
 const DEFAULTS = {
   name: 'webpack',
   color: 'green',
-  profile: false,
-  reporters: [],
+  reporters: isMinimal ? ['basic'] : ['fancy'],
   reporter: null,
-  simple: isMinimal,
-  fancy: !isMinimal,
 };
 
 // Default state object
@@ -34,16 +31,12 @@ const DEFAULT_STATE = {
 // Mapping from name => State
 const globalStates = {};
 
-export default class WebpackBarPlugin extends webpack.ProgressPlugin {
+export default class WebpackBarPlugin extends ProgressPlugin {
   constructor(options) {
     super();
 
     this.options = Object.assign({}, DEFAULTS, options);
     this.name = startCase(options.name);
-
-    // this.handler will be called by webpack.ProgressPlugin
-    this.handler = (percent, message, ...details) =>
-      this.updateProgress(percent, message, details);
 
     // Keep our state in shared ojbect
     this.states = globalStates;
@@ -51,29 +44,46 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
       this.states[this.name] = {
         ...DEFAULT_STATE,
         color: this.options.color,
-        profile: this.options.profile ? new Profile(this.name) : null,
       };
     }
     this.state = this.states[this.name];
 
     // Reporters
     this.reporters = Array.from(this.options.reporters || []);
-
     if (this.options.reporter) {
-      this.reporters.unshift(this.options.reporter);
+      this.reporters.push(this.options.reporter);
     }
 
-    if (this.options.fancy) {
-      this.reporters.unshift(new FancyReporter());
-    }
+    // Resolve reposters
+    this.reporters = this.reporters.filter(Boolean).map((_reporter) => {
+      let reporter = _reporter;
+      let reporterOptions = this.options[reporter] || {};
 
-    if (this.options.simple) {
-      this.reporters.unshift(new SimpleReporter());
-    }
+      if (Array.isArray(_reporter)) {
+        reporter = _reporter[0]; // eslint-disable-line
+        if (_reporter[1]) {
+          reporterOptions = _reporter[1]; // eslint-disable-line
+        }
+      }
 
-    if (this.options.profile) {
-      this.reporters.unshift(new ProfileReporter());
-    }
+      if (typeof reporter === 'string') {
+        if (reporters[reporter]) {
+          reporter = reporters[reporter];
+        } else {
+          reporter = require(reporter); // eslint-disable-line
+        }
+      }
+
+      if (typeof reporter === 'function') {
+        if (typeof reporter.constructor === 'function') {
+          reporter = new reporter(reporterOptions); // eslint-disable-line
+        } else {
+          reporter = reporter(reporterOptions);
+        }
+      }
+
+      return reporter;
+    });
   }
 
   callReporters(fn, payload = {}) {
@@ -143,6 +153,10 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
     });
   }
 
+  handler(percent, message, ...details) {
+    this.updateProgress(percent, message, details);
+  }
+
   updateProgress(percent = 0, message = '', details = []) {
     const progress = Math.floor(percent * 100);
 
@@ -152,10 +166,6 @@ export default class WebpackBarPlugin extends webpack.ProgressPlugin {
       details,
       request: parseRequest(details[2]),
     });
-
-    if (this.options.profile) {
-      this.state.profile.onRequest(this.state.request);
-    }
 
     this.callReporters('progress');
   }

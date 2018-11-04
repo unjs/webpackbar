@@ -1,8 +1,16 @@
+import Profiler from '../profiler';
+
 export default class ProfileReporter {
-  done(context) {
-    if (context.options.profile) {
-      const formattedStats = context.state.profile.getFormattedStats();
-      process.stderr.write(`\n${formattedStats}\n`);
-    }
+  constructor() {
+    this.profiler = new Profiler();
+  }
+
+  allDone() {
+    const formattedStats = this.profiler.getFormattedStats();
+    process.stderr.write(`\n${formattedStats}\n`);
+  }
+
+  progress(context) {
+    this.profiler.onRequest(context.state.request);
   }
 }

@@ -2,13 +2,16 @@ import path from 'path';
 
 import formatStats from './format';
 
-export default class Profile {
-  constructor(name) {
-    this.name = name;
+export default class Profiler {
+  constructor() {
     this.requests = [];
   }
 
   onRequest(request) {
+    if (!request) {
+      return;
+    }
+
     // Measure time for last request
     if (this.requests.length) {
       const lastReq = this.requests[this.requests.length - 1];

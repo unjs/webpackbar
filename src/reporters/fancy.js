@@ -4,7 +4,7 @@ import consola from 'consola';
 
 import { renderBar, colorize, ellipsisLeft } from '../utils/cli';
 import { formatRequest } from '../utils/request';
-import { BULLET, TICK, CROSS } from '../utils/consts';
+import { BULLET, TICK, CROSS, CIRCLE_OPEN } from '../utils/consts';
 import LogUpdate from '../utils/log-update';
 
 const logUpdate = new LogUpdate();
@@ -74,8 +74,8 @@ export default class FancyReporter {
         icon = CROSS;
       } else if (state.progress === 100) {
         icon = TICK;
-      } else if (this.progress === -1) {
-        icon = BULLET;
+      } else if (state.progress === -1) {
+        icon = CIRCLE_OPEN;
       }
 
       line1 = color(`${icon} ${name}`);

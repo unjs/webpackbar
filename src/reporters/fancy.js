@@ -22,28 +22,26 @@ export default class FancyReporter {
   }
 
   done(context) {
-    this._renderStates(context.states);
+    this._renderStates(context.statesArray);
   }
 
   progress(context) {
     if (Date.now() - lastRender > 50) {
-      this._renderStates(context.states);
+      this._renderStates(context.statesArray);
     }
   }
 
-  _renderStates(states) {
+  _renderStates(statesArray) {
     lastRender = Date.now();
 
-    const renderedStates = Object.keys(states)
-      .sort((n1, n2) => n1.localeCompare(n2))
-      .map((name) => ({ name, state: states[name] }))
+    const renderedStates = statesArray
       .map((c) => this._renderState(c))
       .join('\n\n');
 
     logUpdate.render('\n' + renderedStates + '\n');
   }
 
-  _renderState({ name, state }) {
+  _renderState(state) {
     const color = colorize(state.color);
 
     let line1;
@@ -53,7 +51,7 @@ export default class FancyReporter {
       // Running
       line1 = [
         color(BULLET),
-        color(name),
+        color(state.name),
         renderBar(state.progress, state.color),
         state.message,
         `(${state.progress || 0}%)`,
@@ -78,7 +76,7 @@ export default class FancyReporter {
         icon = CIRCLE_OPEN;
       }
 
-      line1 = color(`${icon} ${name}`);
+      line1 = color(`${icon} ${state.name}`);
       line2 = chalk.grey('  ' + state.message);
     }
 

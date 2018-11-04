@@ -3,7 +3,7 @@ export default class StatsReporter {
     this.options = options;
   }
 
-  done(context, { stats }) {
-    process.stderr.write('\n' + stats.toString() + '\n');
+  done(_, { stats }) {
+    process.stderr.write('\n' + stats.toString(this.options) + '\n');
   }
 }

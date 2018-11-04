@@ -5,7 +5,6 @@ import prettyTime from 'pretty-time';
 import * as reporters from './reporters'; // eslint-disable-line import/no-namespace
 import { startCase } from './utils';
 import { parseRequest } from './utils/request';
-import { consola } from './utils/cli';
 
 // Use bars when possible as default
 const isMinimal = env.ci || env.test || !env.tty;

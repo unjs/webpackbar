@@ -60,35 +60,45 @@ export default class WebpackBarPlugin extends ProgressPlugin {
     }
 
     // Resolve reposters
-    this.reporters = this.reporters.filter(Boolean).map((_reporter) => {
-      let reporter = _reporter;
-      let reporterOptions = this.options[reporter] || {};
+    this.reporters = this.reporters
+      .filter(Boolean)
+      .map((_reporter) => {
+        if (this.options[_reporter] === false) {
+          return false;
+        }
 
-      if (Array.isArray(_reporter)) {
+        let reporter = _reporter;
+        let reporterOptions = this.options[reporter] || {};
+
+        if (Array.isArray(_reporter)) {
         reporter = _reporter[0]; // eslint-disable-line
-        if (_reporter[1]) {
+          if (_reporter[1] === false) {
+            return false;
+          }
+          if (_reporter[1]) {
           reporterOptions = _reporter[1]; // eslint-disable-line
+          }
         }
-      }
 
-      if (typeof reporter === 'string') {
-        if (reporters[reporter]) {
-          reporter = reporters[reporter];
-        } else {
+        if (typeof reporter === 'string') {
+          if (reporters[reporter]) {
+            reporter = reporters[reporter];
+          } else {
           reporter = require(reporter); // eslint-disable-line
+          }
         }
-      }
 
-      if (typeof reporter === 'function') {
-        if (typeof reporter.constructor === 'function') {
+        if (typeof reporter === 'function') {
+          if (typeof reporter.constructor === 'function') {
           reporter = new reporter(reporterOptions); // eslint-disable-line
-        } else {
-          reporter = reporter(reporterOptions);
+          } else {
+            reporter = reporter(reporterOptions);
+          }
         }
-      }
 
-      return reporter;
-    });
+        return reporter;
+      })
+      .filter(Boolean);
   }
 
   callReporters(fn, payload = {}) {

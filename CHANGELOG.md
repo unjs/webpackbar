@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.0.0-2"></a>
+# [3.0.0-2](https://github.com/nuxt/webpackbar/compare/v3.0.0-1...v3.0.0-2) (2018-11-04)
+
+
+### Bug Fixes
+
+* convert name using startCase ([4264503](https://github.com/nuxt/webpackbar/commit/4264503))
+* fix globalState bug ([8c0441b](https://github.com/nuxt/webpackbar/commit/8c0441b))
+* handler assignment should be happened after super() call ([150699d](https://github.com/nuxt/webpackbar/commit/150699d))
+* minor fixes ([d7a10c9](https://github.com/nuxt/webpackbar/commit/d7a10c9))
+* refactor and memory improvements ([74d265a](https://github.com/nuxt/webpackbar/commit/74d265a))
+* stability and improvements ([7e3e9ad](https://github.com/nuxt/webpackbar/commit/7e3e9ad))
+* typo ([5dcd6bf](https://github.com/nuxt/webpackbar/commit/5dcd6bf))
+* use compile instead of beforeCompile to prevent duplicate calls ([05cf301](https://github.com/nuxt/webpackbar/commit/05cf301))
+
+
+### Features
+
+* allow easily disabling reporters ([f96ad47](https://github.com/nuxt/webpackbar/commit/f96ad47))
+* improve stats reporter ([09459af](https://github.com/nuxt/webpackbar/commit/09459af))
+* rework bars reporter using a rewrite of log-update ([d918a9a](https://github.com/nuxt/webpackbar/commit/d918a9a))
+
+
+### Reverts
+
+* revert 100% check condition ([c2632ef](https://github.com/nuxt/webpackbar/commit/c2632ef))
+
+
+
 <a name="3.0.0-1"></a>
 # [3.0.0-1](https://github.com/nuxt/webpackbar/compare/v3.0.0-0...v3.0.0-1) (2018-11-02)
 

@@ -1,7 +1,7 @@
 import { consola } from '../utils/cli';
 
 export default class SimpleReporter {
-  beforeRun(context) {
+  start(context) {
     consola.info(`Compiling ${context.state.name}`);
   }
 

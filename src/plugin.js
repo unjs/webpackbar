@@ -129,15 +129,15 @@ export default class WebpackBarPlugin extends ProgressPlugin {
       }
     }
 
-    // Adds a hook right before compiler.run() is executed
-    hook('beforeCompile', () => {
+    // Hook into the compiler before a new compilation is created.
+    hook('compile', () => {
       Object.assign(this.state, {
         ...DEFAULT_STATE,
         start: process.hrtime(),
         _allDoneCalled: false,
       });
 
-      this.callReporters('beforeRun');
+      this.callReporters('start');
     });
 
     // Compilation has completed

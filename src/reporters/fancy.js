@@ -12,7 +12,7 @@ const logUpdate = new LogUpdate();
 let lastRender = Date.now();
 
 export default class FancyReporter {
-  beforeRun() {
+  start() {
     consola.pause();
   }
 

@@ -28,8 +28,6 @@ const config = (name, color) => ({
     new Self({
       color,
       name,
-      reporters: ['basic', 'fancy'],
-      basic: false,
       reporter: {
         update({ state }) {
           if (lastProgress !== state.progress && state.progress % 25 === 0) {

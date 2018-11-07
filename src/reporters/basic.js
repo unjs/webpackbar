@@ -5,6 +5,10 @@ export default class SimpleReporter {
     consola.info(`Compiling ${context.state.name}`);
   }
 
+  change(context, { shortPath }) {
+    consola.info(`${shortPath} changed.`, `Rebuilding ${context.state.name}`);
+  }
+
   done(context) {
     const { hasError, message, name } = context.state;
     consola[hasError ? 'error' : 'success'](`${name}: ${message}`);

@@ -2,7 +2,7 @@ import { ProgressPlugin } from 'webpack';
 import env from 'std-env';
 import prettyTime from 'pretty-time';
 
-import { startCase } from './utils';
+import { startCase, shortenPath } from './utils';
 
 import * as reporters from './reporters'; // eslint-disable-line import/no-namespace
 import { parseRequest, hook } from './utils/webpack';
@@ -147,6 +147,15 @@ export default class WebpackBarPlugin extends ProgressPlugin {
       });
 
       this.callReporters('start');
+    });
+
+    // Watch compilation has been invalidated.
+    hook(compiler, 'invalid', (fileName, changeTime) => {
+      this.callReporters('change', {
+        path: fileName,
+        shortPath: shortenPath(fileName),
+        time: changeTime,
+      });
     });
 
     // Compilation has completed

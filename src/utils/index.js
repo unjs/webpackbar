@@ -1,3 +1,5 @@
+import { sep } from 'path';
+
 export function first(arr) {
   return arr[0];
 }
@@ -27,10 +29,15 @@ export function removeBefore(delimiter, str) {
   return last(str.split(delimiter)) || '';
 }
 
-export const range = (len) => {
+export function range(len) {
   const arr = [];
   for (let i = 0; i < len; i++) {
     arr.push(i);
   }
   return arr;
-};
+}
+
+export function shortenPath(path = '') {
+  const cwd = process.cwd() + sep;
+  return path.replace(cwd, '');
+}

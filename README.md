@@ -84,25 +84,25 @@ module.exports = {
 ### `name`
   - Default: `webpack`
 
-Display name
+Name.
 
 ### `color`
   - Default: `green`
 
-Display color (can be HEX like `#xxyyzz` or a web color like `green`).
+Primary color (can be HEX like `#xxyyzz` or a web color like `green`).
 
 ### `profile`
   - Default: `false`
 
 Enable profiler.
 
-### `bars`
+### `fancy`
 
   -  Default: `true` when not in CI or testing mode.
 
 Enable bars reporter.
 
-### `log`
+### `basic`
 
   -  Default: `true` when running in minimal environments.
 
@@ -122,9 +122,9 @@ Register an Array of your custom reporters. (Same as `reporter` but array)
 Webpackbar comes with a fancy progress-bar out of the box.
 But you may want to show progress somewhere else or provide your own.
 
-For this purpose, you can provide one or reporters using `reporter` and `reporters` options.
+For this purpose, you can provide one or more extra reporters using `reporter` and `reporters` options.
 
-**NOTE:** If you plan to provide your own reporter, don't forget to setting `bars` and `log` options to false to prevent conflicts.
+**NOTE:** If you plan to provide your own reporter, don't forget to setting `fancy` and `basic` options to false to prevent conflicts.
 
 A reporter should be instance of a class or plain object and functions for special hooks. It is not necessary to implement all functions, webpackbar only calls those that exists.
 
@@ -132,18 +132,28 @@ A reporter should be instance of a class or plain object and functions for speci
 
 ```js
 {
- compiling(context) {
+ start(context) {
    // Called when (re)compile is started
  },
- compiled(context) {
-   // Called when (re)compile is finished
+ change(context) {
+   // Called when a file changed on watch mode
  },
  update(context) {
    // Called after each progress update
  },
  done(context) {
+   // Called when compile finished
+ },
+ progress(context) {
+   // Called when build progress updated
+ },
+ allDone(context) {
    // Called when _all_ compiles finished
- }
+ },
+ beforeAllDone(context) {
+ },
+ afterAllDone(context) {
+ },
 }
 ```
 
@@ -154,14 +164,12 @@ A reporter should be instance of a class or plain object and functions for speci
 
 ```js
 {
-details,
-progress,
-msg,
-request,
-start,
-elapsed,
-isRunning,
-stats
+  start,
+  progress,
+  message,
+  details,
+  request,
+  hasErrors
 }
 ```
 

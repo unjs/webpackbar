@@ -5,7 +5,7 @@ import prettyTime from 'pretty-time';
 import { startCase } from './utils';
 
 import * as reporters from './reporters'; // eslint-disable-line import/no-namespace
-import { parseRequest } from './utils/request';
+import { parseRequest, hook } from './utils/webpack';
 
 // Use bars when possible as default
 const isMinimal = env.ci || env.test || !env.tty;
@@ -127,16 +127,8 @@ export default class WebpackBarPlugin extends ProgressPlugin {
   apply(compiler) {
     super.apply(compiler);
 
-    // Hook helper for webpack 3 + 4 support
-    function hook(hookName, fn) {
-      if (compiler.hooks) {
-        compiler.hooks[hookName].tap('WebpackBar:' + hookName, fn);
-      } else {
-        compiler.plugin(hookName, fn);
-      }
-    }
-
-    hook('afterPlugins', () => {
+    // Initialize our state before actual build
+    hook(compiler, 'afterPlugins', () => {
       // Keep our state in shared object
       if (!this.states[this.options.name]) {
         this.states[this.options.name] = {
@@ -148,7 +140,7 @@ export default class WebpackBarPlugin extends ProgressPlugin {
     });
 
     // Hook into the compiler before a new compilation is created.
-    hook('compile', () => {
+    hook(compiler, 'compile', () => {
       Object.assign(this.state, {
         ...DEFAULT_STATE,
         start: process.hrtime(),
@@ -158,7 +150,7 @@ export default class WebpackBarPlugin extends ProgressPlugin {
     });
 
     // Compilation has completed
-    hook('done', (stats) => {
+    hook(compiler, 'done', (stats) => {
       const time = prettyTime(process.hrtime(this.state.start), 2);
       const hasErrors = stats.hasErrors();
       const status = hasErrors ? 'with some errors' : 'succesfuly';

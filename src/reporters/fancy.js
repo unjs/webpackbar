@@ -3,7 +3,7 @@ import chalk from 'chalk';
 import consola from 'consola';
 
 import { renderBar, colorize, ellipsisLeft } from '../utils/cli';
-import { formatRequest } from '../utils/request';
+import { formatRequest } from '../utils/webpack';
 import { BULLET, TICK, CROSS, CIRCLE_OPEN } from '../utils/consts';
 import LogUpdate from '../utils/log-update';
 

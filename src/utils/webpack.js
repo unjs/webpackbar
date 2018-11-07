@@ -31,3 +31,12 @@ export const formatRequest = (request) => {
 
   return `${loaders}${NEXT}${request.file}`;
 };
+
+// Hook helper for webpack 3 + 4 support
+export function hook(compiler, hookName, fn) {
+  if (compiler.hooks) {
+    compiler.hooks[hookName].tap('WebpackBar:' + hookName, fn);
+  } else {
+    compiler.plugin(hookName, fn);
+  }
+}

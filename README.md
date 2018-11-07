@@ -1,8 +1,8 @@
-[![npm][npm]][npm-url]
-[![deps][deps]][deps-url]
-[![test][test]][test-url]
-[![test-windows][test-win]][test-win-url]
-[![coverage][cover]][cover-url]
+[![Standard JS][standard-js-src]][standard-js-href]
+[![npm version][npm-version-src]][npm-version-href]
+[![npm downloads][npm-downloads-src]][npm-downloads-href]
+[![package phobia][package-phobia-src]][package-phobia-href]
+
 
 <div align="center">
   <!-- replace with accurate logo e.g from https://worldvectorlogo.com/ -->
@@ -21,11 +21,9 @@
 
 ✔ Windows compatible
 
-✔ Customizable
+✔ **Fully** customizable using reporters
 
 ✔ Advanced build profiler
-
-**!!! These docs are for upcoming Webpackbar 3. Please use [v2 branch](https://github.com/nuxt/webpackbar/tree/v2) for now. !!!**
 
 <div align="center">
 <br>
@@ -173,33 +171,19 @@ A reporter should be instance of a class or plain object and functions for speci
 }
 ```
 
-<h2 align="center">Maintainers</h2>
+<h2 align="center">License</h2>
 
-<table>
-  <tbody>
-    <tr>
-      <td align="center">
-        <a href="https://github.com/pi0">
-          <img width="150" height="150" src="https://github.com/pi0.png">
-          </br>
-          Pooya Parsa
-        </a>
-      </td>
-    </tr>
-  <tbody>
-</table>
+MIT - Made with 💖 By Nuxt.js team!
 
-[npm]: https://img.shields.io/npm/v/webpackbar.svg?style=flat-square
-[npm-url]: https://npmjs.com/package/webpackbar
+<!-- Refs -->
+[standard-js-src]: https://flat.badgen.net/badge/code%20style/standard/green
+[standard-js-href]: https://standardjs.com
 
-[deps]: https://david-dm.org/nuxt/webpackbar.svg?style=flat-square
-[deps-url]: https://david-dm.org/nuxt/webpackbar
+[npm-version-src]: https://flat.badgen.net/npm/v/webpackbar/latest
+[npm-version-href]: https://npmjs.com/package/webpackbar
 
-[test]: https://img.shields.io/circleci/project/github/nuxt/webpackbar/master.svg?style=flat-square
-[test-url]: https://circleci.com/gh/nuxt/webpackbar
+[npm-downloads-src]: https://flat.badgen.net/npm/dt/webpackbar
+[npm-downloads-href]: https://npmjs.com/package/webpackbar
 
-[test-win]: https://img.shields.io/appveyor/ci/nuxt/webpackbar.svg?logo=appveyor&style=flat-square
-[test-win-url]: https://ci.appveyor.com/project/nuxt/webpackbar
-
-[cover]: https://codecov.io/gh/nuxt/webpackbar/branch/master/graph/badge.svg?style=flat-square
-[cover-url]: https://codecov.io/gh/nuxt/webpackbar
+[package-phobia-src]: https://flat.badgen.net/packagephobia/install/webpackbar
+[package-phobia-href]: https://packagephobia.now.sh/result?p=webpackbar

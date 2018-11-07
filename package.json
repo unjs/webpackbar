@@ -42,10 +42,10 @@
   "dependencies": {
     "ansi-escapes": "^3.1.0",
     "chalk": "^2.4.1",
-    "consola": "^2.1.0",
+    "consola": "^2.2.3",
     "figures": "^2.0.0",
     "pretty-time": "^1.1.0",
-    "std-env": "^2.1.0",
+    "std-env": "^2.1.1",
     "text-table": "^0.2.0",
     "wrap-ansi": "^4.0.0"
   },
@@ -73,9 +73,9 @@
     "lint-staged": "^8.0.4",
     "memory-fs": "^0.4.1",
     "nsp": "^3.2.1",
-    "prettier": "^1.14.3",
+    "prettier": "^1.15.1",
     "standard-version": "^4.4.0",
-    "webpack": "^4.24.0",
+    "webpack": "^4.25.1",
     "webpack-cli": "^3.1.2",
     "webpack-defaults": "^2.3.0"
   },

@@ -1888,10 +1888,10 @@ configstore@^3.0.0:
     write-file-atomic "^2.0.0"
     xdg-basedir "^3.0.0"
 
-consola@^2.2.2:
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/consola/-/consola-2.2.2.tgz#02a1df59b63746211d5cff1df436a1b2321cc716"
-  integrity sha512-lrJmVXiQ3LD2unImvgfhcjXRqg81sKjfzPVoQNrl/17BNc5Z1RGFYpexlBavXUMdFfBZlVJgjhosQa6aCHNOVg==
+consola@^2.2.3:
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/consola/-/consola-2.2.3.tgz#567e59fe80a0d0330747e649e3e8405c1d007369"
+  integrity sha512-4xJ3/9xxZhiBpihl1yzVxKFnii5RPaBmcPgBfGh3nc95DhpAym2VRJi3EpgMLvoLWHds7qV6ViVCoI8Nw4khWA==
   dependencies:
     chalk "^2.4.1"
     dayjs "^1.7.7"

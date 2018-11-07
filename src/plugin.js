@@ -42,15 +42,6 @@ export default class WebpackBarPlugin extends ProgressPlugin {
       this.updateProgress(percent, message, details);
     };
 
-    // Keep our state in shared ojbect
-    if (!this.states[this.options.name]) {
-      this.states[this.options.name] = {
-        ...DEFAULT_STATE,
-        color: this.options.color,
-        name: startCase(this.options.name),
-      };
-    }
-
     // Reporters
     this.reporters = Array.from(this.options.reporters || []);
     if (this.options.reporter) {
@@ -144,6 +135,17 @@ export default class WebpackBarPlugin extends ProgressPlugin {
         compiler.plugin(hookName, fn);
       }
     }
+
+    hook('afterPlugins', () => {
+      // Keep our state in shared object
+      if (!this.states[this.options.name]) {
+        this.states[this.options.name] = {
+          ...DEFAULT_STATE,
+          color: this.options.color,
+          name: startCase(this.options.name),
+        };
+      }
+    });
 
     // Hook into the compiler before a new compilation is created.
     hook('compile', () => {

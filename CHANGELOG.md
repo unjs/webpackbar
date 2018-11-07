@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.0.0-3"></a>
+# [3.0.0-3](https://github.com/nuxt/webpackbar/compare/v3.0.0-2...v3.0.0-3) (2018-11-07)
+
+
+### Bug Fixes
+
+* unused plugin instances store state in global ([556f830](https://github.com/nuxt/webpackbar/commit/556f830))
+
+
+### Features
+
+* add change hook support ([8057e4c](https://github.com/nuxt/webpackbar/commit/8057e4c))
+
+
+
 <a name="3.0.0-2"></a>
 # [3.0.0-2](https://github.com/nuxt/webpackbar/compare/v3.0.0-1...v3.0.0-2) (2018-11-04)
 

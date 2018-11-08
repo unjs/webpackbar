@@ -16,7 +16,7 @@ export default class StatsReporter {
   done(context, { stats }) {
     const str = stats.toString(this.options);
 
-    if (stats.hasErrors()) {
+    if (context.hasErrors) {
       process.stderr.write('\n' + str + '\n');
     } else {
       context.state.statsString = str;

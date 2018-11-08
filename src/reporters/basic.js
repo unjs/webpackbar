@@ -6,7 +6,7 @@ export default class SimpleReporter {
   }
 
   change(context, { shortPath }) {
-    consola.info(`${shortPath} changed.`, `Rebuilding ${context.state.name}`);
+    consola.debug(`${shortPath} changed.`, `Rebuilding ${context.state.name}`);
   }
 
   done(context) {

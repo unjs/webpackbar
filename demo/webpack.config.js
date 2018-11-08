@@ -40,4 +40,4 @@ const config = (name, color) => ({
   ],
 });
 
-module.exports = [config('CyanBar', 'cyan'), config('BlueBar', 'blue')];
+module.exports = [config('OrangeBar', 'orange'), config('GreenBar', 'green')];

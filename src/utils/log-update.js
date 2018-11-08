@@ -1,5 +1,3 @@
-import fs from 'fs';
-
 import ansiEscapes from 'ansi-escapes';
 import wrapAnsi from 'wrap-ansi';
 
@@ -29,8 +27,7 @@ export default class LogUpdate {
   }
 
   write(data) {
-    fs.writeSync(2, data);
-    fs.fsyncSync(2);
+    process.stderr.write(data, 'utf-8');
   }
 
   clear() {

@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.0.2"></a>
+## [3.0.2](https://github.com/nuxt/webpackbar/compare/v3.0.1...v3.0.2) (2018-11-08)
+
+
+### Bug Fixes
+
+* **fancy:** resume consola befor we die! ([ea1c6a8](https://github.com/nuxt/webpackbar/commit/ea1c6a8))
+* **stats:** report errors before we die ([53aa6bb](https://github.com/nuxt/webpackbar/commit/53aa6bb))
+
+
+
 <a name="3.0.1"></a>
 ## [3.0.1](https://github.com/nuxt/webpackbar/compare/v3.0.0...v3.0.1) (2018-11-08)
 

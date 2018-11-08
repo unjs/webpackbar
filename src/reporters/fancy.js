@@ -23,6 +23,10 @@ export default class FancyReporter {
 
   done(context) {
     this._renderStates(context.statesArray);
+
+    if (context.hasErrors) {
+      consola.resume();
+    }
   }
 
   progress(context) {

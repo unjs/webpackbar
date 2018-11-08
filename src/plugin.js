@@ -7,14 +7,11 @@ import { startCase, shortenPath } from './utils';
 import * as reporters from './reporters'; // eslint-disable-line import/no-namespace
 import { parseRequest, hook } from './utils/webpack';
 
-// Use bars when possible as default
-const isMinimal = env.ci || env.test || !env.tty;
-
 // Default plugin options
 const DEFAULTS = {
   name: 'webpack',
   color: 'green',
-  reporters: isMinimal ? ['basic'] : ['fancy'],
+  reporters: env.minimalCLI ? ['basic'] : ['fancy'],
   reporter: null,
 };
 

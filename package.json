@@ -42,10 +42,10 @@
   "dependencies": {
     "ansi-escapes": "^3.1.0",
     "chalk": "^2.4.1",
-    "consola": "^2.2.3",
+    "consola": "^2.2.4",
     "figures": "^2.0.0",
     "pretty-time": "^1.1.0",
-    "std-env": "^2.1.1",
+    "std-env": "^2.2.1",
     "text-table": "^0.2.0",
     "wrap-ansi": "^4.0.0"
   },

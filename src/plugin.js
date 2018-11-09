@@ -133,6 +133,13 @@ export default class WebpackBarPlugin extends ProgressPlugin {
   }
 
   apply(compiler) {
+    // Prevent adding multi instances to the same compiler
+    if (compiler.webpackbar) {
+      return;
+    }
+    compiler.webpackbar = this;
+
+    // Apply base hooks
     super.apply(compiler);
 
     // Hook into the compiler before a new compilation is created.

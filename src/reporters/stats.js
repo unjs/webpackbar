@@ -25,7 +25,7 @@ export default class StatsReporter {
 
   allDone(context) {
     let str = '';
-    for (const state in context.statesArray) {
+    for (const state of context.statesArray) {
       if (state.statsString) {
         str += '\n' + state.statsString + '\n';
         delete state.statsString;

@@ -19,6 +19,7 @@ const DEFAULTS = {
 const DEFAULT_STATE = {
   start: null,
   progress: -1,
+  done: false,
   message: '',
   details: [],
   request: null,
@@ -100,7 +101,7 @@ export default class WebpackBarPlugin extends ProgressPlugin {
   }
 
   get hasRunning() {
-    return Object.values(this.states).some((state) => state.progress !== 100);
+    return Object.values(this.states).some((state) => !state.done);
   }
 
   get hasErrors() {
@@ -169,6 +170,11 @@ export default class WebpackBarPlugin extends ProgressPlugin {
     hook(compiler, 'done', (stats) => {
       this._ensureState();
 
+      // Prevent calling done twice
+      if (this.state.done) {
+        return;
+      }
+
       const hasErrors = stats.hasErrors();
       const status = hasErrors ? 'with some errors' : 'succesfuly';
 
@@ -179,6 +185,7 @@ export default class WebpackBarPlugin extends ProgressPlugin {
       Object.assign(this.state, {
         ...DEFAULT_STATE,
         progress: 100,
+        done: true,
         message: `Compiled ${status}${time}`,
         hasErrors,
       });

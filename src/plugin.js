@@ -143,6 +143,11 @@ export default class WebpackBarPlugin extends ProgressPlugin {
     // Apply base hooks
     super.apply(compiler);
 
+    // Register our state after all plugins initialized
+    hook(compiler, 'afterPlugins', () => {
+      this._ensureState();
+    });
+
     // Hook into the compiler before a new compilation is created.
     hook(compiler, 'compile', () => {
       this._ensureState();

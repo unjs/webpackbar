@@ -13,19 +13,28 @@ let lastRender = Date.now();
 
 export default class FancyReporter {
   start() {
-    consola.pause();
+    // TODO: remove in next major release.
+    // Some projects still depend on legacy versions of consola
+    if (typeof consola.pause === 'function') {
+      consola.pause();
+    }
   }
 
   allDone() {
     logUpdate.done();
-    consola.resume();
+
+    if (typeof consola.resume === 'function') {
+      consola.resume();
+    }
   }
 
   done(context) {
     this._renderStates(context.statesArray);
 
     if (context.hasErrors) {
-      consola.resume();
+      if (typeof consola.resume === 'function') {
+        consola.resume();
+      }
     }
   }
 

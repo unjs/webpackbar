@@ -1,12 +1,8 @@
 const path = require('path');
 
-const consola = require('consola');
-
 const requireESM = require('esm')(module);
 
 const Self = requireESM('../src/index').default;
-
-consola.wrapConsole();
 
 let lastProgress;
 
@@ -30,9 +26,9 @@ const config = (name, color) => ({
       name,
       reporters: ['basic', 'fancy', 'stats'],
       reporter: {
-        update({ state }) {
-          if (lastProgress !== state.progress && state.progress % 25 === 0) {
-            consola.log(state.progress + '%');
+        progress({ state }) {
+          if (lastProgress !== state.progress && state.progress % 5 === 0) {
+            // process.stderr.write(state.progress + '%\n');
             lastProgress = state.progress;
           }
         },

@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.1.2"></a>
+## [3.1.2](https://github.com/nuxt/webpackbar/compare/v3.1.1...v3.1.2) (2018-11-09)
+
+
+### Bug Fixes
+
+* **profile:** use context.state ([0d92aae](https://github.com/nuxt/webpackbar/commit/0d92aae))
+* revert back afterPlugins to call _ensureState ([2f17454](https://github.com/nuxt/webpackbar/commit/2f17454))
+* update profile reporter ([4f28403](https://github.com/nuxt/webpackbar/commit/4f28403))
+* **stats:** fix typo ([d2f6edb](https://github.com/nuxt/webpackbar/commit/d2f6edb))
+
+
+
 <a name="3.1.1"></a>
 ## [3.1.1](https://github.com/nuxt/webpackbar/compare/v3.1.0...v3.1.1) (2018-11-09)
 

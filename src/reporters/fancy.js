@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 import chalk from 'chalk';
-import consola from 'consola';
 
 import { renderBar, colorize, ellipsisLeft } from '../utils/cli';
 import { formatRequest } from '../utils/webpack';
@@ -12,29 +11,15 @@ const logUpdate = new LogUpdate();
 let lastRender = Date.now();
 
 export default class FancyReporter {
-  start() {
-    // TODO: remove in next major release.
-    // Some projects still depend on legacy versions of consola
-    if (typeof consola.pause === 'function') {
-      consola.pause();
-    }
-  }
-
   allDone() {
     logUpdate.done();
-
-    if (typeof consola.resume === 'function') {
-      consola.resume();
-    }
   }
 
   done(context) {
     this._renderStates(context.statesArray);
 
     if (context.hasErrors) {
-      if (typeof consola.resume === 'function') {
-        consola.resume();
-      }
+      logUpdate.done();
     }
   }
 

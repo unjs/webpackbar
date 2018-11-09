@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.1.1"></a>
+## [3.1.1](https://github.com/nuxt/webpackbar/compare/v3.1.0...v3.1.1) (2018-11-09)
+
+
+### Bug Fixes
+
+* prevent calling done hook twice ([1753826](https://github.com/nuxt/webpackbar/commit/1753826))
+* **plugin:** handle conditions that start is not available ([4e0dc73](https://github.com/nuxt/webpackbar/commit/4e0dc73))
+
+
+
 <a name="3.1.0"></a>
 # [3.1.0](https://github.com/nuxt/webpackbar/compare/v3.0.5...v3.1.0) (2018-11-09)
 

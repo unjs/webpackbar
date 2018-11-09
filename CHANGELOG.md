@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.1.0"></a>
+# [3.1.0](https://github.com/nuxt/webpackbar/compare/v3.0.5...v3.1.0) (2018-11-09)
+
+
+### Features
+
+* prevent adding multi instances to the same compiler ([759a4e6](https://github.com/nuxt/webpackbar/commit/759a4e6))
+* **log-update:** support concurrent writes to stdout/stderr on render ([d51c508](https://github.com/nuxt/webpackbar/commit/d51c508))
+
+
+
 <a name="3.0.5"></a>
 ## [3.0.5](https://github.com/nuxt/webpackbar/compare/v3.0.4...v3.0.5) (2018-11-09)
 

@@ -5,17 +5,17 @@ import Profiler from '../profiler';
 
 export default class ProfileReporter {
   progress(context) {
-    if (!context.profiler) {
-      context.profiler = new Profiler();
+    if (!context.state.profiler) {
+      context.state.profiler = new Profiler();
     }
 
-    context.profiler.onRequest(context.state.request);
+    context.state.profiler.onRequest(context.state.request);
   }
 
   done(context) {
-    if (context.profiler) {
-      context.state.profile = context.profiler.getFormattedStats();
-      delete context.profiler;
+    if (context.state.profiler) {
+      context.state.profile = context.state.profiler.getFormattedStats();
+      delete context.state.profiler;
     }
   }
 

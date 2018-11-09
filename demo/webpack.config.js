@@ -24,7 +24,7 @@ const config = (name, color) => ({
     new Self({
       color,
       name,
-      reporters: ['basic', 'fancy', 'stats'],
+      reporters: ['fancy'],
       reporter: {
         progress({ state }) {
           if (lastProgress !== state.progress && state.progress % 5 === 0) {

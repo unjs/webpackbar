@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.0.5"></a>
+## [3.0.5](https://github.com/nuxt/webpackbar/compare/v3.0.4...v3.0.5) (2018-11-09)
+
+
+### Bug Fixes
+
+* detect and support old consola instance ([9fc6e09](https://github.com/nuxt/webpackbar/commit/9fc6e09))
+
+
+
 <a name="3.0.4"></a>
 ## [3.0.4](https://github.com/nuxt/webpackbar/compare/v3.0.3...v3.0.4) (2018-11-09)
 

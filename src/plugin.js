@@ -169,14 +169,17 @@ export default class WebpackBarPlugin extends ProgressPlugin {
     hook(compiler, 'done', (stats) => {
       this._ensureState();
 
-      const time = prettyTime(process.hrtime(this.state.start), 2);
       const hasErrors = stats.hasErrors();
       const status = hasErrors ? 'with some errors' : 'succesfuly';
+
+      const time = this.state.start
+        ? ' in ' + prettyTime(process.hrtime(this.state.start), 2)
+        : '';
 
       Object.assign(this.state, {
         ...DEFAULT_STATE,
         progress: 100,
-        message: `Compiled ${status} in ${time}`,
+        message: `Compiled ${status}${time}`,
         hasErrors,
       });
 

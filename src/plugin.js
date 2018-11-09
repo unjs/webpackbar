@@ -121,23 +121,24 @@ export default class WebpackBarPlugin extends ProgressPlugin {
     return globalStates[this.options.name];
   }
 
+  _ensureState() {
+    // Keep our state in shared object
+    if (!this.states[this.options.name]) {
+      this.states[this.options.name] = {
+        ...DEFAULT_STATE,
+        color: this.options.color,
+        name: startCase(this.options.name),
+      };
+    }
+  }
+
   apply(compiler) {
     super.apply(compiler);
 
-    // Initialize our state before actual build
-    hook(compiler, 'afterPlugins', () => {
-      // Keep our state in shared object
-      if (!this.states[this.options.name]) {
-        this.states[this.options.name] = {
-          ...DEFAULT_STATE,
-          color: this.options.color,
-          name: startCase(this.options.name),
-        };
-      }
-    });
-
     // Hook into the compiler before a new compilation is created.
     hook(compiler, 'compile', () => {
+      this._ensureState();
+
       Object.assign(this.state, {
         ...DEFAULT_STATE,
         start: process.hrtime(),
@@ -148,6 +149,8 @@ export default class WebpackBarPlugin extends ProgressPlugin {
 
     // Watch compilation has been invalidated.
     hook(compiler, 'invalid', (fileName, changeTime) => {
+      this._ensureState();
+
       this.callReporters('change', {
         path: fileName,
         shortPath: shortenPath(fileName),
@@ -157,6 +160,8 @@ export default class WebpackBarPlugin extends ProgressPlugin {
 
     // Compilation has completed
     hook(compiler, 'done', (stats) => {
+      this._ensureState();
+
       const time = prettyTime(process.hrtime(this.state.start), 2);
       const hasErrors = stats.hasErrors();
       const status = hasErrors ? 'with some errors' : 'succesfuly';

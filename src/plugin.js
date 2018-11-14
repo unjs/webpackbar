@@ -181,7 +181,7 @@ export default class WebpackBarPlugin extends ProgressPlugin {
       }
 
       const hasErrors = stats.hasErrors();
-      const status = hasErrors ? 'with some errors' : 'succesfuly';
+      const status = hasErrors ? 'with some errors' : 'successfully';
 
       const time = this.state.start
         ? ' in ' + prettyTime(process.hrtime(this.state.start), 2)

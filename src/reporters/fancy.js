@@ -74,8 +74,8 @@ export default class FancyReporter {
         icon = CIRCLE_OPEN;
       }
 
-      line1 = color(`${icon} ${state.name}`);
-      line2 = chalk.grey('  ' + state.message);
+      line1 = color(`  ${icon} ${state.name}`);
+      line2 = chalk.grey('    ' + state.message);
     }
 
     return line1 + '\n' + line2;

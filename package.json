@@ -1,6 +1,6 @@
 {
   "name": "webpackbar",
-  "version": "2.6.3",
+  "version": "2.6.4",
   "description": "Elegant ProgressBar and Profiler for Webpack",
   "license": "MIT",
   "repository": "nuxt/webpackbar",

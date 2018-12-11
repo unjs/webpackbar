@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.6.4"></a>
+## [2.6.4](https://github.com/nuxt/webpackbar/compare/v2.6.3...v2.6.4) (2018-12-11)
+
+
+### Bug Fixes
+
+* **v2:** use object.keys for node <= 7 support ([#37](https://github.com/nuxt/webpackbar/issues/37)) ([f7158ac](https://github.com/nuxt/webpackbar/commit/f7158ac))
+
+
+
 <a name="2.6.3"></a>
 ## [2.6.3](https://github.com/nuxt/webpackbar/compare/v2.6.2...v2.6.3) (2018-08-18)
 

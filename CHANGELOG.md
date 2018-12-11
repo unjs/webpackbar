@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.1.4"></a>
+## [3.1.4](https://github.com/nuxt/webpackbar/compare/v3.1.3...v3.1.4) (2018-12-11)
+
+
+### Bug Fixes
+
+* avoid object.values for node < 7 compability ([83fcd06](https://github.com/nuxt/webpackbar/commit/83fcd06))
+
+
+
 <a name="3.1.3"></a>
 ## [3.1.3](https://github.com/nuxt/webpackbar/compare/v3.1.2...v3.1.3) (2018-11-14)
 

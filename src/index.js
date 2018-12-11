@@ -29,7 +29,9 @@ const defaults = {
   stream: null,
 };
 
-const hasRunning = () => Object.values(sharedState).find((s) => s.isRunning);
+
+const hasRunning = () =>Object.keys(sharedState).map(k=>sharedState[k]) .find(s => s.isRunning);
+
 
 const $logUpdate = logUpdate.create(process.stderr, {
   showCursor: false,

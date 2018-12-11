@@ -2,7 +2,7 @@ import { ProgressPlugin } from 'webpack';
 import env from 'std-env';
 import prettyTime from 'pretty-time';
 
-import { startCase, shortenPath } from './utils';
+import { startCase, shortenPath, objectValues } from './utils';
 
 import * as reporters from './reporters'; // eslint-disable-line import/no-namespace
 import { parseRequest, hook } from './utils/webpack';
@@ -101,15 +101,15 @@ export default class WebpackBarPlugin extends ProgressPlugin {
   }
 
   get hasRunning() {
-    return Object.values(this.states).some((state) => !state.done);
+    return objectValues(this.states).some((state) => !state.done);
   }
 
   get hasErrors() {
-    return Object.values(this.states).some((state) => state.hasErrors);
+    return objectValues(this.states).some((state) => state.hasErrors);
   }
 
   get statesArray() {
-    return Object.values(this.states).sort((s1, s2) =>
+    return objectValues(this.states).sort((s1, s2) =>
       s1.name.localeCompare(s2.name)
     );
   }

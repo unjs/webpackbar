@@ -41,3 +41,7 @@ export function shortenPath(path = '') {
   const cwd = process.cwd() + sep;
   return path.replace(cwd, '');
 }
+
+export function objectValues(obj) {
+  return Object.keys(obj).map((key) => obj[key]);
+}

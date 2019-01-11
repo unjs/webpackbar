@@ -37,10 +37,12 @@ export default class LogUpdate {
   }
 
   write(data) {
-    if (process.stderr.__write) {
-      process.stderr.__write(data, 'utf-8');
+    const stream = process.stderr;
+    const forward = stream.write.__webpackbar_original;
+    if (forward) {
+      forward.call(stream, data, 'utf-8');
     } else {
-      process.stderr.write(data, 'utf-8');
+      stream.write(data, 'utf-8');
     }
   }
 
@@ -73,16 +75,17 @@ export default class LogUpdate {
     const t = this;
 
     for (const stream of this._streams) {
-      if (!stream.__write) {
-        const s = stream;
-        stream.__write = stream.write;
-        stream.write = function write(data, ...args) {
-          if (!this.__write) {
-            return s.write(data, ...args);
+      if (!stream.write.__webpackbar_original) {
+        const write = function write(data, ...args) {
+          const forward = write.__webpackbar_original;
+          if (!forward) {
+            return stream.write(data, ...args);
           }
           t._onData(data);
-          this.__write(data, ...args);
+          forward.call(stream, data, ...args);
         };
+        write.__webpackbar_original = stream.write;
+        stream.write = write;
       }
     }
 
@@ -91,9 +94,8 @@ export default class LogUpdate {
 
   stopListen() {
     for (const stream of this._streams) {
-      if (stream.__write) {
-        stream.write = stream.__write;
-        delete stream.__write;
+      if (stream.write.__webpackbar_original) {
+        stream.write = stream.write.__webpackbar_original;
       }
     }
 

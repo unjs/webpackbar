@@ -74,8 +74,12 @@ export default class LogUpdate {
 
     for (const stream of this._streams) {
       if (!stream.__write) {
+        const s = stream;
         stream.__write = stream.write;
         stream.write = function write(data, ...args) {
+          if (!this.__write) {
+            return s.write(data, ...args);
+          }
           t._onData(data);
           this.__write(data, ...args);
         };

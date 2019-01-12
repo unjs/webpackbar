@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.1.5"></a>
+## [3.1.5](https://github.com/nuxt/webpackbar/compare/v3.1.4...v3.1.5) (2019-01-12)
+
+
+### Bug Fixes
+
+* **fancy:** eliminate the probability of replacement of stream.write conflicts ([#39](https://github.com/nuxt/webpackbar/issues/39)) ([b3b9c62](https://github.com/nuxt/webpackbar/commit/b3b9c62))
+
+
+
 <a name="3.1.4"></a>
 ## [3.1.4](https://github.com/nuxt/webpackbar/compare/v3.1.3...v3.1.4) (2018-12-11)
 

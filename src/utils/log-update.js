@@ -3,6 +3,8 @@ import wrapAnsi from 'wrap-ansi';
 
 // Based on https://github.com/sindresorhus/log-update/blob/master/index.js
 
+const originalWrite = Symbol('webpackbarWrite');
+
 export default class LogUpdate {
   constructor() {
     this.prevLineCount = 0;
@@ -38,9 +40,8 @@ export default class LogUpdate {
 
   write(data) {
     const stream = process.stderr;
-    const forward = stream.write.__webpackbar_original;
-    if (forward) {
-      forward.call(stream, data, 'utf-8');
+    if (stream.write[originalWrite]) {
+      stream.write[originalWrite].call(stream, data, 'utf-8');
     } else {
       stream.write(data, 'utf-8');
     }
@@ -68,34 +69,42 @@ export default class LogUpdate {
   }
 
   listen() {
+    // Prevent listening more than once
     if (this.listening) {
       return;
     }
 
-    const t = this;
-
+    // Spy on all streams
     for (const stream of this._streams) {
-      if (!stream.write.__webpackbar_original) {
-        const write = function write(data, ...args) {
-          const forward = write.__webpackbar_original;
-          if (!forward) {
-            return stream.write(data, ...args);
-          }
-          t._onData(data);
-          forward.call(stream, data, ...args);
-        };
-        write.__webpackbar_original = stream.write;
-        stream.write = write;
+      // Prevent overriding more than once
+      if (stream.write[originalWrite]) {
+        continue;
       }
+
+      // Create a wrapper fn
+      const write = (data, ...args) => {
+        if (!stream.write[originalWrite]) {
+          return stream.write(data, ...args);
+        }
+        this._onData(data);
+        return stream.write[originalWrite].call(stream, data, ...args);
+      };
+
+      // Backup original write fn
+      write[originalWrite] = stream.write;
+
+      // Override write fn
+      stream.write = write;
     }
 
     this.listening = true;
   }
 
   stopListen() {
+    // Restore original write fns
     for (const stream of this._streams) {
-      if (stream.write.__webpackbar_original) {
-        stream.write = stream.write.__webpackbar_original;
+      if (stream.write[originalWrite]) {
+        stream.write = stream.write[originalWrite];
       }
     }
 

@@ -28,7 +28,7 @@ const config = (name, color) => ({
       reporter: {
         progress({ state }) {
           if (lastProgress !== state.progress && state.progress % 5 === 0) {
-            // process.stderr.write(state.progress + '%\n');
+            process.stderr.write(state.progress + '%\n');
             lastProgress = state.progress;
           }
         },

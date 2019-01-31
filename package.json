@@ -71,7 +71,6 @@
     "jest": "^23.6.0",
     "lint-staged": "^8.1.0",
     "memory-fs": "^0.4.1",
-    "nsp": "^3.2.1",
     "prettier": "^1.15.3",
     "standard-version": "^4.4.0",
     "webpack": "^4.27.1",

@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.2.0"></a>
+# [3.2.0](https://github.com/nuxt/webpackbar/compare/v3.1.5...v3.2.0) (2019-04-18)
+
+
+### Bug Fixes
+
+* path can be something else than a string ([#45](https://github.com/nuxt/webpackbar/issues/45)) ([b2ae0c9](https://github.com/nuxt/webpackbar/commit/b2ae0c9))
+* **pkg:** remove nsp ([73ef3ae](https://github.com/nuxt/webpackbar/commit/73ef3ae))
+
+
+### Features
+
+* update dependencies ([9fc93e9](https://github.com/nuxt/webpackbar/commit/9fc93e9))
+
+
+
 <a name="3.1.5"></a>
 ## [3.1.5](https://github.com/nuxt/webpackbar/compare/v3.1.4...v3.1.5) (2019-01-12)
 

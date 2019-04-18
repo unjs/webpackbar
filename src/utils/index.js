@@ -39,7 +39,7 @@ export function range(len) {
 
 export function shortenPath(path = '') {
   const cwd = process.cwd() + sep;
-  return path.replace(cwd, '');
+  return String(path).replace(cwd, '');
 }
 
 export function objectValues(obj) {

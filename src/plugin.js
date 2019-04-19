@@ -46,7 +46,7 @@ export default class WebpackBarPlugin extends ProgressPlugin {
       this.reporters.push(this.options.reporter);
     }
 
-    // Resolve reposters
+    // Resolve reporters
     this.reporters = this.reporters
       .filter(Boolean)
       .map((_reporter) => {

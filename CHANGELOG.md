@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [4.0.0](https://github.com/nuxt/webpackbar/compare/v3.2.0...v4.0.0) (2019-08-05)
+
+
+### chore
+
+* **deps:** update dependency wrap-ansi to v6 ([#49](https://github.com/nuxt/webpackbar/issues/49)) ([0970f70](https://github.com/nuxt/webpackbar/commit/0970f70))
+
+
+### BREAKING CHANGES
+
+* **deps:** Require Node.js 8
+
+
+
 <a name="3.2.0"></a>
 # [3.2.0](https://github.com/nuxt/webpackbar/compare/v3.1.5...v3.2.0) (2019-04-18)
 

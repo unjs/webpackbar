@@ -1,8 +1,8 @@
-import path from 'path';
+import path from 'path'
 
-import webpack from 'webpack';
+import webpack from 'webpack'
 
-import Self from '../../../src';
+import Self from '../../../src'
 
 const makeConfig = (options) => {
   return {
@@ -12,13 +12,13 @@ const makeConfig = (options) => {
     entry: './index.js',
     output: {
       filename: './output.js',
-      path: path.join(__dirname, '/dist'),
+      path: path.join(__dirname, '/dist')
     },
-    plugins: [new webpack.NamedModulesPlugin(), new Self(options)],
-  };
-};
+    plugins: [new webpack.NamedModulesPlugin(), new Self(options)]
+  }
+}
 
-const config = makeConfig();
-config.from = makeConfig;
+const config = makeConfig()
+config.from = makeConfig
 
-export default config;
+export default config

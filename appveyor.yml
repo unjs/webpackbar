@@ -13,7 +13,7 @@ cache:
   - node_modules
   - '%LOCALAPPDATA%/Yarn'
 
-build: 'off'
+build: false
 
 matrix:
   fast_finish: true
@@ -28,4 +28,4 @@ before_test:
 test_script:
   - node --version
   - yarn --version
-  - yarn ci:test
+  - yarn jest

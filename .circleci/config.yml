@@ -1,9 +1,8 @@
 version: 2
 jobs:
   build:
-    working_directory: /usr/src/app
     docker:
-      - image: banian/node
+      - image: circleci/node
     steps:
       # Checkout repository
       - checkout
@@ -26,7 +25,7 @@ jobs:
       # Lint
       - run:
           name: Lint
-          command: yarn ci:lint
+          command: yarn lint && yarn audit
 
       # Build
       - run:
@@ -36,7 +35,7 @@ jobs:
       # Test
       - run:
           name: Test
-          command: yarn ci:test
+          command: yarn test --coverage
 
       # Coverage
       - run:

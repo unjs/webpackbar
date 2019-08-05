@@ -1,12 +1,12 @@
-import util from 'util';
+import util from 'util'
 
-import webpack from 'webpack';
+import webpack from 'webpack'
 
-import basicConfig from './fixtures/basic/webpack.config';
+import basicConfig from './fixtures/basic/webpack.config'
 
 describe('webpackbar', () => {
   test('compile', async () => {
-    const done = jest.fn();
+    const done = jest.fn()
 
     const compiler = webpack(
       basicConfig.from({
@@ -15,16 +15,16 @@ describe('webpackbar', () => {
         profile: true,
         color: '#202020',
         reporter: {
-          done,
-        },
+          done
+        }
       })
-    );
+    )
 
-    const run = util.promisify(compiler.run);
-    const stats = await run.call(compiler);
+    const run = util.promisify(compiler.run)
+    const stats = await run.call(compiler)
 
-    expect(stats.hasErrors()).toBe(false);
-    expect(stats.hasWarnings()).toBe(false);
-    expect(done).toHaveBeenCalledTimes(1);
-  });
-});
+    expect(stats.hasErrors()).toBe(false)
+    expect(stats.hasWarnings()).toBe(false)
+    expect(done).toHaveBeenCalledTimes(1)
+  })
+})

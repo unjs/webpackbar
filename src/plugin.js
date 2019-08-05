@@ -1,19 +1,19 @@
-import { ProgressPlugin } from 'webpack';
-import env from 'std-env';
-import prettyTime from 'pretty-time';
+import { ProgressPlugin } from 'webpack'
+import env from 'std-env'
+import prettyTime from 'pretty-time'
 
-import { startCase, shortenPath, objectValues } from './utils';
+import { startCase, shortenPath, objectValues } from './utils'
 
-import * as reporters from './reporters'; // eslint-disable-line import/no-namespace
-import { parseRequest, hook } from './utils/webpack';
+import * as reporters from './reporters'
+import { parseRequest, hook } from './utils/webpack'
 
 // Default plugin options
 const DEFAULTS = {
   name: 'webpack',
   color: 'green',
   reporters: env.minimalCLI ? ['basic'] : ['fancy'],
-  reporter: null,
-};
+  reporter: null
+}
 
 // Default state object
 const DEFAULT_STATE = {
@@ -23,27 +23,27 @@ const DEFAULT_STATE = {
   message: '',
   details: [],
   request: null,
-  hasErrors: false,
-};
+  hasErrors: false
+}
 
 // Mapping from name => State
-const globalStates = {};
+const globalStates = {}
 
 export default class WebpackBarPlugin extends ProgressPlugin {
-  constructor(options) {
-    super();
+  constructor (options) {
+    super()
 
-    this.options = Object.assign({}, DEFAULTS, options);
+    this.options = Object.assign({}, DEFAULTS, options)
 
     // Assign a better handler to base ProgressPlugin
     this.handler = (percent, message, ...details) => {
-      this.updateProgress(percent, message, details);
-    };
+      this.updateProgress(percent, message, details)
+    }
 
     // Reporters
-    this.reporters = Array.from(this.options.reporters || []);
+    this.reporters = Array.from(this.options.reporters || [])
     if (this.options.reporter) {
-      this.reporters.push(this.options.reporter);
+      this.reporters.push(this.options.reporter)
     }
 
     // Resolve reporters
@@ -51,172 +51,173 @@ export default class WebpackBarPlugin extends ProgressPlugin {
       .filter(Boolean)
       .map((_reporter) => {
         if (this.options[_reporter] === false) {
-          return false;
+          return false
         }
 
-        let reporter = _reporter;
-        let reporterOptions = this.options[reporter] || {};
+        let reporter = _reporter
+        let reporterOptions = this.options[reporter] || {}
 
         if (Array.isArray(_reporter)) {
-        reporter = _reporter[0]; // eslint-disable-line
+          reporter = _reporter[0]
           if (_reporter[1] === false) {
-            return false;
+            return false
           }
           if (_reporter[1]) {
-          reporterOptions = _reporter[1]; // eslint-disable-line
+            reporterOptions = _reporter[1]
           }
         }
 
         if (typeof reporter === 'string') {
-          if (reporters[reporter]) {
-            reporter = reporters[reporter];
+          if (reporters[reporter]) { // eslint-disable-line import/namespace
+            reporter = reporters[reporter] // eslint-disable-line import/namespace
           } else {
-          reporter = require(reporter); // eslint-disable-line
+            reporter = require(reporter)
           }
         }
 
         if (typeof reporter === 'function') {
           if (typeof reporter.constructor === 'function') {
-          reporter = new reporter(reporterOptions); // eslint-disable-line
+            const Reporter = reporter
+            reporter = new Reporter(reporterOptions)
           } else {
-            reporter = reporter(reporterOptions);
+            reporter = reporter(reporterOptions)
           }
         }
 
-        return reporter;
+        return reporter
       })
-      .filter(Boolean);
+      .filter(Boolean)
   }
 
-  callReporters(fn, payload = {}) {
+  callReporters (fn, payload = {}) {
     for (const reporter of this.reporters) {
       if (typeof reporter[fn] === 'function') {
         try {
-          reporter[fn](this, payload);
+          reporter[fn](this, payload)
         } catch (e) {
-          process.stdout.write(e.stack + '\n');
+          process.stdout.write(e.stack + '\n')
         }
       }
     }
   }
 
-  get hasRunning() {
-    return objectValues(this.states).some((state) => !state.done);
+  get hasRunning () {
+    return objectValues(this.states).some(state => !state.done)
   }
 
-  get hasErrors() {
-    return objectValues(this.states).some((state) => state.hasErrors);
+  get hasErrors () {
+    return objectValues(this.states).some(state => state.hasErrors)
   }
 
-  get statesArray() {
+  get statesArray () {
     return objectValues(this.states).sort((s1, s2) =>
       s1.name.localeCompare(s2.name)
-    );
+    )
   }
 
-  get states() {
-    return globalStates;
+  get states () {
+    return globalStates
   }
 
-  get state() {
-    return globalStates[this.options.name];
+  get state () {
+    return globalStates[this.options.name]
   }
 
-  _ensureState() {
+  _ensureState () {
     // Keep our state in shared object
     if (!this.states[this.options.name]) {
       this.states[this.options.name] = {
         ...DEFAULT_STATE,
         color: this.options.color,
-        name: startCase(this.options.name),
-      };
+        name: startCase(this.options.name)
+      }
     }
   }
 
-  apply(compiler) {
+  apply (compiler) {
     // Prevent adding multi instances to the same compiler
     if (compiler.webpackbar) {
-      return;
+      return
     }
-    compiler.webpackbar = this;
+    compiler.webpackbar = this
 
     // Apply base hooks
-    super.apply(compiler);
+    super.apply(compiler)
 
     // Register our state after all plugins initialized
     hook(compiler, 'afterPlugins', () => {
-      this._ensureState();
-    });
+      this._ensureState()
+    })
 
     // Hook into the compiler before a new compilation is created.
     hook(compiler, 'compile', () => {
-      this._ensureState();
+      this._ensureState()
 
       Object.assign(this.state, {
         ...DEFAULT_STATE,
-        start: process.hrtime(),
-      });
+        start: process.hrtime()
+      })
 
-      this.callReporters('start');
-    });
+      this.callReporters('start')
+    })
 
     // Watch compilation has been invalidated.
     hook(compiler, 'invalid', (fileName, changeTime) => {
-      this._ensureState();
+      this._ensureState()
 
       this.callReporters('change', {
         path: fileName,
         shortPath: shortenPath(fileName),
-        time: changeTime,
-      });
-    });
+        time: changeTime
+      })
+    })
 
     // Compilation has completed
     hook(compiler, 'done', (stats) => {
-      this._ensureState();
+      this._ensureState()
 
       // Prevent calling done twice
       if (this.state.done) {
-        return;
+        return
       }
 
-      const hasErrors = stats.hasErrors();
-      const status = hasErrors ? 'with some errors' : 'successfully';
+      const hasErrors = stats.hasErrors()
+      const status = hasErrors ? 'with some errors' : 'successfully'
 
       const time = this.state.start
         ? ' in ' + prettyTime(process.hrtime(this.state.start), 2)
-        : '';
+        : ''
 
       Object.assign(this.state, {
         ...DEFAULT_STATE,
         progress: 100,
         done: true,
         message: `Compiled ${status}${time}`,
-        hasErrors,
-      });
+        hasErrors
+      })
 
-      this.callReporters('progress');
+      this.callReporters('progress')
 
-      this.callReporters('done', { stats });
+      this.callReporters('done', { stats })
 
       if (!this.hasRunning) {
-        this.callReporters('beforeAllDone');
-        this.callReporters('allDone');
-        this.callReporters('afterAllDone');
+        this.callReporters('beforeAllDone')
+        this.callReporters('allDone')
+        this.callReporters('afterAllDone')
       }
-    });
+    })
   }
 
-  updateProgress(percent = 0, message = '', details = []) {
-    const progress = Math.floor(percent * 100);
+  updateProgress (percent = 0, message = '', details = []) {
+    const progress = Math.floor(percent * 100)
 
     Object.assign(this.state, {
       progress,
       message: message || '',
       details,
-      request: parseRequest(details[2]),
-    });
+      request: parseRequest(details[2])
+    })
 
-    this.callReporters('progress');
+    this.callReporters('progress')
   }
 }

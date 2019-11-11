@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "ansi-escapes": "^4.2.1",
-    "chalk": "^2.4.2",
+    "chalk": "^3.0.0",
     "consola": "^2.10.0",
     "figures": "^3.0.0",
     "pretty-time": "^1.1.0",

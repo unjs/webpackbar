@@ -31,7 +31,7 @@
     "wrap-ansi": "^6.0.0"
   },
   "devDependencies": {
-    "@nuxtjs/eslint-config": "^1.0.1",
+    "@nuxtjs/eslint-config": "^2.0.2",
     "babel-jest": "^24.8.0",
     "bili": "^4.8.1",
     "codecov": "^3.5.0",

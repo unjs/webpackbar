@@ -33,7 +33,7 @@
   "devDependencies": {
     "@nuxtjs/eslint-config": "^1.0.1",
     "babel-jest": "^24.8.0",
-    "bili": "^4.8.1",
+    "bili": "^5.0.5",
     "codecov": "^3.5.0",
     "eslint": "^6.1.0",
     "esm": "^3.2.25",

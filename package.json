@@ -42,7 +42,7 @@
     "rimraf": "^2.6.3",
     "standard-version": "^7.0.0",
     "webpack": "^4.39.1",
-    "webpack-cli": "^3.3.6"
+    "webpack-cli": "^4.1.0"
   },
   "peerDependencies": {
     "webpack": "^3.0.0 || ^4.0.0"

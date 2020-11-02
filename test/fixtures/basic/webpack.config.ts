@@ -1,6 +1,6 @@
 import path from 'path'
-import WebpackBar from '../../..'
 import { Configuration } from 'webpack'
+import WebpackBar from '../../..'
 
 export function getConfig (options: any) {
   return {

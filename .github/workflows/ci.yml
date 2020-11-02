@@ -42,7 +42,7 @@ jobs:
         run: yarn build
 
       - name: test
-        run: yarn test
+        run: yarn jest
 
       - name: coverage
         uses: codecov/codecov-action@v1

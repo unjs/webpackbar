@@ -2,7 +2,7 @@
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
 [![package phobia][package-phobia-src]][package-phobia-href]
-[![github actions][github-actions-ci-src]][github-actions-ci-href]
+[![github actions][checks-src]][checks-href]
 
 
 <div align="center">

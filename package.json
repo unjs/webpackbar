@@ -46,7 +46,7 @@
     "webpack": "^5.3.2",
     "webpack-cli": "^4.1.0"
   },
-  "optionalDependencies": {
+  "peerDependencies": {
     "webpack": "3 || 4 || 5"
   }
 }

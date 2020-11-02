@@ -55,7 +55,7 @@ export default class WebpackBarPlugin extends ProgressPlugin {
         if (typeof reporter === 'string') {
           return { reporter }
         }
-        return reporter as ReporterOpts
+        return { reporter } as ReporterOpts
       })
 
     // Resolve reporters
@@ -68,14 +68,14 @@ export default class WebpackBarPlugin extends ProgressPlugin {
         reporter = (reporters[reporter] || require(reporter)) as Reporter
       }
 
-      if (typeof reporter.constructor === 'function') {
-        // @ts-ignore
-        reporter = new reporter(options) // eslint-disable-line new-cap
-      } else if (typeof reporter === 'function') {
-        // @ts-ignore
-        reporter = reporter(options)
+      if (typeof reporter === 'function') {
+        try {
+          // @ts-ignore
+          reporter = new reporter(options) // eslint-disable-line new-cap
+        } catch (err) {
+          reporter = (reporter as Function)(options)
+        }
       }
-
       return reporter as Reporter
     }).filter(Boolean)
   }

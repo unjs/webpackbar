@@ -70,7 +70,7 @@ export default class WebpackBarPlugin extends ProgressPlugin {
 
       if (typeof reporter.constructor === 'function') {
         // @ts-ignore
-        reporter = new reporter(options)
+        reporter = new reporter(options) // eslint-disable-line new-cap
       } else if (typeof reporter === 'function') {
         // @ts-ignore
         reporter = reporter(options)

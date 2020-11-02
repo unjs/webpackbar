@@ -3,6 +3,8 @@ import path from 'path'
 import formatStats from './format'
 
 export default class Profiler {
+  private requests: any[]
+
   constructor () {
     this.requests = []
   }

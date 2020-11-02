@@ -30,6 +30,9 @@ const DEFAULT_STATE = {
 const globalStates = {}
 
 export default class WebpackBarPlugin extends ProgressPlugin {
+  private options: any
+  private reporters: any[]
+
   constructor (options) {
     super({ activeModules: true })
 

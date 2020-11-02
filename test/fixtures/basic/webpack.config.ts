@@ -1,7 +1,8 @@
 import path from 'path'
 import WebpackBar from '../../../src/webpackbar'
+import { Configuration } from 'webpack'
 
-const makeConfig = (options) => {
+export function getConfig (options: any) {
   return {
     mode: 'production',
     context: __dirname,
@@ -12,10 +13,5 @@ const makeConfig = (options) => {
       path: path.join(__dirname, '/dist')
     },
     plugins: [new WebpackBar(options)]
-  }
+  } as Configuration
 }
-
-const config = makeConfig()
-config.from = makeConfig
-
-export default config

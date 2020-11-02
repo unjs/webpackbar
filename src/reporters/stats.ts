@@ -1,4 +1,6 @@
 export default class StatsReporter {
+  private options: any
+
   constructor (options) {
     this.options = Object.assign(
       {

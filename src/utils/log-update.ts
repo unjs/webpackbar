@@ -6,6 +6,11 @@ import wrapAnsi from 'wrap-ansi'
 const originalWrite = Symbol('webpackbarWrite')
 
 export default class LogUpdate {
+  private prevLineCount: any
+  private listening: any
+  private extraLines: any
+  private _streams: any
+
   constructor () {
     this.prevLineCount = 0
     this.listening = false

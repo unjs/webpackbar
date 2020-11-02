@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import chalk from 'chalk'
+import { Reporter } from 'src/types'
 
 import { renderBar, colorize, ellipsisLeft } from '../utils/cli'
 import { formatRequest } from '../utils/webpack'
@@ -10,7 +11,7 @@ const logUpdate = new LogUpdate()
 
 let lastRender = Date.now()
 
-export default class FancyReporter {
+export default class FancyReporter implements Reporter  {
   allDone () {
     logUpdate.done()
   }

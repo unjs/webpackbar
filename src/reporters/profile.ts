@@ -1,9 +1,10 @@
 import chalk from 'chalk'
+import { Reporter } from 'src/types'
 
 import { colorize } from '../utils/cli'
 import Profiler from '../profiler'
 
-export default class ProfileReporter {
+export default class ProfileReporter implements Reporter {
   progress (context) {
     if (!context.state.profiler) {
       context.state.profiler = new Profiler()

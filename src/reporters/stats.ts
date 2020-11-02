@@ -1,4 +1,6 @@
-export default class StatsReporter {
+import { Reporter } from 'src/types'
+
+export default class StatsReporter implements Reporter  {
   private options: any
 
   constructor (options) {

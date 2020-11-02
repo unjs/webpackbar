@@ -1,12 +1,12 @@
 import { ProgressPlugin } from 'webpack'
 import env from 'std-env'
 import prettyTime from 'pretty-time'
-
 import { startCase, shortenPath, objectValues } from './utils'
-import { WebpackBarOptions, ReporterOpts, Reporter } from './types'
-
+import type { WebpackBarOptions, ReporterOpts, Reporter, State } from './types'
 import * as reporters from './reporters'
 import { parseRequest, hook } from './utils/webpack'
+
+export type { Reporter, State } from './types'
 
 // Default plugin options
 const DEFAULTS = {
@@ -27,8 +27,7 @@ const DEFAULT_STATE = {
   hasErrors: false
 }
 
-// Mapping from name => State
-const globalStates = {}
+const globalStates: { [key: string]: State } = {}
 
 export default class WebpackBarPlugin extends ProgressPlugin {
   private options: any
@@ -111,7 +110,7 @@ export default class WebpackBarPlugin extends ProgressPlugin {
     return globalStates
   }
 
-  get state() {
+  get state(): State {
     return globalStates[this.options.name]
   }
 

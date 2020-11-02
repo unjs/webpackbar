@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.0.0-2](https://github.com/nuxt-contrib/webpackbar/compare/v5.0.0-1...v5.0.0-2) (2020-11-02)
+
+
+### Bug Fixes
+
+* **pkg:** use peerDependencies ([cf13805](https://github.com/nuxt-contrib/webpackbar/commit/cf1380572f266668f6ca085d2a1be4db9eb0004c))
+* reporter resolve fixes ([02d503b](https://github.com/nuxt-contrib/webpackbar/commit/02d503b66041b239e7f9d3ff0cdee461da9d1c82))
+
 ## [5.0.0-1](https://github.com/nuxt-contrib/webpackbar/compare/v5.0.0-0...v5.0.0-1) (2020-11-02)
 
 ## [5.0.0-0](https://github.com/nuxt-contrib/webpackbar/compare/v4.0.0...v5.0.0-0) (2020-11-02)

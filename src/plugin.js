@@ -31,7 +31,7 @@ const globalStates = {}
 
 export default class WebpackBarPlugin extends ProgressPlugin {
   constructor (options) {
-    super()
+    super({ activeModules: true })
 
     this.options = Object.assign({}, DEFAULTS, options)
 
@@ -211,11 +211,13 @@ export default class WebpackBarPlugin extends ProgressPlugin {
   updateProgress (percent = 0, message = '', details = []) {
     const progress = Math.floor(percent * 100)
 
+    const activeModule = details.pop()
+
     Object.assign(this.state, {
       progress,
       message: message || '',
       details,
-      request: parseRequest(details[2])
+      request: parseRequest(activeModule)
     })
 
     this.callReporters('progress')

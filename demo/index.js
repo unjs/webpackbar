@@ -1,5 +1,5 @@
 /* eslint-disable */
 
 import 'chalk';
-// import 'eslint';
-// import 'standard-version';
+import 'eslint';
+import 'standard-version';

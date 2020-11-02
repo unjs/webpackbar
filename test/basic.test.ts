@@ -1,5 +1,3 @@
-import util from 'util'
-
 import webpack from 'webpack'
 
 import { getConfig } from './fixtures/basic/webpack.config'
@@ -20,7 +18,7 @@ describe('webpackbar', () => {
       })
     )
 
-    const run = util.promisify(compiler.run)
+    const run = require('util').promisify(compiler.run)
     const stats = await run.call(compiler)
 
     expect(stats.hasErrors()).toBe(false)

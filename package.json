@@ -4,8 +4,8 @@
   "description": "Elegant ProgressBar and Profiler for Webpack",
   "repository": "nuxt-contrib/webpackbar",
   "license": "MIT",
-  "author": "Pooya Parsa <pooya@pi0.ir>",
   "main": "dist/webpackbar.js",
+  "types": "dist/webpackbar.d.ts",
   "files": [
     "dist"
   ],
@@ -14,11 +14,10 @@
     "build": "siroc build",
     "clean": "rimraf dist",
     "demo": "webpack-cli --config demo/webpack.config.js",
-    "lint": "eslint src test",
-    "prepublish": "yarn build",
-    "release": "standard-version",
+    "lint": "eslint --ext .ts src test",
+    "release": "yarn build && yarn test && standard-version && npm publish && git push --follow-tags",
     "start": "yarn build -- -w",
-    "test": "jest"
+    "test": "yarn lint && yarn build && jest"
   },
   "dependencies": {
     "ansi-escapes": "^4.3.1",
@@ -31,7 +30,7 @@
     "wrap-ansi": "^7.0.0"
   },
   "devDependencies": {
-    "@nuxtjs/eslint-config": "^4.0.0",
+    "@nuxtjs/eslint-config-typescript": "^4.0.0",
     "@types/jest": "^26.0.15",
     "@types/node": "^14.14.6",
     "codecov": "^3.8.0",

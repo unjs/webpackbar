@@ -2,6 +2,7 @@
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
 [![package phobia][package-phobia-src]][package-phobia-href]
+[![github actions][github-actions-ci-src]][github-actions-ci-href]
 
 
 <div align="center">
@@ -182,8 +183,11 @@ MIT - Made with 💖 By Nuxt.js team!
 [npm-version-src]: https://flat.badgen.net/npm/v/webpackbar/latest
 [npm-version-href]: https://npmjs.com/package/webpackbar
 
-[npm-downloads-src]: https://flat.badgen.net/npm/dt/webpackbar
+[npm-downloads-src]: https://flat.badgen.net/npm/dm/webpackbar
 [npm-downloads-href]: https://npmjs.com/package/webpackbar
 
 [package-phobia-src]: https://flat.badgen.net/packagephobia/install/webpackbar
 [package-phobia-href]: https://packagephobia.now.sh/result?p=webpackbar
+
+[checks-src]: https://flat.badgen.net/github/checks/nuxt-contrib/webpackbar/master
+[checks-href]: https://github.com/nuxt-contrib/webpackbar/actions

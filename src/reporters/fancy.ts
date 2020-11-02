@@ -11,7 +11,7 @@ const logUpdate = new LogUpdate()
 
 let lastRender = Date.now()
 
-export default class FancyReporter implements Reporter  {
+export default class FancyReporter implements Reporter {
   allDone () {
     logUpdate.done()
   }

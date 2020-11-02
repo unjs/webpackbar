@@ -1,6 +1,6 @@
 import { Reporter } from 'src/types'
 
-export default class StatsReporter implements Reporter  {
+export default class StatsReporter implements Reporter {
   private options: any
 
   constructor (options) {

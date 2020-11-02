@@ -33,7 +33,7 @@ export default class WebpackBarPlugin extends ProgressPlugin {
   private options: any
   private reporters: Reporter[]
 
-  constructor(options: WebpackBarOptions) {
+  constructor (options: WebpackBarOptions) {
     super({ activeModules: true })
 
     this.options = Object.assign({}, DEFAULTS, options)
@@ -48,7 +48,7 @@ export default class WebpackBarPlugin extends ProgressPlugin {
       .from(this.options.reporters || [])
       .concat(this.options.reporter)
       .filter(Boolean)
-      .map(reporter => {
+      .map((reporter) => {
         if (Array.isArray(reporter)) {
           return { reporter: reporter[0], options: reporter[1] }
         }
@@ -80,7 +80,7 @@ export default class WebpackBarPlugin extends ProgressPlugin {
     }).filter(Boolean)
   }
 
-  callReporters(fn, payload = {}) {
+  callReporters (fn, payload = {}) {
     for (const reporter of this.reporters) {
       if (typeof reporter[fn] === 'function') {
         try {
@@ -92,29 +92,29 @@ export default class WebpackBarPlugin extends ProgressPlugin {
     }
   }
 
-  get hasRunning() {
+  get hasRunning () {
     return objectValues(this.states).some(state => !state.done)
   }
 
-  get hasErrors() {
+  get hasErrors () {
     return objectValues(this.states).some(state => state.hasErrors)
   }
 
-  get statesArray() {
+  get statesArray () {
     return objectValues(this.states).sort((s1, s2) =>
       s1.name.localeCompare(s2.name)
     )
   }
 
-  get states() {
+  get states () {
     return globalStates
   }
 
-  get state(): State {
+  get state (): State {
     return globalStates[this.options.name]
   }
 
-  _ensureState() {
+  _ensureState () {
     // Keep our state in shared object
     if (!this.states[this.options.name]) {
       this.states[this.options.name] = {
@@ -125,7 +125,7 @@ export default class WebpackBarPlugin extends ProgressPlugin {
     }
   }
 
-  apply(compiler) {
+  apply (compiler) {
     // Prevent adding multi instances to the same compiler
     if (compiler.webpackbar) {
       return
@@ -199,7 +199,7 @@ export default class WebpackBarPlugin extends ProgressPlugin {
     })
   }
 
-  updateProgress(percent = 0, message = '', details = []) {
+  updateProgress (percent = 0, message = '', details = []) {
     const progress = Math.floor(percent * 100)
 
     const activeModule = details.pop()

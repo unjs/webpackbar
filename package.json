@@ -2,16 +2,16 @@
   "name": "webpackbar",
   "version": "4.0.0",
   "description": "Elegant ProgressBar and Profiler for Webpack",
-  "repository": "nuxt/webpackbar",
+  "repository": "nuxt-contrib/webpackbar",
   "license": "MIT",
   "author": "Pooya Parsa <pooya@pi0.ir>",
+  "main": "dist/webpackbar.js",
   "files": [
     "dist"
   ],
-  "main": "dist/webpackbar.js",
   "scripts": {
     "prebuild": "yarn clean",
-    "build": "bili src/index.js --file-name webpackbar.js --format cjs",
+    "build": "bili src/webpackbar.js --file-name webpackbar.js --format cjs",
     "clean": "rimraf dist",
     "demo": "webpack-cli --config demo/webpack.config.js",
     "lint": "eslint src test",
@@ -21,33 +21,27 @@
     "test": "jest"
   },
   "dependencies": {
-    "ansi-escapes": "^4.2.1",
+    "ansi-escapes": "^4.3.1",
     "chalk": "^4.1.0",
-    "consola": "^2.10.0",
-    "figures": "^3.0.0",
+    "consola": "^2.15.0",
+    "figures": "^3.2.0",
     "pretty-time": "^1.1.0",
     "std-env": "^2.2.1",
     "text-table": "^0.2.0",
-    "wrap-ansi": "^6.0.0"
+    "wrap-ansi": "^7.0.0"
   },
   "devDependencies": {
-    "@nuxtjs/eslint-config": "^1.0.1",
-    "babel-jest": "^24.8.0",
-    "bili": "^4.8.1",
-    "codecov": "^3.5.0",
-    "eslint": "^6.1.0",
-    "esm": "^3.2.25",
-    "jest": "^24.8.0",
-    "memory-fs": "^0.4.1",
-    "rimraf": "^2.6.3",
-    "standard-version": "^7.0.0",
-    "webpack": "^4.39.1",
-    "webpack-cli": "^3.3.6"
-  },
-  "peerDependencies": {
-    "webpack": "^3.0.0 || ^4.0.0"
-  },
-  "engines": {
-    "node": ">= 8.0.0"
+    "@nuxtjs/eslint-config": "^4.0.0",
+    "babel-jest": "^26.6.2",
+    "bili": "^5.0.5",
+    "codecov": "^3.8.0",
+    "eslint": "^7.12.1",
+    "jest": "^26.6.2",
+    "jiti": "^0.1.12",
+    "memory-fs": "^0.5.0",
+    "rimraf": "^3.0.2",
+    "standard-version": "^9.0.0",
+    "webpack": "^5.3.2",
+    "webpack-cli": "^4.1.0"
   }
 }

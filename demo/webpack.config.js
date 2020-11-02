@@ -1,10 +1,7 @@
-const path = require('path');
+const path = require('path')
+const WebpackBar = require('jiti')(__dirname)('../src/webpackbar')
 
-const requireESM = require('esm')(module);
-
-const Self = requireESM('../src/index').default;
-
-let lastProgress;
+// let lastProgress;
 
 const config = (name, color) => ({
   mode: 'production',
@@ -15,26 +12,26 @@ const config = (name, color) => ({
   stats: false,
   output: {
     filename: './output.js',
-    path: path.join(__dirname, '/dist'),
+    path: path.join(__dirname, '/dist')
   },
   module: {
-    rules: [{ test: /\.js$/, use: path.resolve(__dirname, 'test-loader.js') }],
+    rules: [{ test: /\.js$/, use: path.resolve(__dirname, 'test-loader.js') }]
   },
   plugins: [
-    new Self({
+    new WebpackBar({
       color,
       name,
-      reporters: ['fancy'],
-      reporter: {
-        progress({ state }) {
-          if (lastProgress !== state.progress && state.progress % 5 === 0) {
-            process.stderr.write(state.progress + '%\n');
-            lastProgress = state.progress;
-          }
-        },
-      },
-    }),
-  ],
-});
+      reporters: ['fancy']
+      // reporter: {
+      //   progress ({ state }) {
+      //     if (lastProgress !== state.progress && state.progress % 5 === 0) {
+      //       process.stderr.write(state.progress + '%\n')
+      //       lastProgress = state.progress
+      //     }
+      //   }
+      // }
+    })
+  ]
+})
 
-module.exports = [config('OrangeBar', 'orange'), config('GreenBar', 'green')];
+module.exports = [config('OrangeBar', 'orange'), config('GreenBar', 'green')]

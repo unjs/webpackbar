@@ -1,8 +1,5 @@
 import path from 'path'
-
-import webpack from 'webpack'
-
-import Self from '../../../src'
+import WebpackBar from '../../../src/webpackbar'
 
 const makeConfig = (options) => {
   return {
@@ -14,7 +11,7 @@ const makeConfig = (options) => {
       filename: './output.js',
       path: path.join(__dirname, '/dist')
     },
-    plugins: [new webpack.NamedModulesPlugin(), new Self(options)]
+    plugins: [new WebpackBar(options)]
   }
 }
 

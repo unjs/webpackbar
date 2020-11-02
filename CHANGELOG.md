@@ -1,6 +1,14 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [5.0.0-0](https://github.com/nuxt-contrib/webpackbar/compare/v4.0.0...v5.0.0-0) (2020-11-02)
+
+
+### Features
+
+* improve types ([a7f348a](https://github.com/nuxt-contrib/webpackbar/commit/a7f348aa0baaad05bfed51fb88f4c8effb4b7a23))
+* webpack5 support for activeModule ([6ba2f82](https://github.com/nuxt-contrib/webpackbar/commit/6ba2f820fb1d668608a33b31fea836ac08ee4f4d))
 
 # [4.0.0](https://github.com/nuxt-contrib/webpackbar/compare/v3.2.0...v4.0.0) (2019-08-05)
 

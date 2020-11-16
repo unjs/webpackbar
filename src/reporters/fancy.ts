@@ -14,13 +14,16 @@ let lastRender = Date.now()
 export default class FancyReporter implements Reporter {
   constructor () {
     if (process) {
+      const exitCode = 1
+      process.exitCode = exitCode
       process.on('SIGINT', () => {
-        const exitCode = process.exit(1)
-        process.kill(exitCode, 'SIGINT')
+        process.exit(exitCode)
+        /* eslint no-unreachable: 0 */
+        process.exit(exitCode)
       })
     }
   }
-  
+
   allDone () {
     logUpdate.done()
   }

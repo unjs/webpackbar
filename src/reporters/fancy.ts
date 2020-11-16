@@ -12,7 +12,7 @@ const logUpdate = new LogUpdate()
 let lastRender = Date.now()
 
 export default class FancyReporter implements Reporter {
-  constructor() {
+  constructor () {
     if (process) {
       process.on('SIGINT', () => {
         const exitCode = process.exit(1)

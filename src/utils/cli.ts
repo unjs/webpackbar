@@ -1,7 +1,6 @@
 import chalk from 'chalk'
 import Consola from 'consola'
-
-import textTable from 'text-table'
+import markdownTable from 'markdown-table'
 
 import { BLOCK_CHAR, BLOCK_CHAR2, BAR_LENGTH } from './consts'
 
@@ -28,9 +27,7 @@ export const renderBar = (progress, color) => {
 }
 
 export function createTable (data) {
-  return textTable(data, {
-    align: data[0].map(() => 'l')
-  }).replace(/\n/g, '\n\n')
+  return markdownTable(data)
 }
 
 export function ellipsis (str, n) {

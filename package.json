@@ -24,9 +24,9 @@
     "chalk": "^4.1.0",
     "consola": "^2.15.0",
     "figures": "^3.2.0",
+    "markdown-table": "^2.0.0",
     "pretty-time": "^1.1.0",
     "std-env": "^2.2.1",
-    "text-table": "^0.2.0",
     "wrap-ansi": "^7.0.0"
   },
   "devDependencies": {

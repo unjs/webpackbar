@@ -33,7 +33,7 @@ export default class WebpackBarPlugin extends ProgressPlugin {
   private options: any
   private reporters: Reporter[]
 
-  constructor (options: WebpackBarOptions) {
+  constructor (options?: WebpackBarOptions) {
     super({ activeModules: true })
 
     this.options = Object.assign({}, DEFAULTS, options)

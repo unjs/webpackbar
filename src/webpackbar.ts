@@ -1,4 +1,4 @@
-import { ProgressPlugin } from 'webpack'
+import Webpack from 'webpack'
 import { isMinimal } from 'std-env'
 import prettyTime from 'pretty-time'
 import { startCase, shortenPath, objectValues } from './utils'
@@ -29,7 +29,7 @@ const DEFAULT_STATE = {
 
 const globalStates: { [key: string]: State } = {}
 
-export default class WebpackBarPlugin extends ProgressPlugin {
+export default class WebpackBarPlugin extends Webpack.ProgressPlugin {
   private options: any
   private reporters: Reporter[]
 
@@ -62,9 +62,10 @@ export default class WebpackBarPlugin extends ProgressPlugin {
     this.reporters = _reporters.map(({ reporter, options = {} }) => {
       if (typeof reporter === 'string') {
         if (this.options[reporter] === false) {
-          return
+          return undefined
         }
         options = { ...this.options[reporter], ...options }
+        // eslint-disable-next-line import/namespace
         reporter = (reporters[reporter] || require(reporter)) as Reporter
       }
 

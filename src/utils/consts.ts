@@ -1,7 +1,9 @@
 import { delimiter } from 'path'
 
-import { bullet, tick, cross, pointerSmall, radioOff } from 'figures'
+import figures from 'figures'
 import chalk from 'chalk'
+
+const { bullet, tick, cross, pointerSmall, radioOff } = figures
 
 export const nodeModules = `${delimiter}node_modules${delimiter}`
 export const BAR_LENGTH = 25

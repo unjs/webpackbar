@@ -1,4 +1,4 @@
-import webpack from 'webpack'
+import Webpack from 'webpack'
 
 import { getConfig } from './fixtures/basic/webpack.config'
 
@@ -6,7 +6,7 @@ describe('webpackbar', () => {
   test('compile', async () => {
     const done = jest.fn()
 
-    const compiler = webpack(
+    const compiler = Webpack(
       getConfig({
         name: 'test1',
         minimal: false,

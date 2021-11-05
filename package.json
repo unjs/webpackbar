@@ -2,7 +2,7 @@
   "name": "webpackbar",
   "version": "5.0.0-3",
   "description": "Elegant ProgressBar and Profiler for Webpack",
-  "repository": "nuxt-contrib/webpackbar",
+  "repository": "unjs/webpackbar",
   "license": "MIT",
   "main": "dist/webpackbar.js",
   "types": "dist/webpackbar.d.ts",

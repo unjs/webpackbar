@@ -1,19 +1,8 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "target": "ES6",
-    "module": "CommonJS",
-    "strict": false,
-    "declaration": true,
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "outDir": "dist",
-    "types": [
-      "node",
-      "jest"
-    ]
-  },
-  "include": [
-    "src"
-  ]
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "allowSyntheticDefaultImports": true
+  }
 }

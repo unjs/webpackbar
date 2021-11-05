@@ -37,10 +37,22 @@ export default class LogUpdate {
     this.write(data)
 
     this.prevLineCount = data.split('\n').length
+    this.lineCountPlus(this.extraLines)
   }
 
   get columns () {
     return (process.stderr.columns || 80) - 2
+  }
+
+  // calulate the prev line count Math.floor(string width / columns)
+  // here has anohter problem could be ignore it:
+  // if the terminal rows < write(data), the erase line api only clear the viewport lines
+  // it's result that the write(data) is not inline, write(data) is scrollable
+  lineCountPlus(lines) {
+    lines.forEach(line => {
+      // if the line lenth more than the columns line count + 1
+      this.prevLineCount += Math.floor(line.length / this.columns)
+    })
   }
 
   write (data) {

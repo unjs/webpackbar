@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.0.1](https://github.com/unjs/webpackbar/compare/v5.0.0...v5.0.1) (2021-11-05)
+
+
+### Bug Fixes
+
+* lower Node.js engine to 12 ([e19ede4](https://github.com/unjs/webpackbar/commit/e19ede434408c9bd46edb01d1c92ef82ca6ca238))
+
 ## [5.0.0](https://github.com/unjs/webpackbar/compare/v5.0.0-3...v5.0.0) (2021-11-05)
 
 

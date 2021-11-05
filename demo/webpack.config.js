@@ -1,5 +1,5 @@
 const path = require('path')
-const WebpackBar = require('jiti')(__dirname)('../src/webpackbar')
+const WebpackBar = require('../index.cjs')
 
 // let lastProgress;
 

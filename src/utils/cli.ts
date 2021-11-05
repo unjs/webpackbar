@@ -1,6 +1,6 @@
 import chalk from 'chalk'
 import _consola from 'consola'
-import markdownTable from 'markdown-table'
+import { markdownTable } from 'markdown-table'
 
 import { BLOCK_CHAR, BLOCK_CHAR2, BAR_LENGTH } from './consts'
 

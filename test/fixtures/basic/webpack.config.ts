@@ -1,6 +1,7 @@
 import path from 'path'
 import type { Configuration } from 'webpack'
-import WebpackBar from '../../../src/webpackbar'
+
+const WebpackBar = require('../../../index.cjs')
 
 export function getConfig (options: any) {
   return {

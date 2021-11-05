@@ -1,5 +1,5 @@
 import { ProgressPlugin } from 'webpack'
-import env from 'std-env'
+import { isMinimal } from 'std-env'
 import prettyTime from 'pretty-time'
 import { startCase, shortenPath, objectValues } from './utils'
 import type { WebpackBarOptions, ReporterOpts, Reporter, State } from './types'
@@ -12,7 +12,7 @@ export type { Reporter, State } from './types'
 const DEFAULTS = {
   name: 'webpack',
   color: 'green',
-  reporters: env.minimalCLI ? ['basic'] : ['fancy'],
+  reporters: isMinimal ? ['basic'] : ['fancy'],
   reporter: null
 }
 

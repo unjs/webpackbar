@@ -25,7 +25,7 @@
     "consola": "^2.15.0",
     "figures": "^3.2.0",
     "pretty-time": "^1.1.0",
-    "std-env": "^2.2.1",
+    "std-env": "^3.0.0",
     "text-table": "^0.2.0",
     "wrap-ansi": "^7.0.0"
   },

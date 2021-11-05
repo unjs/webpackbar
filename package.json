@@ -14,10 +14,10 @@
   ],
   "scripts": {
     "dev": "webpack-cli --config demo/webpack.config.js",
-    "lint": "eslint --ext .ts src test",
+    "lint": "eslint --ext .ts,.mjs",
     "prepack": "unbuild",
     "release": "yarn test && standard-version && npm publish && git push --follow-tags",
-    "test": "yarn lint && jest"
+    "test": "yarn lint && mocha ./test/*.test.*"
   },
   "dependencies": {
     "ansi-escapes": "^5.0.0",
@@ -31,15 +31,14 @@
   },
   "devDependencies": {
     "@nuxtjs/eslint-config-typescript": "latest",
-    "@types/jest": "latest",
+    "@types/mocha": "^9.0.0",
     "@types/node": "latest",
     "codecov": "latest",
     "eslint": "latest",
-    "jest": "latest",
     "jiti": "latest",
     "memory-fs": "latest",
+    "mocha": "latest",
     "standard-version": "latest",
-    "ts-jest": "latest",
     "typescript": "latest",
     "unbuild": "latest",
     "webpack": "latest",

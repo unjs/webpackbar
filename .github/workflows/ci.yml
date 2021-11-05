@@ -19,6 +19,5 @@ jobs:
           node-version: '14'
           cache: yarn
       - run: yarn install
-      - run: yarn lint
       - run: yarn prepack
-      - run: yarn jest
+      - run: yarn test

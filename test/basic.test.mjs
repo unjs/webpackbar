@@ -3,7 +3,7 @@ import { dirname, resolve } from 'path'
 import { fileURLToPath } from 'url'
 import { promisify } from 'util'
 import Webpack from 'webpack'
-import WebpackBar from '../index.cjs'
+import WebpackBar from 'webpackbar'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
@@ -20,7 +20,7 @@ describe('webpackbar', () => {
       mode: 'production',
       context: __dirname,
       devtool: 'source-map',
-      entry: './fixture/index.js',
+      entry: './fixture/index.cjs',
       output: {
         filename: 'output.js',
         path: resolve(__dirname, 'dist')

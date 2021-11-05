@@ -1,5 +1,5 @@
 const path = require('path')
-const WebpackBar = require('../index.cjs')
+const WebpackBar = require('webpackbar')
 
 // let lastProgress;
 
@@ -8,14 +8,14 @@ const config = (name, color) => ({
   context: __dirname,
   devtool: false,
   target: 'node',
-  entry: './index.js',
+  entry: './index.mjs',
   stats: false,
   output: {
-    filename: './output.js',
+    filename: './output.cjs',
     path: path.join(__dirname, '/dist')
   },
   module: {
-    rules: [{ test: /\.js$/, use: path.resolve(__dirname, 'test-loader.js') }]
+    rules: [{ test: /\.js$/, use: path.resolve(__dirname, 'test-loader.cjs') }]
   },
   plugins: [
     new WebpackBar({

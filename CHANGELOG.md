@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.0.0](https://github.com/unjs/webpackbar/compare/v5.0.0-3...v5.0.0) (2021-11-05)
+
+
+### Features
+
+* migrate to esm (wip) ([7ee5c73](https://github.com/unjs/webpackbar/commit/7ee5c73bf2ecb2bb31cf85df95349c69994ecad6))
+* replace text-table with markdown-table ([#79](https://github.com/unjs/webpackbar/issues/79)) ([457037a](https://github.com/unjs/webpackbar/commit/457037a24434bbdd7e1f85cbf246884b68f31b1d))
+* update std-env ([#92](https://github.com/unjs/webpackbar/issues/92)) ([54cc587](https://github.com/unjs/webpackbar/commit/54cc587ed4530c814edcf7b2c6c168b67f6d9598))
+
+
+### Bug Fixes
+
+* bundle esm-only deps for cjs support ([5301919](https://github.com/unjs/webpackbar/commit/5301919be90e97d54618d24b94b44fa5ba4ce2ef))
+* line width compare with columns ([#90](https://github.com/unjs/webpackbar/issues/90)) ([96a5a70](https://github.com/unjs/webpackbar/commit/96a5a70a2ceb39b8fc82d968669b384f8c843172))
+* **types:** make constructor argument optional ([#80](https://github.com/unjs/webpackbar/issues/80)) ([fdf097d](https://github.com/unjs/webpackbar/commit/fdf097d83cc0455a544c6001d0d955f45b5d4d02))
+
 ## [5.0.0-3](https://github.com/nuxt-contrib/webpackbar/compare/v5.0.0-2...v5.0.0-3) (2020-11-02)
 
 ## [5.0.0-2](https://github.com/nuxt-contrib/webpackbar/compare/v5.0.0-1...v5.0.0-2) (2020-11-02)

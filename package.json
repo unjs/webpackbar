@@ -1,6 +1,6 @@
 {
   "name": "webpackbar",
-  "version": "5.0.0-3",
+  "version": "5.0.0",
   "description": "Elegant ProgressBar and Profiler for Webpack",
   "repository": "unjs/webpackbar",
   "license": "MIT",

@@ -47,6 +47,7 @@ export default class WebpackBarPlugin extends Webpack.ProgressPlugin {
     const _reporters: ReporterOpts[] = Array
       .from(this.options.reporters || [])
       .concat(this.options.reporter)
+      .concat(this.options.profile && 'profile')
       .filter(Boolean)
       .map((reporter) => {
         if (Array.isArray(reporter)) {

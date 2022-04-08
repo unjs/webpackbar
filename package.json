@@ -22,18 +22,18 @@
     "test": "yarn lint && mocha ./test/*.test.*"
   },
   "dependencies": {
-    "chalk": "^4.1.0",
+    "chalk": "^4.1.2",
     "consola": "^2.15.3",
     "pretty-time": "^1.1.0",
     "std-env": "^3.0.1"
   },
   "devDependencies": {
-    "markdown-table": "^3.0.1",
-    "figures": "^4.0.0",
+    "markdown-table": "^3.0.2",
+    "figures": "^4.0.1",
     "ansi-escapes": "^5.0.0",
     "wrap-ansi": "^8.0.1",
     "@nuxtjs/eslint-config-typescript": "latest",
-    "@types/mocha": "^9.0.0",
+    "@types/mocha": "^9.1.0",
     "@types/node": "latest",
     "codecov": "latest",
     "eslint": "latest",
@@ -50,6 +50,6 @@
     "webpack": "3 || 4 || 5"
   },
   "engines": {
-    "node": ">=12"
+    "node": ">=v12.22.12"
   }
 }

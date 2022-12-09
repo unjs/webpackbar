@@ -20,5 +20,5 @@ jobs:
           cache: yarn
       - run: yarn install
       - run: yarn prepack
-      - run: yaer lint
+      - run: ya lint
       - run: npx node@12 ./node_modules/.bin/mocha ./test/*.test.*

@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "markdown-table": "^3.0.3",
-    "figures": "^4.0.1",
+    "figures": "^5.0.0",
     "ansi-escapes": "^5.0.0",
     "wrap-ansi": "^8.1.0",
     "@nuxtjs/eslint-config-typescript": "latest",

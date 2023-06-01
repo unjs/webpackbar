@@ -1043,6 +1043,11 @@ consola@^2.15.3:
   resolved "https://registry.yarnpkg.com/consola/-/consola-2.15.3.tgz#2e11f98d6a4be71ff72e0bdf07bd23e12cb61550"
   integrity sha512-9vAdYbHj6x2fLKC4+oPH0kFzY/orMZyG2Aj+kNylHxKGJ/Ed4dpNyAQYwJOdqO4zdM7XpVHmyejQDcQHrnuXbw==
 
+consola@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/consola/-/consola-3.1.0.tgz#dfdfa62ceb68bc1f06e4a76ad688566bd8813baf"
+  integrity sha512-rrrJE6rP0qzl/Srg+C9x/AE5Kxfux7reVm1Wh0wCjuXvih6DqZgqDZe8auTD28fzJ9TF0mHlSDrPpWlujQRo1Q==
+
 conventional-changelog-angular@^5.0.12:
   version "5.0.13"
   resolved "https://registry.yarnpkg.com/conventional-changelog-angular/-/conventional-changelog-angular-5.0.13.tgz#896885d63b914a70d4934b59d2fe7bde1832b28c"

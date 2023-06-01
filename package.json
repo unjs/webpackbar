@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "chalk": "^4.1.2",
-    "consola": "^2.15.3",
+    "consola": "^3.1.0",
     "pretty-time": "^1.1.0",
     "std-env": "^3.3.2"
   },

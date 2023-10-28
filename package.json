@@ -31,7 +31,7 @@
     "markdown-table": "^3.0.3",
     "figures": "^4.0.1",
     "ansi-escapes": "^5.0.0",
-    "wrap-ansi": "^8.1.0",
+    "wrap-ansi": "^9.0.0",
     "@nuxtjs/eslint-config-typescript": "latest",
     "@types/mocha": "^9.1.1",
     "@types/node": "latest",

@@ -1,4 +1,4 @@
-import { Reporter } from 'src/types'
+import { Reporter } from '../types'
 
 export default class StatsReporter implements Reporter {
   private options: any

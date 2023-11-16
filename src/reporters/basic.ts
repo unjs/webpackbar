@@ -1,5 +1,5 @@
 import { consola } from '../utils/cli'
-import { Reporter } from 'src/types'
+import { Reporter } from '../types'
 
 export default class SimpleReporter implements Reporter {
   start (context) {

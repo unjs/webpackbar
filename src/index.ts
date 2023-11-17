@@ -32,6 +32,7 @@ const globalStates: { [key: string]: State } = {}
 export default class WebpackBarPlugin extends Webpack.ProgressPlugin {
   private options: any
   private reporters: Reporter[]
+  private stats: any
 
   constructor (options?: WebpackBarOptions) {
     super({ activeModules: true })
@@ -150,6 +151,8 @@ export default class WebpackBarPlugin extends Webpack.ProgressPlugin {
         start: process.hrtime()
       })
 
+      this.stats = null
+
       this.callReporters('start')
     })
 
@@ -173,6 +176,13 @@ export default class WebpackBarPlugin extends Webpack.ProgressPlugin {
         return
       }
 
+      this.stats = stats
+    })
+  }
+
+  updateProgress (percent = 0, message = '', details = []) {
+    if (percent === 1) {
+      const { stats } = this
       const hasErrors = stats.hasErrors()
       const status = hasErrors ? 'with some errors' : 'successfully'
 
@@ -189,7 +199,6 @@ export default class WebpackBarPlugin extends Webpack.ProgressPlugin {
       })
 
       this.callReporters('progress')
-
       this.callReporters('done', { stats })
 
       if (!this.hasRunning) {
@@ -197,21 +206,18 @@ export default class WebpackBarPlugin extends Webpack.ProgressPlugin {
         this.callReporters('allDone')
         this.callReporters('afterAllDone')
       }
-    })
-  }
+    } else {
+      const progress = Math.floor(percent * 100)
+      const activeModule = details.pop()
 
-  updateProgress (percent = 0, message = '', details = []) {
-    const progress = Math.floor(percent * 100)
+      Object.assign(this.state, {
+        progress,
+        message: message || '',
+        details,
+        request: parseRequest(activeModule)
+      })
 
-    const activeModule = details.pop()
-
-    Object.assign(this.state, {
-      progress,
-      message: message || '',
-      details,
-      request: parseRequest(activeModule)
-    })
-
-    this.callReporters('progress')
+      this.callReporters('progress')
+    }
   }
 }

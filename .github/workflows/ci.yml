@@ -11,14 +11,16 @@ on:
 jobs:
   ci:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
+      - run: corepack enable
+      - uses: actions/setup-node@v4
         with:
-          node-version: '16'
-          cache: yarn
-      - run: yarn install
-      - run: yarn prepack
-      - run: yarn lint
-      - run: npx node ./node_modules/.bin/mocha ./test/*.test.*
+          node-version: 18
+          cache: "pnpm"
+      - run: pnpm install
+      - run: pnpm lint
+      - run: pnpm build
+      - run: pnpm test:types
+      - run: pnpm mocha ./test/*.test.*
+      # - uses: codecov/codecov-action@v3

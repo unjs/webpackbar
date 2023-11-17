@@ -1,9 +1,7 @@
-[![Standard JS][standard-js-src]][standard-js-href]
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
 [![package phobia][package-phobia-src]][package-phobia-href]
 [![github actions][checks-src]][checks-href]
-
 
 <div align="center">
   <!-- replace with accurate logo e.g from https://worldvectorlogo.com/ -->
@@ -61,49 +59,50 @@ Then add the reporter as a plugin to your webpack config.
 **webpack.config.js**
 
 ```js
-const webpack = require('webpack');
-const WebpackBar = require('webpackbar');
+const webpack = require("webpack");
+const WebpackBar = require("webpackbar");
 
 module.exports = {
   context: path.resolve(__dirname),
-  devtool: 'source-map',
-  entry: './entry.js',
+  devtool: "source-map",
+  entry: "./entry.js",
   output: {
-    filename: './output.js',
-    path: path.resolve(__dirname)
+    filename: "./output.js",
+    path: path.resolve(__dirname),
   },
-  plugins: [
-    new WebpackBar()
-  ]
+  plugins: [new WebpackBar()],
 };
 ```
 
 <h2 align="center">Options</h2>
 
 ### `name`
-  - Default: `webpack`
+
+- Default: `webpack`
 
 Name.
 
 ### `color`
-  - Default: `green`
+
+- Default: `green`
 
 Primary color (can be HEX like `#xxyyzz` or a web color like `green`).
 
 ### `profile`
-  - Default: `false`
+
+- Default: `false`
 
 Enable profiler.
 
 ### `fancy`
 
-  -  Default: `true` when not in CI or testing mode.
+- Default: `true` when not in CI or testing mode.
 
 Enable bars reporter.
 
 ### `basic`
 
-  -  Default: `true` when running in minimal environments.
+- Default: `true` when running in minimal environments.
 
 Enable a simple log reporter (only start and end).
 
@@ -112,7 +111,8 @@ Enable a simple log reporter (only start and end).
 Register a custom reporter.
 
 ### `reporters`
-  - Default: `[]`
+
+- Default: `[]`
 
 Register an Array of your custom reporters. (Same as `reporter` but array)
 
@@ -158,36 +158,27 @@ A reporter should be instance of a class or plain object and functions for speci
 
 `context` is the reference to the plugin. You can use `context.state` to access status.
 
-
 **Schema of `context.state`:**
 
 ```js
 {
-  start,
-  progress,
-  message,
-  details,
-  request,
-  hasErrors
+  start, progress, message, details, request, hasErrors;
 }
 ```
 
 <h2 align="center">License</h2>
 
-MIT - Made with 💖 By Nuxt.js team!
+[MIT](./LICENSE)
 
 <!-- Refs -->
+
 [standard-js-src]: https://flat.badgen.net/badge/code%20style/standard/green
 [standard-js-href]: https://standardjs.com
-
 [npm-version-src]: https://flat.badgen.net/npm/v/webpackbar/latest
 [npm-version-href]: https://npmjs.com/package/webpackbar
-
 [npm-downloads-src]: https://flat.badgen.net/npm/dm/webpackbar
 [npm-downloads-href]: https://npmjs.com/package/webpackbar
-
 [package-phobia-src]: https://flat.badgen.net/packagephobia/install/webpackbar
 [package-phobia-href]: https://packagephobia.now.sh/result?p=webpackbar
-
 [checks-src]: https://flat.badgen.net/github/checks/nuxt-contrib/webpackbar/master
 [checks-href]: https://github.com/nuxt-contrib/webpackbar/actions

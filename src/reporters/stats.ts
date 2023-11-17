@@ -1,9 +1,9 @@
-import { Reporter } from '../types'
+import { Reporter } from "../types";
 
 export default class StatsReporter implements Reporter {
-  private options: any
+  private options: any;
 
-  constructor (options) {
+  constructor(options) {
     this.options = Object.assign(
       {
         chunks: false,
@@ -11,30 +11,30 @@ export default class StatsReporter implements Reporter {
         modules: false,
         colors: true,
         warnings: true,
-        errors: true
+        errors: true,
       },
-      options
-    )
+      options,
+    );
   }
 
-  done (context, { stats }) {
-    const str = stats.toString(this.options)
+  done(context, { stats }) {
+    const str = stats.toString(this.options);
 
     if (context.hasErrors) {
-      process.stderr.write('\n' + str + '\n')
+      process.stderr.write("\n" + str + "\n");
     } else {
-      context.state.statsString = str
+      context.state.statsString = str;
     }
   }
 
-  allDone (context) {
-    let str = ''
+  allDone(context) {
+    let str = "";
     for (const state of context.statesArray) {
       if (state.statsString) {
-        str += '\n' + state.statsString + '\n'
-        delete state.statsString
+        str += "\n" + state.statsString + "\n";
+        delete state.statsString;
       }
     }
-    process.stderr.write(str)
+    process.stderr.write(str);
   }
 }

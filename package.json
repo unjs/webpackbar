@@ -15,36 +15,38 @@
     "dist"
   ],
   "scripts": {
+    "build": "unbuild",
     "dev": "webpack --config ./playground/webpack.config.cjs",
-    "lint": "eslint --ext .ts,.mjs",
+    "lint": "eslint --ext .ts,.mjs . && prettier -c .",
+    "lint:fix": "eslint --fix --ext .ts,.mjs . && prettier -w .",
     "prepack": "unbuild",
-    "release": "yarn test && standard-version && npm publish && git push --follow-tags",
-    "test": "yarn lint && mocha ./test/*.test.*"
+    "release": "pnpm test && changelogen --release && npm publish && git push --follow-tags",
+    "test": "pnpm lint && mocha ./test/*.test.*"
   },
   "dependencies": {
-    "chalk": "^4.1.2",
+    "ansi-escapes": "^6.2.0",
+    "chalk": "^5.3.0",
     "consola": "^3.2.3",
+    "figures": "^6.0.1",
+    "markdown-table": "^3.0.3",
     "pretty-time": "^1.1.0",
-    "std-env": "^3.3.3"
+    "std-env": "^3.5.0",
+    "wrap-ansi": "^9.0.0"
   },
   "devDependencies": {
-    "markdown-table": "^3.0.3",
-    "figures": "^4.0.1",
-    "ansi-escapes": "^5.0.0",
-    "wrap-ansi": "^8.1.0",
-    "@nuxtjs/eslint-config-typescript": "latest",
-    "@types/mocha": "^9.1.1",
-    "@types/node": "latest",
-    "codecov": "latest",
-    "eslint": "latest",
-    "jiti": "latest",
-    "memory-fs": "latest",
-    "mocha": "latest",
-    "standard-version": "latest",
-    "typescript": "latest",
-    "unbuild": "latest",
-    "webpack": "latest",
-    "webpack-cli": "latest"
+    "@types/mocha": "^10.0.4",
+    "@types/node": "^20.9.1",
+    "changelogen": "^0.5.5",
+    "eslint": "^8.53.0",
+    "eslint-config-unjs": "^0.2.1",
+    "jiti": "^1.21.0",
+    "memory-fs": "^0.5.0",
+    "mocha": "^10.2.0",
+    "prettier": "^3.1.0",
+    "typescript": "^5.2.2",
+    "unbuild": "^2.0.0",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
   },
   "peerDependencies": {
     "webpack": "3 || 4 || 5"

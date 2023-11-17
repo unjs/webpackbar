@@ -22,7 +22,7 @@
     "test": "yarn lint && mocha ./test/*.test.*"
   },
   "dependencies": {
-    "chalk": "^4.1.2",
+    "chalk": "^5.3.0",
     "consola": "^3.2.3",
     "pretty-time": "^1.1.0",
     "std-env": "^3.3.3"

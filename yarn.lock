@@ -3629,10 +3629,10 @@ standard-version@latest:
     stringify-package "^1.0.1"
     yargs "^16.0.0"
 
-std-env@^3.3.3:
-  version "3.3.3"
-  resolved "https://registry.yarnpkg.com/std-env/-/std-env-3.3.3.tgz#a54f06eb245fdcfef53d56f3c0251f1d5c3d01fe"
-  integrity sha512-Rz6yejtVyWnVjC1RFvNmYL10kgjC49EOghxWn0RFqlCHGFpQx+Xe7yW3I4ceK1SGrWIGMjD5Kbue8W/udkbMJg==
+std-env@^3.5.0:
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/std-env/-/std-env-3.5.0.tgz#83010c9e29bd99bf6f605df87c19012d82d63b97"
+  integrity sha512-JGUEaALvL0Mf6JCfYnJOTcobY+Nc7sG/TemDRBqCA0wEr4DER7zDchaaixTlmOxAjG1uRJmX82EQcxwTQTkqVA==
 
 stream-events@^1.0.5:
   version "1.0.5"

@@ -22,6 +22,7 @@ const config = (name, color) => ({
       color,
       name,
       reporters: ["fancy"],
+      profile: process.argv.includes("--profile"),
       // reporter: {
       //   progress ({ state }) {
       //     if (lastProgress !== state.progress && state.progress % 5 === 0) {

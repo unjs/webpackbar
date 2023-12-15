@@ -59,6 +59,14 @@ export default class WebpackBarPlugin extends Webpack.ProgressPlugin {
         return { reporter } as ReporterOpts;
       });
 
+    // Add profile if neeed
+    if (
+      this.options.profile &&
+      !_reporters.some(({ reporter }) => reporter === "profile")
+    ) {
+      _reporters.push({ reporter: "profile" });
+    }
+
     // Resolve reporters
     this.reporters = _reporters
       .map(({ reporter, options = {} }) => {

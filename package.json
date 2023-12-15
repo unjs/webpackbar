@@ -37,7 +37,7 @@
     "markdown-table": "^2.0.0",
     "pretty-time": "^1.1.0",
     "std-env": "^3.6.0",
-    "wrap-ansi": "^7.0.0"
+    "wrap-ansi": "^9.0.0"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.6",

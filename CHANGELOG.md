@@ -2,6 +2,47 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v6.0.0
+
+[compare changes](https://github.com/unjs/webpackbar/compare/v5.0.2...v6.0.0)
+
+### 🩹 Fixes
+
+- Typo in ci test config ([c3471a1](https://github.com/unjs/webpackbar/commit/c3471a1))
+- Typo in ci test config ([758143b](https://github.com/unjs/webpackbar/commit/758143b))
+- Automatically add `profile` reporter when `profile` option enabled ([#94](https://github.com/unjs/webpackbar/pull/94))
+
+### 💅 Refactors
+
+- ⚠️  Update repo ([e7d217c](https://github.com/unjs/webpackbar/commit/e7d217c))
+
+### 📦 Build
+
+- Add types export conditions ([#108](https://github.com/unjs/webpackbar/pull/108))
+- Downgrade cjs-incompatible dependencies ([e24d1cd](https://github.com/unjs/webpackbar/commit/e24d1cd))
+
+### 🏡 Chore
+
+- Update renovate config ([cf4f93b](https://github.com/unjs/webpackbar/commit/cf4f93b))
+- **deps:** ⚠️  Upgrade consola to v3 and minimum node version ([#128](https://github.com/unjs/webpackbar/pull/128))
+- Update dependencies ([02609e8](https://github.com/unjs/webpackbar/commit/02609e8))
+
+### 🤖 CI
+
+- Remove type test step ([95ec6d9](https://github.com/unjs/webpackbar/commit/95ec6d9))
+
+#### ⚠️ Breaking Changes
+
+- ⚠️  Update repo ([e7d217c](https://github.com/unjs/webpackbar/commit/e7d217c))
+- **deps:** ⚠️  Upgrade consola to v3 and minimum node version ([#128](https://github.com/unjs/webpackbar/pull/128))
+
+### ❤️ Contributors
+
+- Pooya Parsa ([@pi0](http://github.com/pi0))
+- Joshua Chen <sidachen2003@gmail.com>
+- Rafał Chłodnicki ([@rchl](http://github.com/rchl))
+- Nozomu Ikuta <nick.0508.nick@gmail.com>
+
 ### [5.0.2](https://github.com/unjs/webpackbar/compare/v5.0.1...v5.0.2) (2021-11-05)
 
 ### Bug Fixes

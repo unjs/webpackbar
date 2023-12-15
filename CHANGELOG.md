@@ -14,7 +14,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### 💅 Refactors
 
-- ⚠️  Update repo ([e7d217c](https://github.com/unjs/webpackbar/commit/e7d217c))
+- ⚠️ Update repo ([e7d217c](https://github.com/unjs/webpackbar/commit/e7d217c))
 
 ### 📦 Build
 
@@ -24,7 +24,7 @@ All notable changes to this project will be documented in this file. See [standa
 ### 🏡 Chore
 
 - Update renovate config ([cf4f93b](https://github.com/unjs/webpackbar/commit/cf4f93b))
-- **deps:** ⚠️  Upgrade consola to v3 and minimum node version ([#128](https://github.com/unjs/webpackbar/pull/128))
+- **deps:** ⚠️ Upgrade consola to v3 and minimum node version ([#128](https://github.com/unjs/webpackbar/pull/128))
 - Update dependencies ([02609e8](https://github.com/unjs/webpackbar/commit/02609e8))
 
 ### 🤖 CI
@@ -33,8 +33,8 @@ All notable changes to this project will be documented in this file. See [standa
 
 #### ⚠️ Breaking Changes
 
-- ⚠️  Update repo ([e7d217c](https://github.com/unjs/webpackbar/commit/e7d217c))
-- **deps:** ⚠️  Upgrade consola to v3 and minimum node version ([#128](https://github.com/unjs/webpackbar/pull/128))
+- ⚠️ Update repo ([e7d217c](https://github.com/unjs/webpackbar/commit/e7d217c))
+- **deps:** ⚠️ Upgrade consola to v3 and minimum node version ([#128](https://github.com/unjs/webpackbar/pull/128))
 
 ### ❤️ Contributors
 

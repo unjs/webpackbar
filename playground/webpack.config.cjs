@@ -35,4 +35,4 @@ const config = (name, color) => ({
   ],
 });
 
-module.exports = [config("OrangeBar", "orange"), config("GreenBar", "green")];
+module.exports = [config("OrangeBar", "orange")];

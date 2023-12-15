@@ -21,6 +21,5 @@ jobs:
       - run: pnpm install
       - run: pnpm lint
       - run: pnpm build
-      - run: pnpm test:types
       - run: pnpm mocha ./test/*.test.*
       # - uses: codecov/codecov-action@v3

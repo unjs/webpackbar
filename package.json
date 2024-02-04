@@ -41,17 +41,17 @@
   },
   "devDependencies": {
     "@types/mocha": "^10.0.6",
-    "@types/node": "^20.10.7",
+    "@types/node": "^20.11.16",
     "changelogen": "^0.5.5",
     "eslint": "^8.56.0",
     "eslint-config-unjs": "^0.2.1",
     "jiti": "^1.21.0",
     "memory-fs": "^0.5.0",
     "mocha": "^10.2.0",
-    "prettier": "^3.1.1",
+    "prettier": "^3.2.5",
     "typescript": "^5.3.3",
     "unbuild": "^2.0.0",
-    "webpack": "^5.89.0",
+    "webpack": "^5.90.1",
     "webpack-cli": "^5.1.4"
   },
   "peerDependencies": {

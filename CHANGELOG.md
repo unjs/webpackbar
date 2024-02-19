@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v6.0.1
+
+[compare changes](https://github.com/unjs/webpackbar/compare/v6.0.0...v6.0.1)
+
+### 🩹 Fixes
+
+- Node 14 compatibility ([#138](https://github.com/unjs/webpackbar/pull/138))
+
+### 🏡 Chore
+
+- Lint ([f4e5635](https://github.com/unjs/webpackbar/commit/f4e5635))
+- Fix eslint rule ([70fe050](https://github.com/unjs/webpackbar/commit/70fe050))
+
+### ❤️ Contributors
+
+- Pooya Parsa ([@pi0](http://github.com/pi0))
+- Godky ([@godky](http://github.com/godky))
+
 ## v6.0.0
 
 [compare changes](https://github.com/unjs/webpackbar/compare/v5.0.2...v6.0.0)

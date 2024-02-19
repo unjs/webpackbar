@@ -5,6 +5,7 @@ export function first(arr) {
 }
 
 export function last(arr) {
+  // eslint-disable-next-line unicorn/prefer-at
   return arr.length > 0 ? arr[arr.length - 1] : null;
 }
 

@@ -5,7 +5,7 @@ export function first(arr) {
 }
 
 export function last(arr) {
-  return arr.length > 0 ? arr.at(-1) : null;
+  return arr.length > 0 ? arr[arr.length - 1] : null;
 }
 
 export function startCase(str) {

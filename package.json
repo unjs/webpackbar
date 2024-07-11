@@ -30,7 +30,7 @@
     "test": "pnpm lint && mocha ./test/*.test.*"
   },
   "dependencies": {
-    "chalk": "^4.1.2",
+    "ansis": "^3.2.0",
     "consola": "^3.2.3",
     "figures": "^3.2.0",
     "markdown-table": "^2.0.0",

@@ -1,4 +1,4 @@
-import chalk from "chalk";
+import ansis from "ansis";
 import { consola as _consola } from "consola";
 import markdownTable from "markdown-table";
 
@@ -10,15 +10,15 @@ export const consola = _consola.withTag("webpackbar");
 
 export const colorize = (color) => {
   if (color[0] === "#") {
-    return chalk.hex(color);
+    return ansis.hex(color);
   }
 
-  return chalk[color] || chalk.reset; // || chalk.keyword(color);
+  return ansis[color] || ansis.reset; // || ansis.keyword(color);
 };
 
 export const renderBar = (progress, color) => {
   const w = progress * (BAR_LENGTH / 100);
-  const bg = chalk.white(BLOCK_CHAR);
+  const bg = ansis.white(BLOCK_CHAR);
   const fg = colorize(color)(BLOCK_CHAR2);
 
   return range(BAR_LENGTH)

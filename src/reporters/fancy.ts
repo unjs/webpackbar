@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import chalk from "chalk";
+import ansis from "ansis";
 
 import { renderBar, colorize, ellipsisLeft } from "../utils/cli";
 import { formatRequest } from "../utils/webpack";
@@ -54,13 +54,13 @@ export default class FancyReporter implements Reporter {
         renderBar(state.progress, state.color),
         state.message,
         `(${state.progress || 0}%)`,
-        chalk.grey(state.details[0] || ""),
-        chalk.grey(state.details[1] || ""),
+        ansis.grey(state.details[0] || ""),
+        ansis.grey(state.details[1] || ""),
       ].join(" ");
 
       line2 = state.request
         ? " " +
-          chalk.grey(
+          ansis.grey(
             ellipsisLeft(formatRequest(state.request), logUpdate.columns),
           )
         : "";
@@ -76,7 +76,7 @@ export default class FancyReporter implements Reporter {
       }
 
       line1 = color(`${icon} ${state.name}`);
-      line2 = chalk.grey("  " + state.message);
+      line2 = ansis.grey("  " + state.message);
     }
 
     return line1 + "\n" + line2;

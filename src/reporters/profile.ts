@@ -1,4 +1,4 @@
-import chalk from "chalk";
+import ansis from "ansis";
 
 import { colorize } from "../utils/cli";
 import Profiler from "../profiler";
@@ -28,7 +28,7 @@ export default class ProfileReporter implements Reporter {
 
       if (state.profile) {
         str +=
-          color(`\nProfile results for ${chalk.bold(state.name)}\n`) +
+          color(`\nProfile results for ${ansis.bold(state.name)}\n`) +
           `\n${state.profile}\n`;
         delete state.profile;
       }

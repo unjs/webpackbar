@@ -1,4 +1,4 @@
-import ansiEscapes from "ansi-escapes";
+import sisteransi from "sisteransi"
 import wrapAnsi from "wrap-ansi";
 
 // Based on https://github.com/sindresorhus/log-update/blob/master/index.js
@@ -29,7 +29,7 @@ export default class LogUpdate {
     });
 
     const data =
-      ansiEscapes.eraseLines(this.prevLineCount) +
+      sisteransi.erase.lines(this.prevLineCount) +
       wrappedLines +
       "\n" +
       this.extraLines;
@@ -60,7 +60,7 @@ export default class LogUpdate {
 
   clear() {
     this.done();
-    this.write(ansiEscapes.eraseLines(this.prevLineCount));
+    this.write(sisteransi.erase.lines(this.prevLineCount));
   }
 
   done() {

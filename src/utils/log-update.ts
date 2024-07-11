@@ -1,4 +1,4 @@
-import sisteransi from "sisteransi"
+import sisteransi from "sisteransi";
 import wrapAnsi from "wrap-ansi";
 
 // Based on https://github.com/sindresorhus/log-update/blob/master/index.js

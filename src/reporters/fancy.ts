@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-import ansis from "ansis";
 
+import { getColor } from "consola/utils";
 import { renderBar, colorize, ellipsisLeft } from "../utils/cli";
 import { formatRequest } from "../utils/webpack";
 import { BULLET, TICK, CROSS, CIRCLE_OPEN } from "../utils/consts";
@@ -10,6 +10,8 @@ import { Reporter } from "../types";
 const logUpdate = new LogUpdate();
 
 let lastRender = Date.now();
+
+const grey = getColor("gray")
 
 export default class FancyReporter implements Reporter {
   allDone() {
@@ -54,13 +56,13 @@ export default class FancyReporter implements Reporter {
         renderBar(state.progress, state.color),
         state.message,
         `(${state.progress || 0}%)`,
-        ansis.grey(state.details[0] || ""),
-        ansis.grey(state.details[1] || ""),
+        grey(state.details[0] || ""),
+        grey(state.details[1] || ""),
       ].join(" ");
 
       line2 = state.request
         ? " " +
-          ansis.grey(
+        grey(
             ellipsisLeft(formatRequest(state.request), logUpdate.columns),
           )
         : "";
@@ -76,7 +78,7 @@ export default class FancyReporter implements Reporter {
       }
 
       line1 = color(`${icon} ${state.name}`);
-      line2 = ansis.grey("  " + state.message);
+      line2 = grey("  " + state.message);
     }
 
     return line1 + "\n" + line2;

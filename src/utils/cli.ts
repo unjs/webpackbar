@@ -1,24 +1,27 @@
-import ansis from "ansis";
+import { hex } from "ansis";
 import { consola as _consola } from "consola";
 import markdownTable from "markdown-table";
 
+import { getColor, type ColorName } from "consola/utils";
 import { BLOCK_CHAR, BLOCK_CHAR2, BAR_LENGTH } from "./consts";
 
 import { range } from ".";
 
 export const consola = _consola.withTag("webpackbar");
 
-export const colorize = (color) => {
+export const colorize = (color: ColorName | `#${string}`) => {
   if (color[0] === "#") {
-    return ansis.hex(color);
+    return hex(color);
   }
 
-  return ansis[color] || ansis.reset; // || ansis.keyword(color);
+  return getColor(color as ColorName); // || ansis.keyword(color);
 };
+
+const white = getColor("white")
 
 export const renderBar = (progress, color) => {
   const w = progress * (BAR_LENGTH / 100);
-  const bg = ansis.white(BLOCK_CHAR);
+  const bg = white(BLOCK_CHAR);
   const fg = colorize(color)(BLOCK_CHAR2);
 
   return range(BAR_LENGTH)

@@ -1,10 +1,12 @@
 import prettyTime from "pretty-time";
-import ansis from "ansis";
 
+import { getColor } from "consola/utils";
 import { startCase } from "../utils";
 import { createTable } from "../utils/cli";
 
 import getDescription from "./description";
+
+const bold = getColor("bold")
 
 export default function formatStats(allStats) {
   const lines = [];
@@ -12,7 +14,7 @@ export default function formatStats(allStats) {
   for (const category of Object.keys(allStats)) {
     const stats = allStats[category];
 
-    lines.push(`> Stats by ${ansis.bold(startCase(category))}`);
+    lines.push(`> Stats by ${bold(startCase(category))}`);
 
     let totalRequests = 0;
     const totalTime = [0, 0];

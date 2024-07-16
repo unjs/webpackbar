@@ -1,8 +1,9 @@
-import ansis from "ansis";
-
+import { getColor } from "consola/utils";
 import { colorize } from "../utils/cli";
 import Profiler from "../profiler";
 import { Reporter } from "../types";
+
+const bold = getColor("bold");
 
 export default class ProfileReporter implements Reporter {
   progress(context) {
@@ -28,7 +29,7 @@ export default class ProfileReporter implements Reporter {
 
       if (state.profile) {
         str +=
-          color(`\nProfile results for ${ansis.bold(state.name)}\n`) +
+          color(`\nProfile results for ${bold(state.name)}\n`) +
           `\n${state.profile}\n`;
         delete state.profile;
       }

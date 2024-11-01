@@ -47,8 +47,8 @@ devDependencies:
     specifier: ^0.2.1
     version: 0.2.1(eslint@8.56.0)(typescript@5.3.3)
   jiti:
-    specifier: ^1.21.0
-    version: 1.21.0
+    specifier: ^2.4.0
+    version: 2.4.0
   memory-fs:
     specifier: ^0.5.0
     version: 0.5.0
@@ -3028,6 +3028,11 @@ packages:
 
   /jiti@1.21.0:
     resolution: {integrity: sha512-gFqAIbuKyyso/3G2qhiO2OM6shY6EPP/R0+mkDbyspxKazh8BXDC5FiFsUjlczgdNz/vfra0da2y+aHrusLG/Q==}
+    hasBin: true
+    dev: true
+
+  /jiti@2.4.0:
+    resolution: {integrity: sha512-H5UpaUI+aHOqZXlYOaFP/8AzKsg+guWu+Pr3Y8i7+Y3zr1aXAvCvTAQ1RxSc6oVD8R8c7brgNtTVP91E7upH/g==}
     hasBin: true
     dev: true
 

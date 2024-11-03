@@ -40,18 +40,18 @@
     "wrap-ansi": "^7.0.0"
   },
   "devDependencies": {
-    "@types/mocha": "^10.0.6",
-    "@types/node": "^20.11.16",
-    "changelogen": "^0.5.5",
-    "eslint": "^8.56.0",
-    "eslint-config-unjs": "^0.2.1",
-    "jiti": "^1.21.0",
+    "@types/mocha": "^10.0.9",
+    "@types/node": "^20.17.6",
+    "changelogen": "^0.5.7",
+    "eslint": "^8.57.1",
+    "eslint-config-unjs": "^0.4.1",
+    "jiti": "^1.21.6",
     "memory-fs": "^0.5.0",
-    "mocha": "^10.2.0",
-    "prettier": "^3.2.5",
-    "typescript": "^5.3.3",
+    "mocha": "^10.8.2",
+    "prettier": "^3.3.3",
+    "typescript": "^5.6.3",
     "unbuild": "^2.0.0",
-    "webpack": "^5.90.1",
+    "webpack": "^5.96.1",
     "webpack-cli": "^5.1.4"
   },
   "peerDependencies": {

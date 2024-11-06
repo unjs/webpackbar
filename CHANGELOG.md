@@ -2,6 +2,40 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v7.0.0
+
+[compare changes](https://github.com/unjs/webpackbar/compare/v6.0.1...v7.0.0)
+
+### 🚀 Enhancements
+
+- Support rspack ([#149](https://github.com/unjs/webpackbar/pull/149))
+
+### 🩹 Fixes
+
+- Missing compilation completion information in concurrent mode. #81 ([#141](https://github.com/unjs/webpackbar/pull/141), [#81](https://github.com/unjs/webpackbar/issues/81))
+
+### 💅 Refactors
+
+- Update repo ([379d628](https://github.com/unjs/webpackbar/commit/379d628))
+- Uses `ansis` for color support ([#145](https://github.com/unjs/webpackbar/pull/145))
+- Use named export of `markdown-table` ([c0be4d7](https://github.com/unjs/webpackbar/commit/c0be4d7))
+
+### 📦 Build
+
+- Inline esm-only dependencies ([e58277f](https://github.com/unjs/webpackbar/commit/e58277f))
+
+### 🏡 Chore
+
+- Migrate to vitest ([f8435c1](https://github.com/unjs/webpackbar/commit/f8435c1))
+- Sort package.json ([9e1ce59](https://github.com/unjs/webpackbar/commit/9e1ce59))
+- Update lockfile ([1d99de1](https://github.com/unjs/webpackbar/commit/1d99de1))
+
+### ❤️ Contributors
+
+- Pooya Parsa ([@pi0](http://github.com/pi0))
+- 风中追风 ([@hangaoke1](http://github.com/hangaoke1))
+- Sukka <isukkaw@gmail.com>
+
 ## v6.0.1
 
 [compare changes](https://github.com/unjs/webpackbar/compare/v6.0.0...v6.0.1)

@@ -1,6 +1,4 @@
-/* eslint-disable no-console */
-import chalk from "chalk";
-
+import { grey } from "ansis";
 import { renderBar, colorize, ellipsisLeft } from "../utils/cli";
 import { formatRequest } from "../utils/webpack";
 import { BULLET, TICK, CROSS, CIRCLE_OPEN } from "../utils/consts";
@@ -54,15 +52,13 @@ export default class FancyReporter implements Reporter {
         renderBar(state.progress, state.color),
         state.message,
         `(${state.progress || 0}%)`,
-        chalk.grey(state.details[0] || ""),
-        chalk.grey(state.details[1] || ""),
+        grey(state.details[0] || ""),
+        grey(state.details[1] || ""),
       ].join(" ");
 
       line2 = state.request
         ? " " +
-          chalk.grey(
-            ellipsisLeft(formatRequest(state.request), logUpdate.columns),
-          )
+          grey(ellipsisLeft(formatRequest(state.request), logUpdate.columns))
         : "";
     } else {
       let icon = " ";
@@ -76,7 +72,7 @@ export default class FancyReporter implements Reporter {
       }
 
       line1 = color(`${icon} ${state.name}`);
-      line2 = chalk.grey("  " + state.message);
+      line2 = grey("  " + state.message);
     }
 
     return line1 + "\n" + line2;

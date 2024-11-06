@@ -59,7 +59,7 @@ export default class WebpackBarPlugin extends Webpack.ProgressPlugin {
         return { reporter } as ReporterOpts;
       });
 
-    // Add profile if neeed
+    // Add profile if needed
     if (
       this.options.profile &&
       !_reporters.some(({ reporter }) => reporter === "profile")
@@ -75,14 +75,13 @@ export default class WebpackBarPlugin extends Webpack.ProgressPlugin {
             return undefined;
           }
           options = { ...this.options[reporter], ...options };
-          // eslint-disable-next-line unicorn/prefer-module, import/namespace
           reporter = (reporters[reporter] || require(reporter)) as Reporter;
         }
 
         if (typeof reporter === "function") {
           try {
             // @ts-ignore
-            reporter = new reporter(options); // eslint-disable-line new-cap
+            reporter = new reporter(options);
           } catch {
             reporter = (reporter as any)(options);
           }

@@ -3,8 +3,8 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
 import Webpack from "webpack";
-import { it, describe } from "mocha";
-import WebpackBar from "webpackbar";
+import { it, describe } from "vitest";
+import WebpackBar from "../src";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 

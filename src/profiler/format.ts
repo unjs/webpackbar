@@ -1,6 +1,5 @@
 import prettyTime from "pretty-time";
-import chalk from "chalk";
-
+import { bold } from "ansis";
 import { startCase } from "../utils";
 import { createTable } from "../utils/cli";
 
@@ -12,7 +11,7 @@ export default function formatStats(allStats) {
   for (const category of Object.keys(allStats)) {
     const stats = allStats[category];
 
-    lines.push(`> Stats by ${chalk.bold(startCase(category))}`);
+    lines.push(`> Stats by ${bold(startCase(category))}`);
 
     let totalRequests = 0;
     const totalTime = [0, 0];

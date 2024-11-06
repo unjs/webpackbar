@@ -11,7 +11,7 @@
   <a href="https://webpack.js.org/">
     <img width="200" height="200" hspace="25" src="https://cdn.rawgit.com/webpack/media/e7485eb2/logo/icon-square-big.svg">
   </a>
-  <p>Elegant ProgressBar and Profiler for Webpack</p>
+  <p>Elegant ProgressBar and Profiler for [Webpack](https://webpack.js.org/) and [Rspack](https://rspack.dev/). </p>
 </div>
 
 ✔ Display elegant progress bar while building or watch
@@ -68,12 +68,29 @@ deno install webpackbar
 
 <!-- /automd -->
 
-Then add the reporter as a plugin to your webpack config.
+Then add the reporter as a plugin to your webpack config (make sure `webpack` peer dependency is installed).
 
-**webpack.config.mjs**
+**`webpack.config.mjs`**
 
 ```js
 import WebpackBar from "webpackbar";
+
+export default {
+  entry: "./src/entry.js",
+  plugins: [
+    new WebpackBar({
+      /* options */
+    }),
+  ],
+};
+```
+
+For using with [Rspack](https://rspack.dev/), you can use `webpackbar/rspack` (make sure `@rspack/core` peer dependency is installed).
+
+**`rspack.config.mjs`**:
+
+```js
+import WebpackBar from "webpackbar/rspack";
 
 export default {
   entry: "./src/entry.js",

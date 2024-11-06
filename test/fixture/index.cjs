@@ -1,1 +1,1 @@
-require("ansis");
+require("chalk");

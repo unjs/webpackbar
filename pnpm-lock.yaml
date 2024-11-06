@@ -14,21 +14,12 @@ importers:
       consola:
         specifier: ^3.2.3
         version: 3.2.3
-      figures:
-        specifier: ^6.1.0
-        version: 6.1.0
-      markdown-table:
-        specifier: ^3.0.4
-        version: 3.0.4
       pretty-time:
         specifier: ^1.1.0
         version: 1.1.0
       std-env:
         specifier: ^3.7.0
         version: 3.7.0
-      wrap-ansi:
-        specifier: ^9.0.0
-        version: 9.0.0
     devDependencies:
       '@babel/standalone':
         specifier: ^7.26.2
@@ -51,9 +42,15 @@ importers:
       eslint-config-unjs:
         specifier: ^0.4.1
         version: 0.4.1(eslint@9.14.0(jiti@2.4.0))(typescript@5.6.3)
+      figures:
+        specifier: ^6.1.0
+        version: 6.1.0
       jiti:
         specifier: ^2.4.0
         version: 2.4.0
+      markdown-table:
+        specifier: ^3.0.4
+        version: 3.0.4
       memory-fs:
         specifier: ^0.5.0
         version: 0.5.0
@@ -75,6 +72,9 @@ importers:
       webpack-cli:
         specifier: ^5.1.4
         version: 5.1.4(webpack@5.96.1)
+      wrap-ansi:
+        specifier: ^9.0.0
+        version: 9.0.0
 
 packages:
 

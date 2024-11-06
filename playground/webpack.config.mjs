@@ -38,4 +38,8 @@ const config = (name, color) => ({
   ],
 });
 
+setInterval(() => {
+  console.log(`[${new Date().toLocaleTimeString()}]`);
+}, 1000).unref();
+
 export default [config("chalk", "cyan"), config("babel", "yellow")];

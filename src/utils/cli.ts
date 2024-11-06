@@ -17,7 +17,7 @@ export const colorize = (color: ColorName | `#${string}`) => {
   return getColor(color as ColorName); // || ansis.keyword(color);
 };
 
-const white = getColor("white")
+const white = getColor("white");
 
 export const renderBar = (progress, color) => {
   const w = progress * (BAR_LENGTH / 100);
@@ -45,4 +45,14 @@ export function ellipsisLeft(str, n) {
     return str;
   }
   return `...${str.slice(str.length - n - 1)}`;
+}
+
+// Based on github.com/terkelg/sisteransi (MIT - 2018 Terkel Gjervig Nielsen)
+export function eraseLines(count: number) {
+  let clear = "";
+  for (let i = 0; i < count; i++) {
+    clear += `\u001B[2K` + (i < count - 1 ? `\u001B[1A` : "");
+  }
+  if (count) clear += `\u001B[G`;
+  return clear;
 }

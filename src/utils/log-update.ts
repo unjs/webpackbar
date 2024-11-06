@@ -1,5 +1,5 @@
-import sisteransi from "sisteransi";
 import wrapAnsi from "wrap-ansi";
+import { eraseLines } from "./cli";
 
 // Based on https://github.com/sindresorhus/log-update/blob/master/index.js
 
@@ -29,10 +29,7 @@ export default class LogUpdate {
     });
 
     const data =
-      sisteransi.erase.lines(this.prevLineCount) +
-      wrappedLines +
-      "\n" +
-      this.extraLines;
+      eraseLines(this.prevLineCount) + wrappedLines + "\n" + this.extraLines;
 
     this.write(data);
 
@@ -60,7 +57,7 @@ export default class LogUpdate {
 
   clear() {
     this.done();
-    this.write(sisteransi.erase.lines(this.prevLineCount));
+    this.write(eraseLines(this.prevLineCount));
   }
 
   done() {

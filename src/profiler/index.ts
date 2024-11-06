@@ -38,10 +38,8 @@ export default class Profiler {
     const loaderStats = {};
     const extStats = {};
 
-    // eslint-disable-next-line unicorn/consistent-function-scoping
     const getStat = (stats, name) => {
       if (!stats[name]) {
-        // eslint-disable-next-line no-param-reassign
         stats[name] = {
           count: 0,
           time: [0, 0],

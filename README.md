@@ -1,7 +1,9 @@
-[![npm version][npm-version-src]][npm-version-href]
-[![npm downloads][npm-downloads-src]][npm-downloads-href]
-[![package phobia][package-phobia-src]][package-phobia-href]
-[![github actions][checks-src]][checks-href]
+<!-- automd:badges packagephobia -->
+
+[![npm version](https://img.shields.io/npm/v/webpackbar)](https://npmjs.com/package/webpackbar)
+[![npm downloads](https://img.shields.io/npm/dm/webpackbar)](https://npm.chart.dev/webpackbar)
+
+<!-- /automd -->
 
 <div align="center">
   <!-- replace with accurate logo e.g from https://worldvectorlogo.com/ -->
@@ -20,7 +22,7 @@
 
 ✔ Windows compatible
 
-✔ **Fully** customizable using reporters
+✔ Fully customizable using reporters
 
 ✔ Advanced build profiler
 
@@ -42,35 +44,44 @@
 
 To begin, you'll need to install `webpackbar`:
 
-Using npm:
+<!-- automd:pm-i -->
 
-```bash
-npm install webpackbar -D
+```sh
+# ✨ Auto-detect
+npx nypm install webpackbar
+
+# npm
+npm install webpackbar
+
+# yarn
+yarn add webpackbar
+
+# pnpm
+pnpm install webpackbar
+
+# bun
+bun install webpackbar
+
+# deno
+deno install webpackbar
 ```
 
-Using yarn:
-
-```bash
-yarn add webpackbar -D
-```
+<!-- /automd -->
 
 Then add the reporter as a plugin to your webpack config.
 
-**webpack.config.js**
+**webpack.config.mjs**
 
 ```js
-const webpack = require("webpack");
-const WebpackBar = require("webpackbar");
+import WebpackBar from "webpackbar";
 
-module.exports = {
-  context: path.resolve(__dirname),
-  devtool: "source-map",
-  entry: "./entry.js",
-  output: {
-    filename: "./output.js",
-    path: path.resolve(__dirname),
-  },
-  plugins: [new WebpackBar()],
+export default {
+  entry: "./src/entry.js",
+  plugins: [
+    new WebpackBar({
+      /* options */
+    }),
+  ],
 };
 ```
 
@@ -130,30 +141,28 @@ A reporter should be instance of a class or plain object and functions for speci
 **Simple logger:**
 
 ```js
-{
- start(context) {
-   // Called when (re)compile is started
- },
- change(context) {
-   // Called when a file changed on watch mode
- },
- update(context) {
-   // Called after each progress update
- },
- done(context) {
-   // Called when compile finished
- },
- progress(context) {
-   // Called when build progress updated
- },
- allDone(context) {
-   // Called when _all_ compiles finished
- },
- beforeAllDone(context) {
- },
- afterAllDone(context) {
- },
-}
+const logger = {
+  start(context) {
+    // Called when (re)compile is started
+  },
+  change(context) {
+    // Called when a file changed on watch mode
+  },
+  update(context) {
+    // Called after each progress update
+  },
+  done(context) {
+    // Called when compile finished
+  },
+  progress(context) {
+    // Called when build progress updated
+  },
+  allDone(context) {
+    // Called when _all_ compiles finished
+  },
+  beforeAllDone(context) {},
+  afterAllDone(context) {},
+};
 ```
 
 `context` is the reference to the plugin. You can use `context.state` to access status.

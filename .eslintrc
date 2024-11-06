@@ -1,7 +1,0 @@
-{
-  "extends": ["eslint-config-unjs"],
-  "rules": {
-    "unicorn/prevent-abbreviations": 0,
-    "unicorn/no-null": 0
-  }
-}

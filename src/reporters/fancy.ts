@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import chalk from "chalk";
 
 import { renderBar, colorize, ellipsisLeft } from "../utils/cli";

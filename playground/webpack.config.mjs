@@ -1,21 +1,24 @@
-const path = require("node:path");
-const WebpackBar = require("webpackbar");
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+import WebpackBar from "webpackbar";
 
 // let lastProgress;
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const config = (name, color) => ({
   mode: "production",
   context: __dirname,
   devtool: false,
   target: "node",
-  entry: "./index.mjs",
-  stats: false,
+  entry: `./${name}.mjs`,
+  stats: true,
   output: {
     filename: "./output.cjs",
-    path: path.join(__dirname, "/dist"),
+    path: join(__dirname, "/dist"),
   },
   module: {
-    rules: [{ test: /\.js$/, use: path.resolve(__dirname, "test-loader.cjs") }],
+    rules: [{ test: /\.js$/, use: join(__dirname, "test-loader.cjs") }],
   },
   plugins: [
     new WebpackBar({
@@ -35,4 +38,4 @@ const config = (name, color) => ({
   ],
 });
 
-module.exports = [config("OrangeBar", "orange")];
+export default [config("chalk", "cyan"), config("babel", "yellow")];

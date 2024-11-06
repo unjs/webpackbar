@@ -1,5 +1,5 @@
 import type { Stats } from "webpack";
-import WebpackBar from ".";
+import type WebpackBar from "./webpack";
 
 type ReporterContextFunc<T = any> = (context: WebpackBar, opts: T) => void;
 

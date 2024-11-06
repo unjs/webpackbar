@@ -2,9 +2,9 @@ import assert from "node:assert";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
-import Webpack from "webpack";
+import Rspack from "@rspack/core";
 import { it, describe } from "vitest";
-import WebpackBar from "../src";
+import WebpackBar from "../src/rspack";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -19,7 +19,7 @@ describe("webpackbar", () => {
       reporter: { done },
     });
 
-    const compiler = Webpack({
+    const compiler = Rspack({
       mode: "production",
       context: __dirname,
       devtool: "source-map",

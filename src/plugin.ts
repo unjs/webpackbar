@@ -1,4 +1,3 @@
-import Webpack from "webpack";
 import { isMinimal } from "std-env";
 import prettyTime from "pretty-time";
 import { startCase, shortenPath, objectValues } from "./utils";
@@ -10,14 +9,14 @@ export type { Reporter, State } from "./types";
 
 // Default plugin options
 const DEFAULTS = {
-  name: "webpack",
+  name: "build",
   color: "green",
   reporters: isMinimal ? ["basic"] : ["fancy"],
   reporter: null,
 };
 
 // Default state object
-const DEFAULT_STATE = {
+const DEFAULT_STATE = () => ({
   start: null,
   progress: -1,
   done: false,
@@ -25,23 +24,16 @@ const DEFAULT_STATE = {
   details: [],
   request: null,
   hasErrors: false,
-};
+});
 
 const globalStates: { [key: string]: State } = {};
 
-export default class WebpackBarPlugin extends Webpack.ProgressPlugin {
+export class WebpackBar {
   private options: any;
   private reporters: Reporter[];
 
   constructor(options?: WebpackBarOptions) {
-    super({ activeModules: true });
-
     this.options = Object.assign({}, DEFAULTS, options);
-
-    // Assign a better handler to base ProgressPlugin
-    this.handler = (percent, message, ...details) => {
-      this.updateProgress(percent, message, details);
-    };
 
     // Reporters
     const _reporters: ReporterOpts[] = [
@@ -129,7 +121,7 @@ export default class WebpackBarPlugin extends Webpack.ProgressPlugin {
     // Keep our state in shared object
     if (!this.states[this.options.name]) {
       this.states[this.options.name] = {
-        ...DEFAULT_STATE,
+        ...DEFAULT_STATE(),
         color: this.options.color,
         name: startCase(this.options.name),
       };
@@ -143,9 +135,6 @@ export default class WebpackBarPlugin extends Webpack.ProgressPlugin {
     }
     compiler.webpackbar = this;
 
-    // Apply base hooks
-    super.apply(compiler);
-
     // Register our state after all plugins initialized
     hook(compiler, "afterPlugins", () => {
       this._ensureState();
@@ -156,7 +145,7 @@ export default class WebpackBarPlugin extends Webpack.ProgressPlugin {
       this._ensureState();
 
       Object.assign(this.state, {
-        ...DEFAULT_STATE,
+        ...DEFAULT_STATE(),
         start: process.hrtime(),
       });
 
@@ -191,7 +180,7 @@ export default class WebpackBarPlugin extends Webpack.ProgressPlugin {
         : "";
 
       Object.assign(this.state, {
-        ...DEFAULT_STATE,
+        ...DEFAULT_STATE(),
         progress: 100,
         done: true,
         message: `Compiled ${status}${time}`,

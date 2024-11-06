@@ -1,22 +1,34 @@
 {
   "name": "webpackbar",
   "version": "6.0.1",
-  "description": "Elegant ProgressBar and Profiler for Webpack",
+  "description": "Elegant ProgressBar and Profiler for Webpack and Rspack",
   "repository": "unjs/webpackbar",
   "license": "MIT",
   "type": "module",
   "exports": {
-    "import": {
-      "types": "./dist/index.d.mts",
-      "default": "./dist/index.mjs"
+    ".": {
+      "import": {
+        "types": "./dist/webpack.d.mts",
+        "default": "./dist/webpack.mjs"
+      },
+      "require": {
+        "types": "./dist/webpack.d.cts",
+        "default": "./dist/webpack.cjs"
+      }
     },
-    "require": {
-      "types": "./dist/index.d.cts",
-      "default": "./dist/index.cjs"
+    "./rspack": {
+      "import": {
+        "types": "./dist/rspack.d.mts",
+        "default": "./dist/rspack.mjs"
+      },
+      "require": {
+        "types": "./dist/rspack.d.cts",
+        "default": "./dist/rspack.cjs"
+      }
     }
   },
-  "main": "./dist/index.cjs",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/webpack.cjs",
+  "types": "./dist/webpack.d.cts",
   "files": [
     "dist"
   ],
@@ -26,6 +38,7 @@
     "lint:fix": "eslint --fix . && prettier -w .",
     "prepack": "unbuild",
     "play": "webpack --config ./playground/webpack.config.mjs",
+    "play:rspack": "rspack --config ./playground/rspack.config.mjs",
     "release": "pnpm test && changelogen --release && npm publish && git push --follow-tags",
     "test": "pnpm lint && vitest run"
   },
@@ -37,6 +50,8 @@
   },
   "devDependencies": {
     "@babel/standalone": "^7.26.2",
+    "@rspack/cli": "^1.0.14",
+    "@rspack/core": "^1.0.14",
     "@types/node": "^22.9.0",
     "automd": "^0.3.12",
     "chalk": "^5.3.0",
@@ -56,7 +71,16 @@
     "wrap-ansi": "^9.0.0"
   },
   "peerDependencies": {
-    "webpack": "3 || 4 || 5"
+    "webpack": "3 || 4 || 5",
+    "@rspack/core": "*"
+  },
+  "peerDependenciesMeta": {
+    "webpack": {
+      "optional": true
+    },
+    "@rspack/core": {
+      "optional": true
+    }
   },
   "packageManager": "pnpm@9.12.3",
   "engines": {

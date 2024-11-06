@@ -6,6 +6,6 @@ export default defineBuildConfig({
     emitCJS: true,
     inlineDependencies: true,
   },
-  entries: ["src/index"],
+  entries: ["src/webpack", "src/rspack"],
   externals: ["webpack"],
 });

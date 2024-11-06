@@ -1,10 +1,8 @@
 import { delimiter } from "node:path";
-
 import figures from "figures";
-import { getColor } from "consola/utils";
+import { blue } from "ansis";
 
 const { bullet, tick, cross, pointerSmall, radioOff } = figures;
-const blue = getColor("blue");
 
 export const nodeModules = `${delimiter}node_modules${delimiter}`;
 export const BAR_LENGTH = 25;

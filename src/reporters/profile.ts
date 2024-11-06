@@ -1,9 +1,7 @@
-import { getColor } from "consola/utils";
+import { bold } from "ansis";
 import { colorize } from "../utils/cli";
 import Profiler from "../profiler";
 import { Reporter } from "../types";
-
-const bold = getColor("bold");
 
 export default class ProfileReporter implements Reporter {
   progress(context) {

@@ -1,12 +1,9 @@
 import prettyTime from "pretty-time";
-
-import { getColor } from "consola/utils";
+import { bold } from "ansis";
 import { startCase } from "../utils";
 import { createTable } from "../utils/cli";
 
 import getDescription from "./description";
-
-const bold = getColor("bold")
 
 export default function formatStats(allStats) {
   const lines = [];

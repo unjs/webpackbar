@@ -1,4 +1,4 @@
-import { getColor } from "consola/utils";
+import { grey } from "ansis";
 import { renderBar, colorize, ellipsisLeft } from "../utils/cli";
 import { formatRequest } from "../utils/webpack";
 import { BULLET, TICK, CROSS, CIRCLE_OPEN } from "../utils/consts";
@@ -8,8 +8,6 @@ import { Reporter } from "../types";
 const logUpdate = new LogUpdate();
 
 let lastRender = Date.now();
-
-const grey = getColor("gray");
 
 export default class FancyReporter implements Reporter {
   allDone() {

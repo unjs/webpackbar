@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 import { getColor } from "consola/utils";
 import { renderBar, colorize, ellipsisLeft } from "../utils/cli";
 import { formatRequest } from "../utils/webpack";
@@ -11,7 +9,7 @@ const logUpdate = new LogUpdate();
 
 let lastRender = Date.now();
 
-const grey = getColor("gray")
+const grey = getColor("gray");
 
 export default class FancyReporter implements Reporter {
   allDone() {
@@ -62,9 +60,7 @@ export default class FancyReporter implements Reporter {
 
       line2 = state.request
         ? " " +
-        grey(
-            ellipsisLeft(formatRequest(state.request), logUpdate.columns),
-          )
+          grey(ellipsisLeft(formatRequest(state.request), logUpdate.columns))
         : "";
     } else {
       let icon = " ";

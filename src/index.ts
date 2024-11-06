@@ -215,6 +215,11 @@ export default class WebpackBarPlugin extends Webpack.ProgressPlugin {
 
     const activeModule = details.pop();
 
+    // fix: https://github.com/unjs/webpackbar/issues/81
+    if (this.state.done) {
+      return;
+    }
+
     Object.assign(this.state, {
       progress,
       message: message || "",

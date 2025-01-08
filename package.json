@@ -43,7 +43,7 @@
     "test": "pnpm lint && vitest run"
   },
   "dependencies": {
-    "ansis": "^3.5.2",
+    "ansis": "^3.7.0",
     "consola": "^3.3.3",
     "pretty-time": "^1.1.0",
     "std-env": "^3.8.0"
@@ -52,7 +52,7 @@
     "@babel/standalone": "^7.26.4",
     "@rspack/cli": "^1.1.8",
     "@rspack/core": "^1.1.8",
-    "@types/node": "^22.10.2",
+    "@types/node": "^22.10.5",
     "automd": "^0.3.12",
     "chalk": "^5.4.1",
     "changelogen": "^0.5.7",
@@ -63,7 +63,7 @@
     "markdown-table": "^3.0.4",
     "memory-fs": "^0.5.0",
     "prettier": "^3.4.2",
-    "typescript": "^5.7.2",
+    "typescript": "^5.7.3",
     "unbuild": "^2.0.0",
     "vitest": "^2.1.8",
     "webpack": "^5.97.1",
@@ -82,7 +82,7 @@
       "optional": true
     }
   },
-  "packageManager": "pnpm@9.15.2",
+  "packageManager": "pnpm@9.15.3",
   "engines": {
     "node": ">=14.21.3"
   }

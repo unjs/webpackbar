@@ -20,6 +20,9 @@ importers:
       std-env:
         specifier: ^3.8.1
         version: 3.8.1
+      string-width:
+        specifier: ^7.2.0
+        version: 7.2.0
     devDependencies:
       '@babel/standalone':
         specifier: ^7.26.10

@@ -1,3 +1,4 @@
+import stringWidth from "string-width";
 import wrapAnsi from "wrap-ansi";
 import { eraseLines } from "./cli";
 
@@ -6,13 +7,13 @@ import { eraseLines } from "./cli";
 const originalWrite = Symbol("webpackbarWrite");
 
 export default class LogUpdate {
-  private prevLineCount: any;
-  private listening: any;
-  private extraLines: any;
-  private _streams: any;
+  private prevLines: string | null;
+  private listening: boolean;
+  private extraLines: string;
+  private _streams: NodeJS.WriteStream[];
 
   constructor() {
-    this.prevLineCount = 0;
+    this.prevLines = null;
     this.listening = false;
     this.extraLines = "";
     this._onData = this._onData.bind(this);
@@ -29,17 +30,30 @@ export default class LogUpdate {
     });
 
     const data =
-      eraseLines(this.prevLineCount) + wrappedLines + "\n" + this.extraLines;
+      eraseLines(this.lineCount) + wrappedLines + "\n" + this.extraLines;
 
     this.write(data);
+    this.prevLines = data;
+  }
 
-    const _lines = data.split("\n");
-    this.prevLineCount = _lines.length;
+  /**
+   * The number of lines currently rendered, based on this.prevLines and the
+   * terminal width. Since the terminal can be resized at any time, this value
+   * should be retrieved immediately before erasing to get an accurate count.
+   */
+  get lineCount() {
+    if (this.prevLines === null) {
+      return 0;
+    }
 
-    // Count wrapped line too
-    // https://github.com/unjs/webpackbar/pull/90
-    // TODO: Count length with regards of control chars
-    // this.prevLineCount += _lines.reduce((s, l) => s + Math.floor(l.length / this.columns), 0)
+    const splitLines = this.prevLines.split("\n");
+    let lineCount = 0;
+    for (const line of splitLines) {
+      // Use stringWidth to only count printed characters
+      const lineWidth = stringWidth(line);
+      lineCount += Math.max(1, Math.ceil(lineWidth / this.columns));
+    }
+    return lineCount;
   }
 
   get columns() {
@@ -57,13 +71,13 @@ export default class LogUpdate {
 
   clear() {
     this.done();
-    this.write(eraseLines(this.prevLineCount));
+    this.write(eraseLines(this.lineCount));
   }
 
   done() {
     this.stopListen();
 
-    this.prevLineCount = 0;
+    this.prevLines = null;
     this.extraLines = "";
   }
 
@@ -71,7 +85,7 @@ export default class LogUpdate {
     const str = String(data);
     const lines = str.split("\n").length - 1;
     if (lines > 0) {
-      this.prevLineCount += lines;
+      this.prevLines += data;
       this.extraLines += data;
     }
   }

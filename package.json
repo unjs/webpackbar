@@ -43,7 +43,7 @@
     "test": "pnpm lint && vitest run"
   },
   "dependencies": {
-    "ansis": "^3.17.0",
+    "ansis": "^4.0.0",
     "consola": "^3.4.2",
     "pretty-time": "^1.1.0",
     "std-env": "^3.8.1"

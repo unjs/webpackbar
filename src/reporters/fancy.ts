@@ -1,4 +1,4 @@
-import { grey } from "ansis";
+import { gray } from "ansis";
 import { renderBar, colorize, ellipsisLeft } from "../utils/cli";
 import { formatRequest } from "../utils/webpack";
 import { BULLET, TICK, CROSS, CIRCLE_OPEN } from "../utils/consts";
@@ -52,13 +52,13 @@ export default class FancyReporter implements Reporter {
         renderBar(state.progress, state.color),
         state.message,
         `(${state.progress || 0}%)`,
-        grey(state.details[0] || ""),
-        grey(state.details[1] || ""),
+        gray(state.details[0] || ""),
+        gray(state.details[1] || ""),
       ].join(" ");
 
       line2 = state.request
         ? " " +
-          grey(ellipsisLeft(formatRequest(state.request), logUpdate.columns))
+          gray(ellipsisLeft(formatRequest(state.request), logUpdate.columns))
         : "";
     } else {
       let icon = " ";
@@ -72,7 +72,7 @@ export default class FancyReporter implements Reporter {
       }
 
       line1 = color(`${icon} ${state.name}`);
-      line2 = grey("  " + state.message);
+      line2 = gray("  " + state.message);
     }
 
     return line1 + "\n" + line2;

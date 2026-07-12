@@ -49,7 +49,7 @@
     "std-env": "^3.8.1"
   },
   "devDependencies": {
-    "@babel/standalone": "^7.26.10",
+    "@babel/standalone": "^8.0.4",
     "@rspack/cli": "^1.2.8",
     "@rspack/core": "^1.2.8",
     "@types/node": "^22.13.11",

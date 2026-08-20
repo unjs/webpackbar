@@ -68,7 +68,7 @@
     "vitest": "^2.1.9",
     "webpack": "^5.98.0",
     "webpack-cli": "^5.1.4",
-    "wrap-ansi": "^9.0.0"
+    "wrap-ansi": "^10.0.1"
   },
   "peerDependencies": {
     "webpack": "3 || 4 || 5",

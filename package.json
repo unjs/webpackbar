@@ -52,7 +52,7 @@
     "@babel/standalone": "^7.26.10",
     "@rspack/cli": "^1.2.8",
     "@rspack/core": "^1.2.8",
-    "@types/node": "^22.13.11",
+    "@types/node": "^24.13.3",
     "automd": "^0.4.0",
     "chalk": "^5.4.1",
     "changelogen": "^0.6.1",

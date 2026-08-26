@@ -46,7 +46,7 @@
     "ansis": "^3.17.0",
     "consola": "^3.4.2",
     "pretty-time": "^1.1.0",
-    "std-env": "^3.8.1"
+    "std-env": "^4.2.0"
   },
   "devDependencies": {
     "@babel/standalone": "^7.26.10",

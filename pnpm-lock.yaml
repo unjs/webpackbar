@@ -26,7 +26,7 @@ importers:
         version: 7.26.10
       '@rspack/cli':
         specifier: ^1.2.8
-        version: 1.2.8(@rspack/core@1.2.8)(@types/express@4.17.21)(webpack-cli@5.1.4)(webpack@5.98.0)
+        version: 1.2.8(@rspack/core@1.2.8)(@types/express@4.17.21)(webpack-cli@7.2.3)(webpack@5.98.0)
       '@rspack/core':
         specifier: ^1.2.8
         version: 1.2.8
@@ -74,10 +74,10 @@ importers:
         version: 2.1.9(@types/node@22.13.11)(terser@5.36.0)
       webpack:
         specifier: ^5.98.0
-        version: 5.98.0(webpack-cli@5.1.4)
+        version: 5.98.0(webpack-cli@7.2.3)
       webpack-cli:
-        specifier: ^5.1.4
-        version: 5.1.4(webpack@5.98.0)
+        specifier: ^7.2.3
+        version: 7.2.3(js-yaml@4.1.0)(json5@2.2.3)(webpack-bundle-analyzer@4.6.1)(webpack-dev-server@5.0.4)(webpack@5.98.0)
       wrap-ansi:
         specifier: ^9.0.0
         version: 9.0.0
@@ -162,6 +162,10 @@ packages:
   '@discoveryjs/json-ext@0.5.7':
     resolution: {integrity: sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==}
     engines: {node: '>=10.0.0'}
+
+  '@discoveryjs/json-ext@1.1.0':
+    resolution: {integrity: sha512-Xc3VhU02wqZ1HvHRJUwL09HkZSTvidqY5Ya0NXBSYOxAp+Ln9dcJr9fySI+CkONzP3PekQo9WdzCv0PGER/mOA==}
+    engines: {node: '>=14.17.0'}
 
   '@esbuild/aix-ppc64@0.19.12':
     resolution: {integrity: sha512-bmoCYyWdEL3wDQIVbcyzRyeKLgk2WtWLTWz1ZIAZF/EGbNOwSA6ew3PftJ1PqMiOOGu0OyFMzG53L0zqIpPeNA==}
@@ -1258,31 +1262,6 @@ packages:
   '@webassemblyjs/wast-printer@1.14.1':
     resolution: {integrity: sha512-kPSSXE6De1XOR820C90RIo2ogvZG+c3KiHzqUoO/F34Y2shGzesfqv7o57xrxovZJH/MetF5UjroJ/R/3isoiw==}
 
-  '@webpack-cli/configtest@2.1.1':
-    resolution: {integrity: sha512-wy0mglZpDSiSS0XHrVR+BAdId2+yxPSoJW8fsna3ZpYSlufjvxnP4YbKTCBZnNIcGN4r6ZPXV55X4mYExOfLmw==}
-    engines: {node: '>=14.15.0'}
-    peerDependencies:
-      webpack: 5.x.x
-      webpack-cli: 5.x.x
-
-  '@webpack-cli/info@2.0.2':
-    resolution: {integrity: sha512-zLHQdI/Qs1UyT5UBdWNqsARasIA+AaF8t+4u2aS2nEpBQh2mWIVb8qAklq0eUENnC5mOItrIB4LiS9xMtph18A==}
-    engines: {node: '>=14.15.0'}
-    peerDependencies:
-      webpack: 5.x.x
-      webpack-cli: 5.x.x
-
-  '@webpack-cli/serve@2.0.5':
-    resolution: {integrity: sha512-lqaoKnRYBdo1UgDX8uF24AfGMifWK19TxPmM5FHc2vAGxrJ/qtyUyFBWoY1tISZdelsQ5fBcOusifo5o5wSJxQ==}
-    engines: {node: '>=14.15.0'}
-    peerDependencies:
-      webpack: 5.x.x
-      webpack-cli: 5.x.x
-      webpack-dev-server: '*'
-    peerDependenciesMeta:
-      webpack-dev-server:
-        optional: true
-
   '@xtuc/ieee754@1.2.0':
     resolution: {integrity: sha512-DX8nKgqcGwsc0eJSqYt5lwP4DH5FlHnmuWWBRy7X0NcaGR0ZtuyeESgMwTYVEtxmsNGY+qit4QYT/MIYTOTPeA==}
 
@@ -1528,9 +1507,9 @@ packages:
   colorette@2.0.20:
     resolution: {integrity: sha512-IfEDxwoWIjkeXL1eXcDiow4UbKjhLdq6/EuSVR9GMN7KVH3r9gQ83e73hsz1Nd1T3ijd5xv1wcWRYO+D6kCI2w==}
 
-  commander@10.0.1:
-    resolution: {integrity: sha512-y4Mg2tXshplEbSGzx7amzPwKKOCGuoSRP/CjEdwwk0FOGlUbq6lKuoyDZTNZkmxHdJtp54hdfY/JUrdL7Xfdug==}
-    engines: {node: '>=14'}
+  commander@14.0.3:
+    resolution: {integrity: sha512-H+y0Jo/T1RZ9qPP4Eh1pkcQcLRglraJaSLoyOtHxu6AapkjWVCy2Sit1QQ4x3Dng8qDlSsZEet7g5Pq06MvTgw==}
+    engines: {node: '>=20'}
 
   commander@2.20.3:
     resolution: {integrity: sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==}
@@ -1593,10 +1572,6 @@ packages:
 
   core-util-is@1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
-
-  cross-spawn@7.0.3:
-    resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
-    engines: {node: '>= 8'}
 
   cross-spawn@7.0.6:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
@@ -1790,8 +1765,8 @@ packages:
     resolution: {integrity: sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==}
     engines: {node: '>=0.12'}
 
-  envinfo@7.14.0:
-    resolution: {integrity: sha512-CO40UI41xDQzhLB1hWyqUKgFhs250pNcGbyGKe1l/e4FSaI/+YE4IMG76GDt0In67WLPACIITC+sOi08x4wIvg==}
+  envinfo@7.21.0:
+    resolution: {integrity: sha512-Lw7I8Zp5YKHFCXL7+Dz95g4CcbMEpgvqZNNq3AmlT5XAV6CgAAk6gyAMqn2zjw08K9BHfcNuKrMiCPLByGafow==}
     engines: {node: '>=4'}
     hasBin: true
 
@@ -1852,6 +1827,7 @@ packages:
   eslint-plugin-markdown@5.1.0:
     resolution: {integrity: sha512-SJeyKko1K6GwI0AN6xeCDToXDkfKZfXcexA6B+O2Wr2btUS9GrC+YgwSyVli5DJnctUHjFXcQ2cqTaAmVoLi2A==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    deprecated: Please use @eslint/markdown instead
     peerDependencies:
       eslint: '>=8'
 
@@ -1880,6 +1856,7 @@ packages:
   eslint@9.23.0:
     resolution: {integrity: sha512-jV7AbNoFPAY1EkFYpLq5bslU9NLNO8xnEeQXwErNibVryjk67wHVmddTBilc5srIttJDBrB0eMHKZBFbSIABCw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
     peerDependencies:
       jiti: '*'
@@ -2097,12 +2074,13 @@ packages:
 
   glob@10.4.5:
     resolution: {integrity: sha512-7Bv8RF0k6xjo7d4A/PxYLbUCfb6c+Vpd2/mB2yRDlew7Jb5hEXiCD9ibfO7wpk8i4sevK6DFny9h7EYbM3/sHg==}
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
     hasBin: true
 
   glob@8.1.0:
     resolution: {integrity: sha512-r8hpEjiQEYlF2QU0df3dS+nxxSIreXQS1qRhMJM0Q5NDdR386C7jb7Hwwod8Fgiuex+k0GFjgft18yvxm5XoCQ==}
     engines: {node: '>=12'}
-    deprecated: Glob versions prior to v9 are no longer supported
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
 
   globals@11.12.0:
     resolution: {integrity: sha512-WOBp/EEGUiIsJSp7wcv/y6MO+lV9UoncWqxuFfm8eBwzWNgyfBd6Gz+IeKQ9jCmyhoH99g15M3T+QaVHFjizVA==}
@@ -3515,6 +3493,7 @@ packages:
 
   uuid@8.3.2:
     resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
+    deprecated: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
     hasBin: true
 
   validate-npm-package-license@3.0.4:
@@ -3597,17 +3576,23 @@ packages:
     engines: {node: '>= 10.13.0'}
     hasBin: true
 
-  webpack-cli@5.1.4:
-    resolution: {integrity: sha512-pIDJHIEI9LR0yxHXQ+Qh95k2EvXpWzZ5l+d+jIo+RdSm9MiHfzazIxwwni/p7+x4eJZuvG1AJwgC4TNQ7NRgsg==}
-    engines: {node: '>=14.15.0'}
+  webpack-cli@7.2.3:
+    resolution: {integrity: sha512-vDFU7jrfCctnN7jJQWPl+V26B51GLp11prVZXg50oeonsgeBzSTJEWmXkjHsOjTgMjlPOQM8GWLh33X9RN/0ow==}
+    engines: {node: '>=20.9.0'}
     hasBin: true
     peerDependencies:
-      '@webpack-cli/generators': '*'
-      webpack: 5.x.x
-      webpack-bundle-analyzer: '*'
-      webpack-dev-server: '*'
+      js-yaml: ^4.0.0 || ^5.0.0
+      json5: ^2.2.3
+      toml: ^3.0.0 || ^4.0.0 || ^5.0.0
+      webpack: ^5.101.0
+      webpack-bundle-analyzer: ^4.0.0 || ^5.0.0
+      webpack-dev-server: ^5.0.0 || ^6.0.0
     peerDependenciesMeta:
-      '@webpack-cli/generators':
+      js-yaml:
+        optional: true
+      json5:
+        optional: true
+      toml:
         optional: true
       webpack-bundle-analyzer:
         optional: true
@@ -3636,9 +3621,9 @@ packages:
       webpack-cli:
         optional: true
 
-  webpack-merge@5.10.0:
-    resolution: {integrity: sha512-+4zXKdx7UnO+1jaN4l2lHVD+mFvnlZQP/6ljaJVb4SZiwIKeUnrT5l0gkT8z+n4hKpC+jpOv6O9R+gLtag7pSA==}
-    engines: {node: '>=10.0.0'}
+  webpack-merge@6.0.1:
+    resolution: {integrity: sha512-hXXvrjtx2PLYx4qruKl+kyRSLc52V+cCvMxRjmKwoA+CBbbF5GfIBtR6kCvl0fYGqTUPKB+1ktVmTHqMOzgCBg==}
+    engines: {node: '>=18.0.0'}
 
   webpack-sources@3.2.3:
     resolution: {integrity: sha512-/DyMEOrDgLKKIG0fmvtz+4dUX/3Ghozwgm6iPp8KRhvn+eQf9+Q7GWxVNMk3+uCPWfdXYC4ExGBckIXdFEfH1w==}
@@ -3849,6 +3834,8 @@ snapshots:
       '@babel/helper-validator-identifier': 7.25.9
 
   '@discoveryjs/json-ext@0.5.7': {}
+
+  '@discoveryjs/json-ext@1.1.0': {}
 
   '@esbuild/aix-ppc64@0.19.12':
     optional: true
@@ -4405,11 +4392,11 @@ snapshots:
       '@rspack/binding-win32-ia32-msvc': 1.2.8
       '@rspack/binding-win32-x64-msvc': 1.2.8
 
-  '@rspack/cli@1.2.8(@rspack/core@1.2.8)(@types/express@4.17.21)(webpack-cli@5.1.4)(webpack@5.98.0)':
+  '@rspack/cli@1.2.8(@rspack/core@1.2.8)(@types/express@4.17.21)(webpack-cli@7.2.3)(webpack@5.98.0)':
     dependencies:
       '@discoveryjs/json-ext': 0.5.7
       '@rspack/core': 1.2.8
-      '@rspack/dev-server': 1.0.10(@rspack/core@1.2.8)(@types/express@4.17.21)(webpack-cli@5.1.4)(webpack@5.98.0)
+      '@rspack/dev-server': 1.0.10(@rspack/core@1.2.8)(@types/express@4.17.21)(webpack-cli@7.2.3)(webpack@5.98.0)
       colorette: 2.0.20
       exit-hook: 4.0.0
       interpret: 3.1.1
@@ -4432,7 +4419,7 @@ snapshots:
       '@rspack/lite-tapable': 1.0.1
       caniuse-lite: 1.0.30001706
 
-  '@rspack/dev-server@1.0.10(@rspack/core@1.2.8)(@types/express@4.17.21)(webpack-cli@5.1.4)(webpack@5.98.0)':
+  '@rspack/dev-server@1.0.10(@rspack/core@1.2.8)(@types/express@4.17.21)(webpack-cli@7.2.3)(webpack@5.98.0)':
     dependencies:
       '@rspack/core': 1.2.8
       chokidar: 3.6.0
@@ -4442,7 +4429,7 @@ snapshots:
       mime-types: 2.1.35
       p-retry: 4.6.2
       webpack-dev-middleware: 7.4.2(webpack@5.98.0)
-      webpack-dev-server: 5.0.4(webpack-cli@5.1.4)(webpack@5.98.0)
+      webpack-dev-server: 5.0.4(webpack-cli@7.2.3)(webpack@5.98.0)
       ws: 8.18.0
     transitivePeerDependencies:
       - '@types/express'
@@ -4765,21 +4752,6 @@ snapshots:
       '@webassemblyjs/ast': 1.14.1
       '@xtuc/long': 4.2.2
 
-  '@webpack-cli/configtest@2.1.1(webpack-cli@5.1.4)(webpack@5.98.0)':
-    dependencies:
-      webpack: 5.98.0(webpack-cli@5.1.4)
-      webpack-cli: 5.1.4(webpack@5.98.0)
-
-  '@webpack-cli/info@2.0.2(webpack-cli@5.1.4)(webpack@5.98.0)':
-    dependencies:
-      webpack: 5.98.0(webpack-cli@5.1.4)
-      webpack-cli: 5.1.4(webpack@5.98.0)
-
-  '@webpack-cli/serve@2.0.5(webpack-cli@5.1.4)(webpack@5.98.0)':
-    dependencies:
-      webpack: 5.98.0(webpack-cli@5.1.4)
-      webpack-cli: 5.1.4(webpack@5.98.0)
-
   '@xtuc/ieee754@1.2.0': {}
 
   '@xtuc/long@4.2.2': {}
@@ -5068,7 +5040,7 @@ snapshots:
 
   colorette@2.0.20: {}
 
-  commander@10.0.1: {}
+  commander@14.0.3: {}
 
   commander@2.20.3: {}
 
@@ -5121,12 +5093,6 @@ snapshots:
       browserslist: 4.24.2
 
   core-util-is@1.0.3: {}
-
-  cross-spawn@7.0.3:
-    dependencies:
-      path-key: 3.1.1
-      shebang-command: 2.0.0
-      which: 2.0.2
 
   cross-spawn@7.0.6:
     dependencies:
@@ -5314,7 +5280,7 @@ snapshots:
 
   entities@4.5.0: {}
 
-  envinfo@7.14.0: {}
+  envinfo@7.21.0: {}
 
   errno@0.1.8:
     dependencies:
@@ -6961,7 +6927,7 @@ snapshots:
       schema-utils: 4.3.0
       serialize-javascript: 6.0.2
       terser: 5.36.0
-      webpack: 5.98.0(webpack-cli@5.1.4)
+      webpack: 5.98.0(webpack-cli@7.2.3)
 
   terser@5.36.0:
     dependencies:
@@ -7215,22 +7181,22 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  webpack-cli@5.1.4(webpack@5.98.0):
+  webpack-cli@7.2.3(js-yaml@4.1.0)(json5@2.2.3)(webpack-bundle-analyzer@4.6.1)(webpack-dev-server@5.0.4)(webpack@5.98.0):
     dependencies:
-      '@discoveryjs/json-ext': 0.5.7
-      '@webpack-cli/configtest': 2.1.1(webpack-cli@5.1.4)(webpack@5.98.0)
-      '@webpack-cli/info': 2.0.2(webpack-cli@5.1.4)(webpack@5.98.0)
-      '@webpack-cli/serve': 2.0.5(webpack-cli@5.1.4)(webpack@5.98.0)
-      colorette: 2.0.20
-      commander: 10.0.1
-      cross-spawn: 7.0.3
-      envinfo: 7.14.0
-      fastest-levenshtein: 1.0.16
+      '@discoveryjs/json-ext': 1.1.0
+      commander: 14.0.3
+      cross-spawn: 7.0.6
+      envinfo: 7.21.0
       import-local: 3.2.0
       interpret: 3.1.1
       rechoir: 0.8.0
-      webpack: 5.98.0(webpack-cli@5.1.4)
-      webpack-merge: 5.10.0
+      webpack: 5.98.0(webpack-cli@7.2.3)
+      webpack-merge: 6.0.1
+    optionalDependencies:
+      js-yaml: 4.1.0
+      json5: 2.2.3
+      webpack-bundle-analyzer: 4.6.1
+      webpack-dev-server: 5.0.4(webpack-cli@7.2.3)(webpack@5.98.0)
 
   webpack-dev-middleware@7.4.2(webpack@5.98.0):
     dependencies:
@@ -7241,9 +7207,9 @@ snapshots:
       range-parser: 1.2.1
       schema-utils: 4.2.0
     optionalDependencies:
-      webpack: 5.98.0(webpack-cli@5.1.4)
+      webpack: 5.98.0(webpack-cli@7.2.3)
 
-  webpack-dev-server@5.0.4(webpack-cli@5.1.4)(webpack@5.98.0):
+  webpack-dev-server@5.0.4(webpack-cli@7.2.3)(webpack@5.98.0):
     dependencies:
       '@types/bonjour': 3.5.13
       '@types/connect-history-api-fallback': 1.5.4
@@ -7276,15 +7242,15 @@ snapshots:
       webpack-dev-middleware: 7.4.2(webpack@5.98.0)
       ws: 8.18.0
     optionalDependencies:
-      webpack: 5.98.0(webpack-cli@5.1.4)
-      webpack-cli: 5.1.4(webpack@5.98.0)
+      webpack: 5.98.0(webpack-cli@7.2.3)
+      webpack-cli: 7.2.3(js-yaml@4.1.0)(json5@2.2.3)(webpack-bundle-analyzer@4.6.1)(webpack-dev-server@5.0.4)(webpack@5.98.0)
     transitivePeerDependencies:
       - bufferutil
       - debug
       - supports-color
       - utf-8-validate
 
-  webpack-merge@5.10.0:
+  webpack-merge@6.0.1:
     dependencies:
       clone-deep: 4.0.1
       flat: 5.0.2
@@ -7292,7 +7258,7 @@ snapshots:
 
   webpack-sources@3.2.3: {}
 
-  webpack@5.98.0(webpack-cli@5.1.4):
+  webpack@5.98.0(webpack-cli@7.2.3):
     dependencies:
       '@types/eslint-scope': 3.7.7
       '@types/estree': 1.0.6
@@ -7318,7 +7284,7 @@ snapshots:
       watchpack: 2.4.2
       webpack-sources: 3.2.3
     optionalDependencies:
-      webpack-cli: 5.1.4(webpack@5.98.0)
+      webpack-cli: 7.2.3(js-yaml@4.1.0)(json5@2.2.3)(webpack-bundle-analyzer@4.6.1)(webpack-dev-server@5.0.4)(webpack@5.98.0)
     transitivePeerDependencies:
       - '@swc/core'
       - esbuild

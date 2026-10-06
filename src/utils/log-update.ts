@@ -71,7 +71,11 @@ export default class LogUpdate {
     const str = String(data);
     const lines = str.split("\n").length - 1;
     if (lines > 0) {
-      this.prevLineCount += lines;
+      // Do not touch `prevLineCount` here. `render()` recomputes it from the
+      // full payload (`wrappedLines` + `extraLines`) on every frame, so adding
+      // the extra lines on top of that made the next `eraseLines()` move the
+      // cursor too far up, clearing content above the progress bar. The offset
+      // was then baked into the next count and grew with every frame.
       this.extraLines += data;
     }
   }
